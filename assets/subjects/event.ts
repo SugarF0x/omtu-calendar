@@ -1,8 +1,7 @@
 import { parse } from 'date-fns'
-import { TIMETABLE, TimetableFormat } from '../'
-import { Subject } from './'
+import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
+import { Subject } from '~/assets/types'
 
-const DaysFormat = 'dd.mm.yyyy'
 const DAYS = [
   "23.10.2021",
   "30.10.2021",
@@ -22,8 +21,8 @@ DAYS.forEach(day => {
       group: i,
       class: 315,
       date: {
-        start: parse(`${day} ${TIMETABLE[1][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[4][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
+        start: parse(`${day} ${TIMETABLE[1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        end: parse(`${day} ${TIMETABLE[4][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       },
       color: "#ADFF2F"
     })

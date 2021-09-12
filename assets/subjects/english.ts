@@ -1,24 +1,12 @@
-import { parse, format, addDays, getYear } from 'date-fns'
-import { TIMETABLE, TimetableFormat } from '../'
-import { Subject } from './'
+import { parse } from 'date-fns'
+import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
+import { Subject } from '~/assets/types'
+import { NextWeekDayGenerator } from '~/assets/util'
 
 const TITLE = 'Английский'
 const COLOR = '#FFB6C1'
 
-const DaysFormat = 'dd.mm.yyyy'
 const DAYS: string[] = []
-
-function NextWeekDayGenerator(start: string): () => string | null {
-  let date = parse(start, DaysFormat, new Date())
-
-  return function () {
-    if (getYear(date) > 2021) return null
-
-    const returnDate = format(date, DaysFormat)
-    date = addDays(date, 7)
-    return returnDate
-  }
-}
 
 const getNextWeek = NextWeekDayGenerator("15.09.2021")
 while (true) {
@@ -39,8 +27,8 @@ DAYS.forEach(day => {
       group: i,
       class: classRoom,
       date: {
-        start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
+        start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       },
       color: COLOR
     })
@@ -66,8 +54,8 @@ FIRST_GROUP_DAYS.forEach(day => {
       group: i,
       class: classRoom,
       date: {
-        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
+        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       },
       color: COLOR
     })
@@ -92,8 +80,8 @@ SECOND_GROUP_DAYS.forEach(day => {
       group: i + 2,
       class: classRoom,
       date: {
-        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
+        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       },
       color: COLOR
     })
