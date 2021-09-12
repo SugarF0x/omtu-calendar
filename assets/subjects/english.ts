@@ -4,7 +4,7 @@ import { Subject } from '~/assets/types'
 import { NextWeekDayGenerator } from '~/assets/util'
 
 const TITLE = 'Английский'
-const COLOR = '#FFB6C1'
+const COLOR = '#ffe119'
 
 const DAYS: string[] = []
 

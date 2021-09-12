@@ -27,7 +27,7 @@ DAYS.forEach(day => {
         start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
         end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       },
-      color: "#6495ED"
+      color: "#42d4f4"
     })
   }
 })
