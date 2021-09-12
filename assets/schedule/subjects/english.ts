@@ -2,6 +2,9 @@ import { parse, format, addDays, getYear } from 'date-fns'
 import { TIMETABLE, TimetableFormat } from '../'
 import { Subject } from './'
 
+const TITLE = 'Английский'
+const COLOR = '#FFB6C1'
+
 const DaysFormat = 'dd.mm.yyyy'
 const DAYS: string[] = []
 
@@ -32,13 +35,14 @@ DAYS.forEach(day => {
     const lesson = i < 2 ? 7 : 8
 
     ENGLISH.push({
-      title: 'Английский',
+      title: TITLE,
       group: i,
       class: classRoom,
       date: {
         start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
         end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
       },
+      color: COLOR
     })
   }
 })
@@ -58,13 +62,14 @@ FIRST_GROUP_DAYS.forEach(day => {
     const classRoom = i % 2 ? 510 : 509
 
     ENGLISH.push({
-      title: 'Английский',
+      title: TITLE,
       group: i,
       class: classRoom,
       date: {
         start: parse(`${day} ${TIMETABLE[6][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
         end: parse(`${day} ${TIMETABLE[7][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
       },
+      color: COLOR
     })
   }
 })
@@ -83,13 +88,14 @@ SECOND_GROUP_DAYS.forEach(day => {
     const classRoom = i % 2 ? 510 : 509
 
     ENGLISH.push({
-      title: 'Английский',
+      title: TITLE,
       group: i + 2,
       class: classRoom,
       date: {
         start: parse(`${day} ${TIMETABLE[6][0]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
         end: parse(`${day} ${TIMETABLE[7][1]}`, `${DaysFormat} ${TimetableFormat}`, new Date()),
       },
+      color: COLOR
     })
   }
 })

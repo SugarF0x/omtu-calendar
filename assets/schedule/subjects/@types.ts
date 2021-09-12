@@ -7,4 +7,5 @@ export interface Subject {
     end: Date
   }
   group: number
+  color: string
 }
