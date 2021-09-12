@@ -1,10 +1,11 @@
-import { parse } from 'date-fns'
-import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
-import { Subject } from '~/assets/types'
+import { Subject } from './Subject'
+import { Event } from '~/assets/types'
 import { NextWeekDayGenerator } from '~/assets/util'
 
-const TITLE = 'Английский'
-const COLOR = '#ffe119'
+const EnglishSubject = new Subject({
+  title: 'Английский',
+  color: "#ffe119"
+})
 
 const DAYS: string[] = []
 
@@ -15,23 +16,20 @@ while (true) {
   DAYS.push(date)
 }
 
-const ENGLISH: Subject[] = []
+const ENGLISH: Event[] = []
 
 DAYS.forEach(day => {
-  for (let i=0; i<4; i++) {
-    const classRoom = i % 2 ? 510 : 509
-    const lesson = i < 2 ? 7 : 8
+  for (let group = 0; group < 4; group++) {
+    const room = group % 2 ? 510 : 509
+    const start = group < 2 ? 7 : 8
 
-    ENGLISH.push({
-      title: TITLE,
-      group: i,
-      class: classRoom,
-      date: {
-        start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: COLOR
-    })
+    ENGLISH.push(EnglishSubject.getEvent({
+      day,
+      group,
+      room,
+      start,
+      duration: 1
+    }))
   }
 })
 
@@ -46,19 +44,16 @@ const FIRST_GROUP_DAYS = [
   "23.12.2021",
 ]
 FIRST_GROUP_DAYS.forEach(day => {
-  for (let i=0; i<2; i++) {
-    const classRoom = i % 2 ? 510 : 509
+  for (let group = 0; group < 2; group++) {
+    const room = group % 2 ? 510 : 509
 
-    ENGLISH.push({
-      title: TITLE,
-      group: i,
-      class: classRoom,
-      date: {
-        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: COLOR
-    })
+    ENGLISH.push(EnglishSubject.getEvent({
+      day,
+      group,
+      room,
+      start: 6,
+      duration: 2
+    }))
   }
 })
 
@@ -72,19 +67,16 @@ const SECOND_GROUP_DAYS = [
   "16.12.2021",
 ]
 SECOND_GROUP_DAYS.forEach(day => {
-  for (let i=0; i<2; i++) {
-    const classRoom = i % 2 ? 510 : 509
+  for (let group = 0; group < 2; group++) {
+    const room = group % 2 ? 510 : 509
 
-    ENGLISH.push({
-      title: TITLE,
-      group: i + 2,
-      class: classRoom,
-      date: {
-        start: parse(`${day} ${TIMETABLE[6][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: COLOR
-    })
+    ENGLISH.push(EnglishSubject.getEvent({
+      day,
+      group,
+      room,
+      start: 6,
+      duration: 2
+    }))
   }
 })
 

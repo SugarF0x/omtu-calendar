@@ -1,6 +1,11 @@
-import { parse } from 'date-fns'
-import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
-import { Subject } from '~/assets/types'
+import { Subject } from './Subject'
+import { Event } from '~/assets/types'
+
+const NeuromarketingSubject = new Subject({
+  title: 'Нейромаркетинг',
+  professor: 'Клепиков Олег Евгеньевич',
+  color: "#4363d8"
+})
 
 const DAYS = [
   "09.11.2021",
@@ -12,21 +17,17 @@ const DAYS = [
   "21.12.2021",
 ]
 
-const NEUROMARKETING: Subject[] = []
+const NEUROMARKETING: Event[] = []
 
 DAYS.forEach(day => {
-  for (let i=0; i<4; i++) {
-    NEUROMARKETING.push({
-      title: 'Нейромаркетинг',
-      professor: 'Клепиков Олег Евгеньевич',
-      group: i,
-      class: 215,
-      date: {
-        start: parse(`${day} ${TIMETABLE[7][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[7][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: "#4363d8"
-    })
+  for (let group = 0; group < 4; group++) {
+    NEUROMARKETING.push(NeuromarketingSubject.getEvent({
+      day,
+      group,
+      room: 215,
+      start: 6,
+      duration: 2
+    }))
   }
 })
 

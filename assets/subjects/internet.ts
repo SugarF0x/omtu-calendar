@@ -1,7 +1,12 @@
-import { parse } from 'date-fns'
-import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
-import { Subject } from '~/assets/types'
+import { Subject } from './Subject'
+import { Event } from '~/assets/types'
 import { NextWeekDayGenerator } from '~/assets/util'
+
+const InternetSubject = new Subject({
+  title: 'Интернет-маркетинг',
+  professor: 'Слесарев Максим Александрович',
+  color: "#42d4f4"
+})
 
 const DAYS: string[] = []
 
@@ -12,23 +17,19 @@ while (true) {
   DAYS.push(date)
 }
 
-const INTERNET: Subject[] = []
+const INTERNET: Event[] = []
 
 DAYS.forEach(day => {
-  for (let i=0; i<4; i++) {
-    const lesson = i < 2 ? 8 : 7
+  for (let group = 0; group < 4; group++) {
+    const start = group < 2 ? 8 : 7
 
-    INTERNET.push({
-      title: 'Интернет-маркетинг',
-      professor: 'Слесарев Максим Александрович',
-      group: i,
-      class: 519,
-      date: {
-        start: parse(`${day} ${TIMETABLE[lesson][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[lesson][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: "#42d4f4"
-    })
+    INTERNET.push(InternetSubject.getEvent({
+      day,
+      group,
+      start,
+      room: 519,
+      duration: 1
+    }))
   }
 })
 

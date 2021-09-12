@@ -1,6 +1,11 @@
-import { parse } from 'date-fns'
-import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
-import { Subject } from '~/assets/types'
+import { Subject } from './Subject'
+import { Event } from '~/assets/types'
+
+const TrendsSubject = new Subject({
+  title: 'Макро- и Микротренды',
+  professor: 'Хотяшева Ольга Михайловна',
+  color: "#f032e6"
+})
 
 const DAYS = [
   "18.09.2021",
@@ -8,21 +13,17 @@ const DAYS = [
   "02.10.2021",
 ]
 
-const TRENDS: Subject[] = []
+const TRENDS: Event[] = []
 
 DAYS.forEach(day => {
-  for (let i=0; i<4; i++) {
-    TRENDS.push({
-      title: 'Макро- и Микротренды',
-      professor: 'Хотяшева Ольга Михайловна',
-      group: i,
-      class: 315,
-      date: {
-        start: parse(`${day} ${TIMETABLE[1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[4][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: "#f032e6"
-    })
+  for (let group = 0; group < 4; group++) {
+    TRENDS.push(TrendsSubject.getEvent({
+      day,
+      group,
+      room: 315,
+      start: 1,
+      duration: 4
+    }))
   }
 })
 

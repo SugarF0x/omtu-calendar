@@ -1,6 +1,11 @@
-import { parse } from 'date-fns'
-import { TIMETABLE, TIMETABLE_FORMAT, DAYS_FORMAT } from '~/assets/consts'
-import { Subject } from '~/assets/types'
+import { Subject } from './Subject'
+import { Event } from '~/assets/types'
+
+const EventSubject = new Subject({
+  title: 'Event-менеджмент',
+  professor: 'Шойгу Ксения Сергеевна',
+  color: "#bfef45"
+})
 
 const DAYS = [
   "23.10.2021",
@@ -11,21 +16,17 @@ const DAYS = [
   "27.11.2021",
 ]
 
-const EVENT: Subject[] = []
+const EVENT: Event[] = []
 
 DAYS.forEach(day => {
-  for (let i=0; i<4; i++) {
-    EVENT.push({
-      title: 'Event-менеджмент',
-      professor: 'Шойгу Ксения Сергеевна',
-      group: i,
-      class: 315,
-      date: {
-        start: parse(`${day} ${TIMETABLE[1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${day} ${TIMETABLE[4][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      },
-      color: "#bfef45"
-    })
+  for (let group = 0; group < 4; group++) {
+    EVENT.push(EventSubject.getEvent({
+      day,
+      group,
+      room: 315,
+      start: 1,
+      duration: 4
+    }))
   }
 })
 
