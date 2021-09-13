@@ -12,18 +12,23 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-calendar
-    ref="calendar"
-    v-model="value"
-    :weekdays="weekday"
-    :type="type"
-    events="stack"
-    :event-overlap-mode="mode"
-    :event-overlap-threshold="30"
-    :event-color="getEventColor"
-  />
+  <div class='wrapper'>
+    <v-calendar class='calendar' />
+  </div>
 </template>
 
 <style lang='scss'>
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
+  width: 100vw;
+}
 
+.calendar {
+  max-width: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 </style>
