@@ -3,7 +3,7 @@ export interface Event {
   professor?: string
   color: string
   room: number
-  category: number
+  group: number
   start: Date
   end: Date
 }

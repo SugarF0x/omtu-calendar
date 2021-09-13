@@ -33,7 +33,7 @@ export class Subject {
       professor: this.professor,
       color: this.color,
       room: options.room,
-      category: options.group,
+      group: options.group,
       start: parse(`${options.day} ${TIMETABLE[options.start][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       end: parse(`${options.day} ${TIMETABLE[options.start + options.duration - 1][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
     }
