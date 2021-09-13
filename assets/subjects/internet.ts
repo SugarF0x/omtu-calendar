@@ -21,7 +21,7 @@ const INTERNET: Event[] = []
 
 DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
-    const start = group < 2 ? 8 : 7
+    const start = group < 2 ? 7 : 6
 
     INTERNET.push(InternetSubject.getEvent({
       day,

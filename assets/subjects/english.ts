@@ -21,7 +21,7 @@ const ENGLISH: Event[] = []
 DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     const room = group % 2 ? 510 : 509
-    const start = group < 2 ? 7 : 8
+    const start = group < 2 ? 6 : 7
 
     ENGLISH.push(EnglishSubject.getEvent({
       day,

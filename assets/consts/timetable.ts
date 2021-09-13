@@ -1,4 +1,4 @@
-export const TIMETABLE_FORMAT = 'hh:MM:ss'
+export const TIMETABLE_FORMAT = 'hh:mm:ss'
 export const TIMETABLE: [string, string][] = [
   ["09:00:00", "10:20:00"],
   ["10:35:00", "11:55:00"],
