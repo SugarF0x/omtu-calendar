@@ -1,10 +1,10 @@
-import { Subject } from './Subject'
-import { Event } from '~/assets/types'
+import { Subject } from "./Subject"
+import { Event } from "~/assets/types"
 
 const FinanceSubject = new Subject({
-  title: 'Финансовое моделирование',
-  professor: 'Шаренков Сергей Борисович',
-  color: "#3cb44b"
+  title: "Финансовое моделирование",
+  professor: "Шаренков Сергей Борисович",
+  color: "#3cb44b",
 })
 
 const DAYS = [
@@ -21,18 +21,18 @@ const DAYS = [
 
 const FINANCE: Event[] = []
 
-DAYS.forEach(day => {
+DAYS.forEach((day) => {
   for (let group = 0; group < 4; group++) {
-    FINANCE.push(FinanceSubject.getEvent({
-      day,
-      group,
-      room: 214,
-      start: 6,
-      duration: 2
-    }))
+    FINANCE.push(
+      FinanceSubject.getEvent({
+        day,
+        group,
+        room: 214,
+        start: 6,
+        duration: 2,
+      }),
+    )
   }
 })
 
-export {
-  FINANCE
-}
+export { FINANCE }

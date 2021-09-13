@@ -1,10 +1,10 @@
-import { Subject } from './Subject'
-import { Event } from '~/assets/types'
+import { Subject } from "./Subject"
+import { Event } from "~/assets/types"
 
 const PsychologySubject = new Subject({
-  title: 'Психология в бизнесе',
-  professor: 'Клепиков Олег Евгеньевич',
-  color: "#911eb4"
+  title: "Психология в бизнесе",
+  professor: "Клепиков Олег Евгеньевич",
+  color: "#64167c",
 })
 
 const DAYS = [
@@ -20,18 +20,18 @@ const DAYS = [
 
 const PSYCHOLOGY: Event[] = []
 
-DAYS.forEach(day => {
+DAYS.forEach((day) => {
   for (let group = 0; group < 4; group++) {
-    PSYCHOLOGY.push(PsychologySubject.getEvent({
-      day,
-      group,
-      room: 215,
-      start: 6,
-      duration: 2
-    }))
+    PSYCHOLOGY.push(
+      PsychologySubject.getEvent({
+        day,
+        group,
+        room: 215,
+        start: 6,
+        duration: 2,
+      }),
+    )
   }
 })
 
-export {
-  PSYCHOLOGY
-}
+export { PSYCHOLOGY }

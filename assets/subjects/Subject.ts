@@ -1,6 +1,6 @@
-import { parse } from 'date-fns'
-import { DAYS_FORMAT, TIMETABLE, TIMETABLE_FORMAT } from '~/assets/consts'
-import { Event } from '~/assets/types'
+import { parse } from "date-fns"
+import { DAYS_FORMAT, TIMETABLE, TIMETABLE_FORMAT } from "~/assets/consts"
+import { Event } from "~/assets/types"
 
 export interface SubjectOptions {
   title: string
@@ -35,7 +35,11 @@ export class Subject {
       room: options.room,
       group: options.group,
       start: parse(`${options.day} ${TIMETABLE[options.start][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      end: parse(`${options.day} ${TIMETABLE[options.start + options.duration - 1][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+      end: parse(
+        `${options.day} ${TIMETABLE[options.start + options.duration - 1][1]}`,
+        `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`,
+        new Date(),
+      ),
     }
   }
 }

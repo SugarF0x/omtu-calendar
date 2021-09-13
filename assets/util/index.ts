@@ -1,1 +1,1 @@
-export * from './NextWeekGenerator'
+export * from "./NextWeekGenerator"

@@ -1,5 +1,5 @@
-import { addDays, format, getYear, parse } from 'date-fns'
-import { DAYS_FORMAT } from '~/assets/consts'
+import { addDays, format, getYear, parse } from "date-fns"
+import { DAYS_FORMAT } from "~/assets/consts"
 
 export function NextWeekDayGenerator(start: string): () => string | null {
   let date = parse(start, DAYS_FORMAT, new Date())

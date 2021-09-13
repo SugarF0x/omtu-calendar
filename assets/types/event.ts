@@ -1,5 +1,5 @@
 export interface Event {
-  name: string,
+  name: string
   professor?: string
   color: string
   room: number

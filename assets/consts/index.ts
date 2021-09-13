@@ -1,2 +1,2 @@
-export * from './timetable'
-export * from './days'
+export * from "./timetable"
+export * from "./days"
