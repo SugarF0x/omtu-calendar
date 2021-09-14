@@ -86,4 +86,16 @@ export default defineComponent({
 .radioGroup {
   color: white;
 }
+
+.v-event.v-event-start.v-event-end {
+  width: 100% !important;
+  height: inherit !important;
+  border-radius: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+.v-calendar-weekly__day, .v-calendar-weekly__head-weekday {
+  margin: 0 !important;
+}
 </style>
