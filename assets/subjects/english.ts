@@ -71,7 +71,7 @@ const SECOND_GROUP_DAYS = [
   "16.12.2021",
 ]
 SECOND_GROUP_DAYS.forEach((day) => {
-  for (let group = 0; group < 2; group++) {
+  for (let group = 2; group < 4; group++) {
     const room = group % 2 ? 510 : 509
 
     ENGLISH.push(
