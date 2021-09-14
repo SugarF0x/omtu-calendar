@@ -1,6 +1,6 @@
 <script lang='ts'>
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
-import { addMonths, format, startOfMonth, subMonths } from 'date-fns'
+import { computed, defineComponent, ref, wrapProperty } from '@nuxtjs/composition-api'
+import { addMonths, format, startOfMonth, subMonths, parse, isSameDay } from 'date-fns'
 import { EVENTS } from '~/assets/subjects'
 
 interface CalendarRef {
@@ -10,6 +10,7 @@ interface CalendarRef {
 
 export default defineComponent({
   setup() {
+    const vuetify = wrapProperty('$vuetify', false)()
     const calendar = ref<CalendarRef | null>(null)
     const value = ref('')
 
@@ -31,6 +32,14 @@ export default defineComponent({
 
     const events = computed(() => EVENTS.filter(event => event.group === selectedGroup.value))
 
+    const isWide = computed(() => !['xs', 'sm'].includes(vuetify.breakpoint.name))
+    const weekdays = computed(() => [1,2,3,4,5,6, isWide.value ? 0 : null].filter(n => n !== null))
+
+    const getEvents = (value: string) => {
+      const date = parse(value, 'yyyy-MM-dd', new Date())
+      return events.value.filter(event => isSameDay(event.start, date))
+    }
+
     return {
       value,
       calendar,
@@ -40,6 +49,9 @@ export default defineComponent({
       monthLocale,
       handleMonthIncrease,
       handleMonthDecrease,
+      weekdays,
+      getEvents,
+      isWide
     }
   }
 })
@@ -47,7 +59,7 @@ export default defineComponent({
 
 <template>
   <v-container class='wrapper'>
-    <v-row class='fill-height'>
+    <v-row :class='isWide && "fill-height"'>
       <v-col cols='12' md='2'>
         <v-card class='d-flex justify-center'>
           <v-radio-group v-model='selectedGroup' name='group'>
@@ -55,17 +67,35 @@ export default defineComponent({
           </v-radio-group>
         </v-card>
       </v-col>
-      <v-col cols='12' md='8'>
-        <v-calendar ref="calendar" v-model='value' class='calendar' :events='events' :weekdays='[1,2,3,4,5,6,0]' event-category='selectedGroup' event-overlap-mode='stack' />
+      <v-col cols='12' md='8' order='3' order-md='2'>
+        <v-calendar
+          ref="calendar"
+          v-model='value'
+          class='calendar'
+          :weekdays='weekdays'
+          event-category='selectedGroup'
+          event-overlap-mode='stack'
+        >
+          <template #day="{ date }">
+            <v-sheet v-for='event in getEvents(date)' :key='event.name' tile :color='event.color' class='event'>
+              {{ event.name }}
+            </v-sheet>
+          </template>
+        </v-calendar>
       </v-col>
-      <v-col cols='12' md='2'>
-        <v-card>
+      <v-col cols='12' md='2' order='2' order-md='3'>
+        <v-card class='d-none d-md-block'>
           <v-card-title class='justify-center'>{{ monthLocale }}</v-card-title>
           <v-card-actions>
             <v-btn @click='handleMonthDecrease'>&lt;</v-btn>
             <v-spacer />
             <v-btn @click='handleMonthIncrease'>&gt;</v-btn>
           </v-card-actions>
+        </v-card>
+        <v-card class='d-flex d-md-none justify-space-between align-center px-3'>
+          <v-btn @click='handleMonthDecrease'>&lt;</v-btn>
+          <div class='v-card__title'>{{ monthLocale }}</div>
+          <v-btn @click='handleMonthIncrease'>&gt;</v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -87,12 +117,9 @@ export default defineComponent({
   color: white;
 }
 
-.v-event.v-event-start.v-event-end {
-  width: 100% !important;
-  height: inherit !important;
-  border-radius: 0 !important;
-  border: none !important;
-  margin: 0 !important;
+.event {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
 }
 
 .v-calendar-weekly__day, .v-calendar-weekly__head-weekday {
