@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { computed, defineComponent, ref, wrapProperty } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ref, useRouter, wrapProperty } from "@nuxtjs/composition-api";
 import { addMonths, format, startOfMonth, subMonths, parse, isSameDay } from 'date-fns'
 import { EVENTS } from '~/assets/subjects'
 
@@ -8,8 +8,18 @@ interface CalendarRef {
   prev: () => void
 }
 
+interface DateClickEvent {
+  date: string
+  year: number
+  month: number
+  day: number
+}
+
 export default defineComponent({
   setup() {
+    const router = useRouter()
+    const openDay = (meta: DateClickEvent) => { router.push(`/?day=${meta.date}`) }
+
     const vuetify = wrapProperty('$vuetify', false)()
     const calendar = ref<CalendarRef | null>(null)
     const value = ref('')
@@ -51,7 +61,8 @@ export default defineComponent({
       handleMonthDecrease,
       weekdays,
       getEvents,
-      isWide
+      isWide,
+      openDay
     }
   }
 })
@@ -59,6 +70,7 @@ export default defineComponent({
 
 <template>
   <v-container class='wrapper'>
+    <day-modal :group="selectedGroup"/>
     <v-row :class='isWide && "fill-height"'>
       <v-col cols='12' md='2'>
         <v-card class='d-flex justify-center'>
@@ -75,6 +87,7 @@ export default defineComponent({
           :weekdays='weekdays'
           event-category='selectedGroup'
           event-overlap-mode='stack'
+          @click:date="openDay"
         >
           <template #day="{ date }">
             <v-sheet v-for='event in getEvents(date)' :key='event.name' tile :color='event.color' class='event'>
