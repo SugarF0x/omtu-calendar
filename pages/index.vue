@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { computed, defineComponent, ref, useRouter, wrapProperty } from "@nuxtjs/composition-api";
+import { computed, defineComponent, ref, useRouter, watch, wrapProperty } from "@nuxtjs/composition-api";
 import { addMonths, format, startOfMonth, subMonths, parse, isSameDay } from 'date-fns'
 import { EVENTS } from '~/assets/subjects'
 
@@ -15,6 +15,15 @@ interface DateClickEvent {
   day: number
 }
 
+function getInitialGroup() {
+  const store = localStorage.getItem('group')
+  if (store === null) {
+    localStorage.setItem('group', '0')
+    return 0
+  }
+  return parseInt(store)
+}
+
 export default defineComponent({
   setup() {
     const router = useRouter()
@@ -24,10 +33,8 @@ export default defineComponent({
     const calendar = ref<CalendarRef | null>(null)
     const value = ref('')
 
-    const selectedGroup = ref(0)
-    const handleGroupSelection = (group: number) => {
-      selectedGroup.value = group
-    }
+    const selectedGroup = ref(getInitialGroup())
+    watch([selectedGroup], () => { localStorage.setItem('group', selectedGroup.value.toString()) })
 
     const selectedMonth = ref(startOfMonth(new Date()))
     const monthLocale = computed(() => format(selectedMonth.value, "MMMM"))
@@ -55,7 +62,6 @@ export default defineComponent({
       calendar,
       events,
       selectedGroup,
-      handleGroupSelection,
       monthLocale,
       handleMonthIncrease,
       handleMonthDecrease,
