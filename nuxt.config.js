@@ -1,61 +1,55 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors"
 
-const TITLE = 'ОМТУ Календарь'
-const DESCRIPTION = 'Календарь расписания занятий ОМТУ'
-const URL = 'https://omtu.sugarfox.ru'
+const TITLE = "ОМТУ Календарь"
+const DESCRIPTION = "Календарь расписания занятий ОМТУ"
+const URL = "https://omtu.sugarfox.ru"
 
 export default {
   ssr: false,
-  target: 'static',
+  target: "static",
   htmlAttrs: {
-    lang: 'ru'
+    lang: "ru",
   },
   head: {
     title: TITLE,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: DESCRIPTION },
-      { name: 'format-detection', content: 'telephone=no' },
-      { name: 'og:url', content: URL },
-      { name: 'og:title', content: TITLE },
-      { name: 'og:description', content: DESCRIPTION },
-      { name: 'og:image', content: '/form_header.jpg' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: DESCRIPTION },
+      { name: "format-detection", content: "telephone=no" },
+      { name: "og:url", content: URL },
+      { name: "og:title", content: TITLE },
+      { name: "og:description", content: DESCRIPTION },
+      { name: "og:image", content: "/form_header.jpg" },
+      { hid: "og:image:width", name: "og:image:width", content: "504" },
+      { hid: "og:image:height", name: "og:image:height", content: "203" },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
-  css: [
-    '~/assets/global.scss'
-  ],
-  plugins: [
-    '~/plugins/pwa-update.ts'
-  ],
+  css: ["~/assets/global.scss"],
+  plugins: ["~/plugins/pwa-update.ts"],
   components: true,
   buildModules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/vuetify',
-    '@nuxtjs/composition-api/module',
-    ['nuxt-storm', { nested: true, alias: true }],
+    "@nuxt/typescript-build",
+    "@nuxtjs/vuetify",
+    "@nuxtjs/composition-api/module",
+    ["nuxt-storm", { nested: true, alias: true }],
   ],
-  modules: [
-    '@nuxtjs/pwa',
-  ],
+  modules: ["@nuxtjs/pwa"],
   pwa: {
     manifest: {
       name: TITLE,
       short_name: TITLE,
       description: DESCRIPTION,
-      lang: 'ru'
+      lang: "ru",
     },
     meta: {
       name: TITLE,
-      description: DESCRIPTION
-    }
+      description: DESCRIPTION,
+    },
   },
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ["~/assets/variables.scss"],
     theme: {
       dark: true,
       themes: {
@@ -66,13 +60,13 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
   build: {},
   generate: {
     interval: 2000,
-  }
+  },
 }
