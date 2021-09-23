@@ -15,9 +15,9 @@ export default defineComponent({
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" right fixed>
-      <v-layout class="fill-height" column>
-        <!-- Drawer content goes here -->
-      </v-layout>
+      <v-container class="fill-height flex-column">
+        <group-selector />
+      </v-container>
     </v-navigation-drawer>
 
     <v-app-bar app class="navbar">

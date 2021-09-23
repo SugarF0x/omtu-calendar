@@ -70,13 +70,6 @@ export default defineComponent({
   <v-container class='wrapper'>
     <day-modal :group="group"/>
     <v-row :class='isWide && "fill-height"'>
-      <v-col cols='12' md='2'>
-        <v-card class='d-flex justify-center'>
-          <v-radio-group v-model='selectedGroup' name='group'>
-            <v-radio v-for='n in 4' :key='n' :label='`${n}-я языковая`'></v-radio>
-          </v-radio-group>
-        </v-card>
-      </v-col>
       <v-col cols='12' md='8' order='3' order-md='2'>
         <v-calendar
           ref="calendar"
