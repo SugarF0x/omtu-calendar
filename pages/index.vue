@@ -1,7 +1,8 @@
 <script lang='ts'>
-import { computed, defineComponent, ref, useRouter, watch, wrapProperty } from "@nuxtjs/composition-api";
+import { computed, defineComponent, ref, useRouter, wrapProperty } from "@nuxtjs/composition-api";
 import { addMonths, format, startOfMonth, subMonths, parse, isSameDay } from 'date-fns'
 import { EVENTS } from '~/assets/subjects'
+import { useAccessor } from "~/store";
 
 interface CalendarRef {
   next: () => void
@@ -15,26 +16,17 @@ interface DateClickEvent {
   day: number
 }
 
-function getInitialGroup() {
-  const store = localStorage.getItem('group')
-  if (store === null) {
-    localStorage.setItem('group', '0')
-    return 0
-  }
-  return parseInt(store)
-}
-
 export default defineComponent({
   setup() {
     const router = useRouter()
     const openDay = (meta: DateClickEvent) => { router.push(`/?day=${meta.date}`) }
 
+    const accessor = useAccessor()
+    const group = computed(() => accessor.group)
+
     const vuetify = wrapProperty('$vuetify', false)()
     const calendar = ref<CalendarRef | null>(null)
     const value = ref('')
-
-    const selectedGroup = ref(getInitialGroup())
-    watch([selectedGroup], () => { localStorage.setItem('group', selectedGroup.value.toString()) })
 
     const selectedMonth = ref(startOfMonth(new Date()))
     const monthLocale = computed(() => format(selectedMonth.value, "MMMM"))
@@ -47,7 +39,7 @@ export default defineComponent({
       calendar.value?.prev()
     }
 
-    const events = computed(() => EVENTS.filter(event => event.group === selectedGroup.value))
+    const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
     const isWide = computed(() => !['xs', 'sm'].includes(vuetify.breakpoint.name))
     const weekdays = computed(() => [1,2,3,4,5,6, isWide.value ? 0 : null].filter(n => n !== null))
@@ -61,11 +53,11 @@ export default defineComponent({
       value,
       calendar,
       events,
-      selectedGroup,
       monthLocale,
       handleMonthIncrease,
       handleMonthDecrease,
       weekdays,
+      group,
       getEvents,
       isWide,
       openDay
@@ -76,7 +68,7 @@ export default defineComponent({
 
 <template>
   <v-container class='wrapper'>
-    <day-modal :group="selectedGroup"/>
+    <day-modal :group="group"/>
     <v-row :class='isWide && "fill-height"'>
       <v-col cols='12' md='2'>
         <v-card class='d-flex justify-center'>
