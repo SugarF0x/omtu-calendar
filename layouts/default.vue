@@ -3,7 +3,7 @@ import { defineComponent, ref } from "@nuxtjs/composition-api";
 
 export default defineComponent({
   setup() {
-    const drawer = ref(false)
+    const drawer = ref(null)
 
     return {
       drawer
