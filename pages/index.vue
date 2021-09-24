@@ -60,26 +60,21 @@ export default defineComponent({
 
 <template>
   <v-container class='wrapper'>
-    <day-modal :group="group"/>
-    <v-row :class='isWide && "fill-height"'>
-      <v-col cols='12' md='8' order='3' order-md='2'>
-        <v-calendar
-          ref="calendarRef"
-          v-model='value'
-          class='calendar'
-          :weekdays='weekdays'
-          event-category='selectedGroup'
-          event-overlap-mode='stack'
-          @click:date="openDay"
-        >
-          <template #day="{ date }">
-            <v-sheet v-for='event in getEvents(date)' :key='event.name' tile :color='event.color' class='event'>
-              {{ event.name }}
-            </v-sheet>
-          </template>
-        </v-calendar>
-      </v-col>
-    </v-row>
+    <v-calendar
+      ref="calendarRef"
+      v-model='value'
+      class='calendar'
+      :weekdays='weekdays'
+      event-category='selectedGroup'
+      event-overlap-mode='stack'
+      @click:date="openDay"
+    >
+      <template #day="{ date }">
+        <v-sheet v-for='event in getEvents(date)' :key='event.name' tile :color='event.color' class='event'>
+          {{ event.name }}
+        </v-sheet>
+      </template>
+    </v-calendar>
   </v-container>
 </template>
 
@@ -94,13 +89,10 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-.radioGroup {
-  color: white;
-}
-
 .event {
   text-overflow: ellipsis !important;
   overflow: hidden !important;
+  max-height: 48px;
 }
 
 .v-calendar-weekly__day, .v-calendar-weekly__head-weekday {
