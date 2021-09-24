@@ -14,7 +14,7 @@ export default defineComponent({
 
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" right fixed>
+    <v-navigation-drawer v-model="drawer" right fixed app>
       <v-container class="fill-height flex-column drawer">
         <group-selector class="item"/>
         <month-selector class="item"/>
@@ -30,7 +30,7 @@ export default defineComponent({
 
       <v-spacer />
 
-      <v-app-bar-nav-icon @click="drawer = !drawer" >
+      <v-app-bar-nav-icon class="d-flex d-lg-none" @click="drawer = !drawer">
         <v-icon>mdi-cog</v-icon>
       </v-app-bar-nav-icon>
     </v-app-bar>
