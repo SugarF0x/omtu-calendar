@@ -56,10 +56,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .actions {
   > * {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
   > *:last-child {
-    margin-right: 0
+    margin-right: 0;
   }
 }
 </style>

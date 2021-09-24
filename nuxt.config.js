@@ -33,6 +33,7 @@ export default {
     "@nuxt/typescript-build",
     "@nuxtjs/vuetify",
     "@nuxtjs/composition-api/module",
+    "nuxt-typed-vuex",
     ["nuxt-storm", { nested: true, alias: true }],
   ],
   modules: ["@nuxtjs/pwa"],
