@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "@nuxtjs/composition-api";
-import { getInitialGroup } from "~/assets/util";
+import { getInitialGroup } from "~/assets/utils";
 import { useAccessor } from "~/store";
 
 export default defineComponent({
@@ -30,7 +30,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .card {
-  width: 100%;
   display: flex;
   justify-content: center;
 }

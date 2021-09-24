@@ -1,6 +1,6 @@
 import { Subject } from "./Subject"
 import { Event } from "~/assets/types"
-import { NextWeekDayGenerator } from "~/assets/util"
+import { NextWeekDayGenerator } from "~/assets/utils"
 
 const EnglishSubject = new Subject({
   title: "Английский",

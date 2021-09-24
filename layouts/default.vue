@@ -3,7 +3,7 @@ import { defineComponent, ref } from "@nuxtjs/composition-api";
 
 export default defineComponent({
   setup() {
-    const drawer = ref(null)
+    const drawer = ref<null | boolean>(null)
 
     return {
       drawer
@@ -15,8 +15,9 @@ export default defineComponent({
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" right fixed>
-      <v-container class="fill-height flex-column">
-        <group-selector />
+      <v-container class="fill-height flex-column drawer">
+        <group-selector class="item"/>
+        <month-selector class="item"/>
       </v-container>
     </v-navigation-drawer>
 
@@ -44,5 +45,13 @@ export default defineComponent({
 .link {
   color: white;
   text-decoration: none;
+}
+
+.item {
+  width: 100%;
+
+  & + & {
+    margin-top: 1rem;
+  }
 }
 </style>

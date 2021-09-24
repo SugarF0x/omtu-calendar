@@ -8,6 +8,9 @@ export const mutations = mutationTree(state, {
   SET_GROUP: (state, value: number) => {
     state.group = value
   },
+  SET_MONTH: (state, value: number) => {
+    state.month = value
+  },
 })
 
 export default mutations

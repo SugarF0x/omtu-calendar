@@ -1,6 +1,6 @@
 <script lang='ts'>
-import { computed, defineComponent, ref, useRouter, wrapProperty } from "@nuxtjs/composition-api";
-import { addMonths, format, startOfMonth, subMonths, parse, isSameDay } from 'date-fns'
+import { computed, defineComponent, ref, useRouter, watch, wrapProperty } from "@nuxtjs/composition-api";
+import { parse, isSameDay } from 'date-fns'
 import { EVENTS } from '~/assets/subjects'
 import { useAccessor } from "~/store";
 
@@ -23,21 +23,16 @@ export default defineComponent({
 
     const accessor = useAccessor()
     const group = computed(() => accessor.group)
+    const month = computed(() => accessor.month)
+
+    const calendarRef = ref<CalendarRef | null>(null)
+    watch(month, (n, o) => {
+      if (n === o) return
+      n > o ? calendarRef.value?.next() : calendarRef.value?.prev()
+    })
 
     const vuetify = wrapProperty('$vuetify', false)()
-    const calendar = ref<CalendarRef | null>(null)
     const value = ref('')
-
-    const selectedMonth = ref(startOfMonth(new Date()))
-    const monthLocale = computed(() => format(selectedMonth.value, "MMMM"))
-    const handleMonthIncrease = () => {
-      selectedMonth.value = addMonths(selectedMonth.value, 1)
-      calendar.value?.next()
-    }
-    const handleMonthDecrease = () => {
-      selectedMonth.value = subMonths(selectedMonth.value, 1)
-      calendar.value?.prev()
-    }
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
@@ -51,11 +46,8 @@ export default defineComponent({
 
     return {
       value,
-      calendar,
+      calendarRef,
       events,
-      monthLocale,
-      handleMonthIncrease,
-      handleMonthDecrease,
       weekdays,
       group,
       getEvents,
@@ -72,7 +64,7 @@ export default defineComponent({
     <v-row :class='isWide && "fill-height"'>
       <v-col cols='12' md='8' order='3' order-md='2'>
         <v-calendar
-          ref="calendar"
+          ref="calendarRef"
           v-model='value'
           class='calendar'
           :weekdays='weekdays'
@@ -86,21 +78,6 @@ export default defineComponent({
             </v-sheet>
           </template>
         </v-calendar>
-      </v-col>
-      <v-col cols='12' md='2' order='2' order-md='3'>
-        <v-card class='d-none d-md-block'>
-          <v-card-title class='justify-center'>{{ monthLocale }}</v-card-title>
-          <v-card-actions>
-            <v-btn @click='handleMonthDecrease'>&lt;</v-btn>
-            <v-spacer />
-            <v-btn @click='handleMonthIncrease'>&gt;</v-btn>
-          </v-card-actions>
-        </v-card>
-        <v-card class='d-flex d-md-none justify-space-between align-center px-3'>
-          <v-btn @click='handleMonthDecrease'>&lt;</v-btn>
-          <div class='v-card__title'>{{ monthLocale }}</div>
-          <v-btn @click='handleMonthIncrease'>&gt;</v-btn>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
