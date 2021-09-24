@@ -1,14 +1,14 @@
-<script lang='ts'>
-import { defineComponent, ref } from "@nuxtjs/composition-api";
+<script lang="ts">
+import { defineComponent, ref } from "@nuxtjs/composition-api"
 
 export default defineComponent({
   setup() {
     const drawer = ref<null | boolean>(null)
 
     return {
-      drawer
+      drawer,
     }
-  }
+  },
 })
 </script>
 
@@ -16,16 +16,14 @@ export default defineComponent({
   <v-app>
     <v-navigation-drawer v-model="drawer" right fixed app>
       <v-container class="fill-height flex-column drawer">
-        <group-selector class="item"/>
-        <month-selector class="item"/>
+        <group-selector class="item" />
+        <month-selector class="item" />
       </v-container>
     </v-navigation-drawer>
 
     <v-app-bar app class="navbar">
       <router-link to="/" class="link">
-        <v-toolbar-title>
-          ОМТУ Календрь
-        </v-toolbar-title>
+        <v-toolbar-title> ОМТУ Календрь </v-toolbar-title>
       </router-link>
 
       <v-spacer />

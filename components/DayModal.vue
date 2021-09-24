@@ -1,14 +1,14 @@
 <script lang="ts">
-import { defineComponent, useRoute, computed, useRouter, useContext, ref, toRefs } from "@nuxtjs/composition-api";
-import { format, isSameDay, parse } from "date-fns";
-import { EVENTS } from "~/assets/subjects";
+import { defineComponent, useRoute, computed, useRouter, useContext, ref, toRefs } from "@nuxtjs/composition-api"
+import { format, isSameDay, parse } from "date-fns"
+import { EVENTS } from "~/assets/subjects"
 
 export default defineComponent({
   props: {
     group: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const { group } = toRefs(props)
@@ -17,14 +17,18 @@ export default defineComponent({
     const context = useContext()
 
     const date = computed(() => route.value.query.day as string | null)
-    const parsedDate = computed(() => date.value ? parse(date.value, 'yyyy-MM-dd', new Date()) : null)
-    const localedDate = computed(() => parsedDate.value ? format(parsedDate.value, 'dd MMMM') : null )
+    const parsedDate = computed(() => (date.value ? parse(date.value, "yyyy-MM-dd", new Date()) : null))
+    const localedDate = computed(() => (parsedDate.value ? format(parsedDate.value, "dd MMMM") : null))
 
-    const events = computed(() => parsedDate.value ? EVENTS.filter(event => event.group === group.value && isSameDay(event.start, parsedDate.value!)) : [])
+    const events = computed(() =>
+      parsedDate.value
+        ? EVENTS.filter((event) => event.group === group.value && isSameDay(event.start, parsedDate.value!))
+        : [],
+    )
 
-    const formatEventTime = (date: Date) => format(date, 'HH:mm')
+    const formatEventTime = (date: Date) => format(date, "HH:mm")
 
-    const previousPath = ref('')
+    const previousPath = ref("")
     const isOpen = computed(() => {
       const result = !!date.value
       if (result) {
@@ -34,8 +38,8 @@ export default defineComponent({
     })
 
     const close = () => {
-      if (previousPath.value === '/') router.back()
-      else router.push('/')
+      if (previousPath.value === "/") router.back()
+      else router.push("/")
     }
 
     return {
@@ -43,10 +47,10 @@ export default defineComponent({
       close,
       localedDate,
       events,
-      formatEventTime
+      formatEventTime,
     }
-  }
-});
+  },
+})
 </script>
 
 <template>
