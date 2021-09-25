@@ -1,13 +1,8 @@
 <script lang="ts">
-import { computed, defineComponent, ref, useRouter, watch, wrapProperty } from "@nuxtjs/composition-api"
+import { computed, defineComponent, useRouter, wrapProperty } from "@nuxtjs/composition-api"
 import { parse, isSameDay } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
-
-interface CalendarRef {
-  next: () => void
-  prev: () => void
-}
 
 interface DateClickEvent {
   date: string
@@ -28,14 +23,8 @@ export default defineComponent({
     const group = computed(() => accessor.group)
     const month = computed(() => accessor.month)
 
-    const calendarRef = ref<CalendarRef | null>(null)
-    watch(month, (n, o) => {
-      if (n === o) return
-      n > o ? calendarRef.value?.next() : calendarRef.value?.prev()
-    })
-
     const vuetify = wrapProperty("$vuetify", false)()
-    const value = ref("")
+    const value = computed(() => `2021-${month.value + 1}-01`)
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
@@ -49,7 +38,6 @@ export default defineComponent({
 
     return {
       value,
-      calendarRef,
       events,
       weekdays,
       group,
@@ -64,7 +52,6 @@ export default defineComponent({
 <template>
   <v-container class="wrapper">
     <v-calendar
-      ref="calendarRef"
       v-model="value"
       class="calendar"
       :weekdays="weekdays"
