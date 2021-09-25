@@ -1,6 +1,6 @@
 {
   "name": "omtu-calendar",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -20,6 +20,7 @@
     "date-fns": "^2.23.0",
     "nuxt": "^2.15.7",
     "nuxt-typed-vuex": "^0.2.0",
+    "vue-frag": "^1.2.4",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
