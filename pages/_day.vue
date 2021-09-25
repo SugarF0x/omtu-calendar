@@ -12,7 +12,7 @@ export default defineComponent({
 
     const day = computed(() => route.value.params.day)
     const parsedDate = computed(() => (day.value ? parse(day.value, "yyyy-MM-dd", new Date()) : null))
-    const localedDate = computed(() => (parsedDate.value ? format(parsedDate.value, "dd MMMM", { locale: {} }) : null))
+    const localedDate = computed(() => (parsedDate.value ? format(parsedDate.value, "dd MMMM") : null))
 
     const events = computed(() => {
       if (!parsedDate.value) return []
