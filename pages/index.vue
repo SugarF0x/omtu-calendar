@@ -19,8 +19,9 @@ interface DateClickEvent {
 export default defineComponent({
   setup() {
     const router = useRouter()
-    const openDay = (meta: DateClickEvent) => {
-      router.push(`/?day=${meta.date}`)
+    const openDay = (meta: DateClickEvent | string) => {
+      const url = typeof meta === "string" ? meta : meta.date
+      router.push(`/${url}`)
     }
 
     const accessor = useAccessor()
@@ -36,14 +37,14 @@ export default defineComponent({
     const vuetify = wrapProperty("$vuetify", false)()
     const value = ref("")
 
-    const events = computed(() => EVENTS.filter((event) => event.group === group.value))
+    const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
     const isWide = computed(() => !["xs", "sm"].includes(vuetify.breakpoint.name))
-    const weekdays = computed(() => [1, 2, 3, 4, 5, 6, isWide.value ? 0 : null].filter((n) => n !== null))
+    const weekdays = computed(() => [1, 2, 3, 4, 5, 6, isWide.value ? 0 : null].filter(n => n !== null))
 
     const getEvents = (value: string) => {
       const date = parse(value, "yyyy-MM-dd", new Date())
-      return events.value.filter((event) => isSameDay(event.start, date))
+      return events.value.filter(event => isSameDay(event.start, date))
     }
 
     return {
@@ -70,9 +71,17 @@ export default defineComponent({
       event-category="selectedGroup"
       event-overlap-mode="stack"
       @click:date="openDay"
+      @click:event="openDay"
     >
       <template #day="{ date }">
-        <v-sheet v-for="event in getEvents(date)" :key="event.name" tile :color="event.color" class="event">
+        <v-sheet
+          v-for="event in getEvents(date)"
+          :key="event.name"
+          tile
+          :color="event.color"
+          class="event"
+          @click="openDay(date)"
+        >
           {{ event.name }}
         </v-sheet>
       </template>
@@ -82,12 +91,13 @@ export default defineComponent({
 
 <style lang="scss">
 .wrapper {
-  max-width: initial;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .calendar {
-  margin: 0 auto;
+  max-height: 160vw;
   box-sizing: border-box;
 }
 
