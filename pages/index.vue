@@ -62,7 +62,6 @@ export default defineComponent({
 
 <template>
   <v-container class="wrapper">
-    <day-modal :group="group" />
     <v-calendar
       ref="calendarRef"
       v-model="value"
