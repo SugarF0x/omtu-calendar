@@ -72,6 +72,7 @@ export default defineComponent({
       event-overlap-mode="stack"
       @click:date="openDay"
       @click:event="openDay"
+      @click:day="openDay"
     >
       <template #day="{ date }">
         <v-sheet
