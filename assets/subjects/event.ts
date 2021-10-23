@@ -11,7 +11,7 @@ const DAYS = ["23.10.2021", "30.10.2021", "06.11.2021", "13.11.2021", "20.11.202
 
 const EVENT: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     EVENT.push(
       EventSubject.getEvent({
@@ -19,7 +19,7 @@ DAYS.forEach((day) => {
         group,
         room: 315,
         start: 1,
-        duration: 4,
+        duration: 3,
       }),
     )
   }
