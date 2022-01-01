@@ -1,21 +1,23 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
+import { Specialty } from "~/types"
 
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
 
-    const selectedCourse = ref(accessor.course)
-    watch(selectedCourse, value => {
+    const selectedSpecialty = ref(accessor.specialty)
+    watch(selectedSpecialty, value => {
       if (value === null) return
 
-      localStorage.setItem("course", String(value))
-      accessor.SET_COURSE(value)
+      localStorage.setItem("specialty", value)
+      accessor.SET_SPECIALTY(value)
     })
 
     return {
-      selectedCourse,
+      selectedSpecialty,
+      Specialty,
     }
   },
 })
@@ -23,8 +25,8 @@ export default defineComponent({
 
 <template>
   <v-card class="card">
-    <v-radio-group v-model="selectedCourse" name="course" class="course" hide-details>
-      <v-radio v-for="n in 2" :key="n" :label="`${n}-й курс`" />
+    <v-radio-group v-model="selectedSpecialty" name="specialty" class="specialty" hide-details>
+      <v-radio v-for="n in Specialty" :key="n" :label="n" />
     </v-radio-group>
   </v-card>
 </template>
@@ -35,7 +37,7 @@ export default defineComponent({
   justify-content: center;
 }
 
-.course {
+.specialty {
   margin: 0;
   padding: 1rem;
 }

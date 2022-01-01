@@ -10,8 +10,9 @@ export default defineComponent({
 
     const group = computed(() => accessor.group)
     const course = computed(() => accessor.course)
+    const specialty = computed(() => accessor.specialty)
 
-    const isDisabled = computed(() => group.value === null || course.value === null)
+    const isDisabled = computed(() => group.value === null || course.value === null || specialty.value === null)
 
     const proceed = () => {
       router.replace("/")
@@ -39,7 +40,7 @@ export default defineComponent({
           <group-selector />
         </v-col>
         <v-col cols="12" sm="6" md="4">
-          <!-- Specialty selector goes here -->
+          <specialty-selector />
         </v-col>
       </v-row>
     </v-container>

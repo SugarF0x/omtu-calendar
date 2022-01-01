@@ -24,7 +24,7 @@ export default defineComponent({
 <template>
   <v-card class="card">
     <v-radio-group v-model="selectedGroup" name="group" class="group" hide-details>
-      <v-radio v-for="n in 4" :key="n" :label="`${n}-я языковая`"></v-radio>
+      <v-radio v-for="n in 4" :key="n" :label="`${n}-я языковая`" />
     </v-radio-group>
   </v-card>
 </template>
