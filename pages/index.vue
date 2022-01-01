@@ -1,8 +1,9 @@
 <script lang="ts">
-import { computed, defineComponent, useRouter, wrapProperty } from "@nuxtjs/composition-api"
+import { computed, defineComponent, useRouter, onBeforeMount } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
+import { useVuetify } from "~/hooks"
 
 interface DateClickEvent {
   date: string
@@ -23,7 +24,7 @@ export default defineComponent({
     const group = computed(() => accessor.group)
     const date = computed(() => accessor.date)
 
-    const vuetify = wrapProperty("$vuetify", false)()
+    const vuetify = useVuetify()
     const value = computed(() => format(new Date(date.value), "yyyy-MM-dd"))
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
@@ -35,6 +36,10 @@ export default defineComponent({
       const date = parse(value, "yyyy-MM-dd", new Date())
       return events.value.filter(event => isSameDay(event.start, date))
     }
+
+    onBeforeMount(() => {
+      if (group.value === null) router.replace("/FTUE")
+    })
 
     return {
       value,

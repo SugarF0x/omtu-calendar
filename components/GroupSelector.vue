@@ -1,15 +1,16 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "@nuxtjs/composition-api"
-import { getInitialGroup } from "~/assets/utils"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
 
-    const selectedGroup = ref(getInitialGroup())
-    watch(selectedGroup, (value) => {
-      localStorage.setItem("group", value.toString())
+    const selectedGroup = ref(accessor.group)
+    watch(selectedGroup, value => {
+      if (value === null) return
+
+      localStorage.setItem("group", String(value))
       accessor.SET_GROUP(value)
     })
 

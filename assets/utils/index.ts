@@ -1,2 +1,2 @@
 export * from "./NextWeekGenerator"
-export * from "./getInitialGroup"
+export * from "./getStoredGroup"
