@@ -1,6 +1,6 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
-import { NextWeekDayGenerator } from "~/assets/utils"
+import { Event } from "~/types"
+import { NextWeekDayGenerator } from "~/utils"
 
 const InternetSubject = new Subject({
   title: "Интернет-маркетинг",
@@ -19,7 +19,7 @@ while (true) {
 
 const INTERNET: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     const start = group < 2 ? 7 : 6
 

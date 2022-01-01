@@ -1,5 +1,5 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const ChangeSubject = new Subject({
   title: "Управление изменениями",
@@ -11,7 +11,7 @@ const DAYS = ["04.12.2021", "11.12.2021", "18.12.2021"]
 
 const CHANGE: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     CHANGE.push(
       ChangeSubject.getEvent({

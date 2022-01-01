@@ -1,5 +1,5 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const PsychologySubject = new Subject({
   title: "Психология в бизнесе",
@@ -20,7 +20,7 @@ const DAYS = [
 
 const PSYCHOLOGY: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     PSYCHOLOGY.push(
       PsychologySubject.getEvent({

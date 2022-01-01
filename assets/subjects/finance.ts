@@ -1,5 +1,5 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const FinanceSubject = new Subject({
   title: "Финансовое моделирование",
@@ -21,7 +21,7 @@ const DAYS = [
 
 const FINANCE: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     FINANCE.push(
       FinanceSubject.getEvent({

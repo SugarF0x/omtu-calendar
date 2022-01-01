@@ -9,8 +9,9 @@ export default defineComponent({
     const accessor = useAccessor()
 
     const group = computed(() => accessor.group)
+    const course = computed(() => accessor.course)
 
-    const isDisabled = computed(() => group.value === null)
+    const isDisabled = computed(() => group.value === null || course.value === null)
 
     const proceed = () => {
       router.replace("/")
@@ -28,11 +29,11 @@ export default defineComponent({
   <div class="wrapper">
     <h1>ОМТУ Каледнарь занятий</h1>
     <p>Похоже, вы здесь первый раз или давно не заходили</p>
-    <p>Пожалуйтса, выберите группу, курс и специализацию</p>
+    <p>Пожалуйтса, выберите курс, группу и специализацию</p>
     <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="6" md="4">
-          <!-- Course selector goes here -->
+          <course-selector />
         </v-col>
         <v-col cols="12" sm="6" md="4">
           <group-selector />

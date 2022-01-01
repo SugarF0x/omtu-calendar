@@ -9,6 +9,9 @@ export const mutations = mutationTree(state, {
   SET_GROUP: (state, value: number) => {
     state.group = value
   },
+  SET_COURSE: (state, value: number) => {
+    state.course = value
+  },
   DEC_MONTH: state => {
     state.date = addMonths(new Date(state.date), -1).toISOString()
   },

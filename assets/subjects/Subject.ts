@@ -1,6 +1,6 @@
 import { parse } from "date-fns"
-import { DAYS_FORMAT, TIMETABLE, TIMETABLE_FORMAT } from "~/assets/consts"
-import { Event } from "~/assets/types"
+import { DAYS_FORMAT, TIMETABLE, TIMETABLE_FORMAT } from "~/consts"
+import { Event } from "~/types"
 
 export interface SubjectOptions {
   title: string
