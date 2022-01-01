@@ -1,19 +1,19 @@
 <script lang="ts">
 import { computed, defineComponent } from "@nuxtjs/composition-api"
-import { format, getYear } from "date-fns"
+import { format } from "date-fns"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
-    const month = computed(() => accessor.month)
+    const date = computed(() => accessor.date)
 
-    const monthLocale = computed(() => format(new Date(Date.UTC(getYear(new Date()), month.value)), "MMMM"))
+    const monthLocale = computed(() => format(new Date(date.value), "MMMM yyyy"))
     const handleMonthIncrease = () => {
-      accessor.SET_MONTH(month.value + 1)
+      accessor.INC_MONTH()
     }
     const handleMonthDecrease = () => {
-      accessor.SET_MONTH(month.value - 1)
+      accessor.DEC_MONTH()
     }
 
     return {
@@ -35,5 +35,3 @@ export default defineComponent({
     </v-card-actions>
   </v-card>
 </template>
-
-<style lang="scss" scoped></style>

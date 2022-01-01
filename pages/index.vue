@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, useRouter, wrapProperty } from "@nuxtjs/composition-api"
-import { parse, isSameDay } from "date-fns"
+import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
 
@@ -21,10 +21,10 @@ export default defineComponent({
 
     const accessor = useAccessor()
     const group = computed(() => accessor.group)
-    const month = computed(() => accessor.month)
+    const date = computed(() => accessor.date)
 
     const vuetify = wrapProperty("$vuetify", false)()
-    const value = computed(() => `2021-${month.value + 1}-01`)
+    const value = computed(() => format(new Date(date.value), "yyyy-MM-dd"))
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
