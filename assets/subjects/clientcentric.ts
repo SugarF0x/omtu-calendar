@@ -1,5 +1,5 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const ClientcentricSubject = new Subject({
   title: "Клиентоцентричность в сфере услуг",
@@ -11,7 +11,7 @@ const DAYS = ["09.10.2021", "16.10.2021"]
 
 const CLIENTCENTRIC: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     CLIENTCENTRIC.push(
       ClientcentricSubject.getEvent({

@@ -14,10 +14,12 @@ export default defineComponent({
 
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" right fixed app>
+    <v-navigation-drawer v-model="drawer" right fixed app width="280">
       <v-container class="fill-height flex-column drawer">
-        <group-selector class="item" />
         <month-selector class="item" />
+        <options-selector type="course" class="item" />
+        <options-selector type="group" class="item" />
+        <options-selector type="specialty" class="item" />
       </v-container>
     </v-navigation-drawer>
 
@@ -45,11 +47,19 @@ export default defineComponent({
   text-decoration: none;
 }
 
+.drawer {
+  flex-wrap: nowrap;
+}
+
 .item {
   width: 100%;
 
   & + & {
     margin-top: 1rem;
+  }
+
+  &:last-child {
+    margin-bottom: 1rem;
   }
 }
 </style>

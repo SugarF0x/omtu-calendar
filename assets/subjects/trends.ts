@@ -1,5 +1,5 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const TrendsSubject = new Subject({
   title: "Макро- и Микротренды",
@@ -11,7 +11,7 @@ const DAYS = ["18.09.2021", "25.09.2021", "02.10.2021"]
 
 const TRENDS: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     TRENDS.push(
       TrendsSubject.getEvent({

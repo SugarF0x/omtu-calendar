@@ -1,8 +1,8 @@
 import { startOfMonth } from "date-fns"
-import { getInitialGroup } from "~/assets/utils"
+import { getOptions } from "~/utils"
 
 export const defaultState = () => ({
-  group: getInitialGroup(),
+  options: getOptions(),
   date: startOfMonth(new Date()).toISOString(),
 })
 

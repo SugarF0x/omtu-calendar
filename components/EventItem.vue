@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "@nuxtjs/composition-api"
 import { format } from "date-fns"
-import { Event } from "~/assets/types"
+import { Event } from "~/types"
 
 const formatEventTime = (date: Date) => format(date, "HH:mm")
 

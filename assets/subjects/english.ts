@@ -1,6 +1,6 @@
 import { Subject } from "./Subject"
-import { Event } from "~/assets/types"
-import { NextWeekDayGenerator } from "~/assets/utils"
+import { Event } from "~/types"
+import { NextWeekDayGenerator } from "~/utils"
 
 const EnglishSubject = new Subject({
   title: "Английский",
@@ -18,7 +18,7 @@ while (true) {
 
 const ENGLISH: Event[] = []
 
-DAYS.forEach((day) => {
+DAYS.forEach(day => {
   for (let group = 0; group < 4; group++) {
     const room = group % 2 ? 510 : 509
     const start = group < 2 ? 6 : 7
@@ -45,7 +45,7 @@ const FIRST_GROUP_DAYS = [
   "09.12.2021",
   "23.12.2021",
 ]
-FIRST_GROUP_DAYS.forEach((day) => {
+FIRST_GROUP_DAYS.forEach(day => {
   for (let group = 0; group < 2; group++) {
     const room = group % 2 ? 510 : 509
 
@@ -70,7 +70,7 @@ const SECOND_GROUP_DAYS = [
   "02.12.2021",
   "16.12.2021",
 ]
-SECOND_GROUP_DAYS.forEach((day) => {
+SECOND_GROUP_DAYS.forEach(day => {
   for (let group = 2; group < 4; group++) {
     const room = group % 2 ? 510 : 509
 
