@@ -8,9 +8,10 @@ export default defineComponent({
     const router = useRouter()
     const accessor = useAccessor()
 
-    const group = computed(() => accessor.group)
-    const course = computed(() => accessor.course)
-    const specialty = computed(() => accessor.specialty)
+    const options = computed(() => accessor.options)
+    const group = computed(() => options.value.group)
+    const course = computed(() => options.value.course)
+    const specialty = computed(() => options.value.specialty)
 
     const isDisabled = computed(() => group.value === null || course.value === null || specialty.value === null)
 
@@ -31,16 +32,17 @@ export default defineComponent({
     <h1>ОМТУ Каледнарь занятий</h1>
     <p>Похоже, вы здесь первый раз или давно не заходили</p>
     <p>Пожалуйтса, выберите курс, группу и специализацию</p>
+    <p><strong>Этот выбор можно поменять позднее</strong></p>
     <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="6" md="4">
-          <course-selector />
+          <options-selector type="course" />
         </v-col>
         <v-col cols="12" sm="6" md="4">
-          <group-selector />
+          <options-selector type="group" />
         </v-col>
         <v-col cols="12" sm="6" md="4">
-          <specialty-selector />
+          <options-selector type="specialty" />
         </v-col>
       </v-row>
     </v-container>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, useRouter, onBeforeMount } from "@nuxtjs/composition-api"
+import { computed, defineComponent, useRouter } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
@@ -13,6 +13,7 @@ interface DateClickEvent {
 }
 
 export default defineComponent({
+  middleware: ["FTUE"],
   setup() {
     const router = useRouter()
     const openDay = (meta: DateClickEvent | string) => {
@@ -21,7 +22,7 @@ export default defineComponent({
     }
 
     const accessor = useAccessor()
-    const group = computed(() => accessor.group)
+    const group = computed(() => accessor.options.group)
     const date = computed(() => accessor.date)
 
     const vuetify = useVuetify()
@@ -36,10 +37,6 @@ export default defineComponent({
       const date = parse(value, "yyyy-MM-dd", new Date())
       return events.value.filter(event => isSameDay(event.start, date))
     }
-
-    onBeforeMount(() => {
-      if (group.value === null) router.replace("/FTUE")
-    })
 
     return {
       value,
@@ -82,7 +79,7 @@ export default defineComponent({
   </v-container>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrapper {
   height: 100%;
   display: flex;
@@ -99,7 +96,9 @@ export default defineComponent({
   overflow: hidden !important;
   max-height: 48px;
 }
+</style>
 
+<style lang="scss">
 .v-calendar-weekly__day,
 .v-calendar-weekly__head-weekday {
   margin: 0 !important;

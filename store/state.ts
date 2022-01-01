@@ -1,10 +1,8 @@
 import { startOfMonth } from "date-fns"
-import { getStoredCourse, getStoredGroup, getStoredSpecialty } from "~/utils"
+import { getOptions } from "~/utils"
 
 export const defaultState = () => ({
-  group: getStoredGroup(),
-  course: getStoredCourse(),
-  specialty: getStoredSpecialty(),
+  options: getOptions(),
   date: startOfMonth(new Date()).toISOString(),
 })
 

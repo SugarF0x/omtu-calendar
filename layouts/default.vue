@@ -16,8 +16,10 @@ export default defineComponent({
   <v-app>
     <v-navigation-drawer v-model="drawer" right fixed app>
       <v-container class="fill-height flex-column drawer">
-        <group-selector class="item" />
         <month-selector class="item" />
+        <options-selector type="course" class="item" />
+        <options-selector type="group" class="item" />
+        <options-selector type="specialty" class="item" />
       </v-container>
     </v-navigation-drawer>
 
