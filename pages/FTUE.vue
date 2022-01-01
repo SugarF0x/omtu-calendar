@@ -2,6 +2,8 @@
 import { computed, defineComponent, useRouter } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
 
+const contact = "antuzov"
+
 export default defineComponent({
   layout: "clear",
   setup() {
@@ -22,6 +24,7 @@ export default defineComponent({
     return {
       isDisabled,
       proceed,
+      contact,
     }
   },
 })
@@ -47,6 +50,12 @@ export default defineComponent({
       </v-row>
     </v-container>
     <v-btn :disabled="isDisabled" @click="proceed">Продолжить</v-btn>
+    <h2 class="mt-5"><b>ВНИМАНИЕ</b></h2>
+    <p>Этот ресурс не является официальным и может содержать в себе неточности</p>
+    <p>
+      При нахождении ошибок, напишите Алексею в телеграмм на
+      <a :href="`https://telegram.me/${contact}`" target="_blank">@{{ contact }}</a>
+    </p>
   </div>
 </template>
 
