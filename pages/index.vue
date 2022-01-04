@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, useRouter } from "@nuxtjs/composition-api"
+import { computed, defineComponent, ref, useRouter } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
@@ -26,7 +26,7 @@ export default defineComponent({
     const date = computed(() => accessor.date)
 
     const vuetify = useVuetify()
-    const value = computed(() => format(new Date(date.value), "yyyy-MM-dd"))
+    const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
@@ -54,7 +54,7 @@ export default defineComponent({
 <template>
   <v-container class="wrapper">
     <v-calendar
-      v-model="value"
+      v-model="test"
       class="calendar"
       :weekdays="weekdays"
       event-category="selectedGroup"
