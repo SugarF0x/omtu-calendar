@@ -1,3 +1,13 @@
+## [0.6.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.0...v0.6.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* calendar value type ([7aadcbd](https://github.com/SugarF0x/omtu-calendar/commit/7aadcbd8dfc4f344945f1f840d3c46a720f214a6))
+* day color a11y visibility ([6ad97f4](https://github.com/SugarF0x/omtu-calendar/commit/6ad97f474a2a63f66d2186e84a8ed8636650c25f))
+
+
+
 # [0.6.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.5.0...v0.6.0) (2022-01-01)
 
 
