@@ -57,6 +57,7 @@ export default defineComponent({
       v-model="test"
       class="calendar"
       :weekdays="weekdays"
+      color="red"
       event-category="selectedGroup"
       event-overlap-mode="stack"
       @click:date="openDay"
