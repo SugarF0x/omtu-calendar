@@ -8,7 +8,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const accessor = useAccessor()
-    const group = computed(() => accessor.group)
+    const group = computed(() => accessor.options.group)
 
     const day = computed(() => route.value.params.day)
     const parsedDate = computed(() => (day.value ? parse(day.value, "yyyy-MM-dd", new Date()) : null))

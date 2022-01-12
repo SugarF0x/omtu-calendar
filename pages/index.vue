@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, ref, useRouter } from "@nuxtjs/composition-api"
+import { computed, defineComponent, ref, useRouter, watch } from '@nuxtjs/composition-api'
 import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
@@ -16,6 +16,8 @@ export default defineComponent({
   middleware: ["FTUE"],
   setup() {
     const router = useRouter()
+    const vuetify = useVuetify()
+
     const openDay = (meta: DateClickEvent | string) => {
       const url = typeof meta === "string" ? meta : meta.date
       router.push(`/${url}`)
@@ -25,8 +27,8 @@ export default defineComponent({
     const group = computed(() => accessor.options.group)
     const date = computed(() => accessor.date)
 
-    const vuetify = useVuetify()
     const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
+    watch([date], () => { value.value = format(new Date(date.value), "yyyy-MM-dd") })
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
@@ -45,7 +47,7 @@ export default defineComponent({
       group,
       getEvents,
       isWide,
-      openDay,
+      openDay
     }
   },
 })
@@ -54,13 +56,14 @@ export default defineComponent({
 <template>
   <v-container class="wrapper">
     <v-calendar
-      v-model="test"
+      v-model="value"
       class="calendar"
       :weekdays="weekdays"
       color="red"
       event-category="selectedGroup"
       event-overlap-mode="stack"
-      @click:date="openDay"
+      @touchstart:day='openDay'
+      @mousedown:day='openDay'
       @click:event="openDay"
       @click:day="openDay"
     >
