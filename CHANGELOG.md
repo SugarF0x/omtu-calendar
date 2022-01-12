@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.1...v0.6.2) (2022-01-12)
+
+
+### Bug Fixes
+
+* date change bug ([24fb40b](https://github.com/SugarF0x/omtu-calendar/commit/24fb40b5f5ebb222f8be82860401215995e341b5))
+
+
+
 ## [0.6.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.0...v0.6.1) (2022-01-04)
 
 
@@ -40,10 +49,6 @@
 
 
 # [0.3.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.2.0...v0.3.0) (2021-09-24)
-
-
-
-# 0.2.0 (2021-09-18)
 
 
 
