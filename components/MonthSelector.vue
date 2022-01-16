@@ -6,7 +6,7 @@ import { useAccessor } from "~/store"
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
-    const date = computed(() => accessor.date)
+    const date = computed(() => accessor.options.date)
 
     const monthLocale = computed(() => format(new Date(date.value), "MMMM yyyy"))
     const handleMonthIncrease = () => {

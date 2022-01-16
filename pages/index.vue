@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, ref, useRouter, watch } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ref, useRouter, watch } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
 import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
@@ -25,10 +25,12 @@ export default defineComponent({
 
     const accessor = useAccessor()
     const group = computed(() => accessor.options.group)
-    const date = computed(() => accessor.date)
+    const date = computed(() => accessor.options.date)
 
     const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
-    watch([date], () => { value.value = format(new Date(date.value), "yyyy-MM-dd") })
+    watch([date], () => {
+      value.value = format(new Date(date.value), "yyyy-MM-dd")
+    })
 
     const events = computed(() => EVENTS.filter(event => event.group === group.value))
 
@@ -47,7 +49,7 @@ export default defineComponent({
       group,
       getEvents,
       isWide,
-      openDay
+      openDay,
     }
   },
 })
@@ -62,8 +64,8 @@ export default defineComponent({
       color="red"
       event-category="selectedGroup"
       event-overlap-mode="stack"
-      @touchstart:day='openDay'
-      @mousedown:day='openDay'
+      @touchstart:day="openDay"
+      @mousedown:day="openDay"
       @click:event="openDay"
       @click:day="openDay"
     >

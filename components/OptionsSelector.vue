@@ -10,7 +10,9 @@ interface Settings {
   options: string[]
 }
 
-const typeToSettingsMapper: Record<keyof Options, Settings> = {
+type RadioOptions = keyof Omit<Options, "date">
+
+const typeToSettingsMapper: Record<RadioOptions, Settings> = {
   course: {
     title: "Выбор курса",
     postfix: "-й курс",
@@ -31,7 +33,7 @@ const typeToSettingsMapper: Record<keyof Options, Settings> = {
 export default defineComponent({
   props: {
     type: {
-      type: String as PropType<keyof Options>,
+      type: String as PropType<RadioOptions>,
       required: true,
     },
   },

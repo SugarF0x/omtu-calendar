@@ -21,10 +21,10 @@ export const mutations = mutationTree(state, {
     state.options.specialty = value
   },
   DEC_MONTH: state => {
-    state.date = addMonths(new Date(state.date), -1).toISOString()
+    state.options.date = addMonths(new Date(state.options.date), -1).toISOString()
   },
   INC_MONTH: state => {
-    state.date = addMonths(new Date(state.date), 1).toISOString()
+    state.options.date = addMonths(new Date(state.options.date), 1).toISOString()
   },
 })
 

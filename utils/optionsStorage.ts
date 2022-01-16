@@ -1,15 +1,18 @@
+import { startOfMonth } from "date-fns"
 import { Specialty } from "~/types"
 
 export interface Options {
   group: number | null
   course: number | null
   specialty: Specialty | null
+  date: string
 }
 
 const defaultOptions: Options = {
   group: null,
   course: null,
   specialty: null,
+  date: startOfMonth(new Date()).toISOString(),
 }
 
 export function getOptions(): Options {
