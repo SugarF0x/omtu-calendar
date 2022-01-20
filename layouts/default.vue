@@ -21,6 +21,7 @@ export default defineComponent({
         <options-selector type="course" class="item" />
         <options-selector type="group" class="item" />
         <specialty-picker class="item" />
+        <data-refetch class="item" />
       </v-container>
     </v-navigation-drawer>
 
