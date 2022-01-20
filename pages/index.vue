@@ -34,7 +34,10 @@ export default defineComponent({
     const events = computed(() => accessor.data.events.filter(
       event =>
         event.groups.includes(group.value!)
-        && event.specialties.some(entry => specialties.value.includes(entry))
+        && (
+          event.specialties.length === accessor.data.sheets.specialties.length
+          || event.specialties.some(entry => specialties.value.includes(entry))
+        )
       )
     )
 

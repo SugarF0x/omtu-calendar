@@ -20,8 +20,10 @@ export default defineComponent({
       return accessor.data.events.filter(
         event =>
           event.groups.includes(group.value!)
-          && event.specialties.some(entry => specialties.value.includes(entry))
-          && isSameDay(event.start, parsedDate.value!)
+          && (
+            event.specialties.length === accessor.data.sheets.specialties.length
+            || event.specialties.some(entry => specialties.value.includes(entry))
+          ) && isSameDay(event.start, parsedDate.value!)
       ).sort(
         (a, b) => (isBefore(a.start, b.start) ? -1 : 1),
       )
