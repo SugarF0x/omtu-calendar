@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.0...v0.7.2) (2022-01-20)
+
+
+### Bug Fixes
+
+* no events displayed with no specialty selected ([1daa181](https://github.com/SugarF0x/omtu-calendar/commit/1daa181ddd84e1c21790623a43c5c8bc70acabb5))
+
+
+
 # [0.7.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.2...v0.7.0) (2022-01-20)
 
 
@@ -40,20 +49,6 @@
 * add disclaimer ([7c0257c](https://github.com/SugarF0x/omtu-calendar/commit/7c0257c3d3fa289ce489950b42d5c169997d543b))
 * add First Time User Experience page ([52221fd](https://github.com/SugarF0x/omtu-calendar/commit/52221fd0dd111d35e976f747061630f66d9a9ecb))
 * add specialty selector ([0414adc](https://github.com/SugarF0x/omtu-calendar/commit/0414adc3ea877be2705f645f89ce0930f5da9c34))
-
-
-
-# [0.5.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.3.0...v0.5.0) (2022-01-01)
-
-
-### Bug Fixes
-
-* add missing zip script ([ef74d80](https://github.com/SugarF0x/omtu-calendar/commit/ef74d806c9ebc6191a4a2f91676cc04f01e70001))
-
-
-### Features
-
-* add gzip for ci ([739f750](https://github.com/SugarF0x/omtu-calendar/commit/739f75085ca50dcb85642a7a120665b6e46d396a))
 
 
 
