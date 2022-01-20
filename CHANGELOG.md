@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.2...v0.7.0) (2022-01-20)
+
+
+### Features
+
+* add update data button ([de98e9b](https://github.com/SugarF0x/omtu-calendar/commit/de98e9bc1d7f3148de5f09e3f20088a9c3d2229a))
+
+
+
 ## [0.6.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.1...v0.6.2) (2022-01-12)
 
 
@@ -45,10 +54,6 @@
 ### Features
 
 * add gzip for ci ([739f750](https://github.com/SugarF0x/omtu-calendar/commit/739f75085ca50dcb85642a7a120665b6e46d396a))
-
-
-
-# [0.3.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.2.0...v0.3.0) (2021-09-24)
 
 
 
