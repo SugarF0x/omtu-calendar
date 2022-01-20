@@ -6,6 +6,7 @@ const contact = "antuzov"
 
 export default defineComponent({
   layout: "clear",
+  middleware: ["DataLoader"],
   setup() {
     const router = useRouter()
     const accessor = useAccessor()
@@ -13,9 +14,8 @@ export default defineComponent({
     const options = computed(() => accessor.options)
     const group = computed(() => options.value.group)
     const course = computed(() => options.value.course)
-    const specialty = computed(() => options.value.specialty)
 
-    const isDisabled = computed(() => group.value === null || course.value === null || specialty.value === null)
+    const isDisabled = computed(() => group.value === null || course.value === null)
 
     const proceed = () => {
       router.replace("/")
@@ -45,7 +45,7 @@ export default defineComponent({
           <options-selector type="group" />
         </v-col>
         <v-col cols="12" sm="6" md="4">
-          <options-selector type="specialty" />
+          <specialty-picker />
         </v-col>
       </v-row>
     </v-container>

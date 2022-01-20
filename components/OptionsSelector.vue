@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, toRefs, watch } from "@nuxtjs/composition-api"
 import { Options } from "~/utils"
-import { Specialty } from "~/types"
 import { useAccessor } from "~/store"
 
 interface Settings {
@@ -10,7 +9,7 @@ interface Settings {
   options: string[]
 }
 
-type RadioOptions = keyof Omit<Options, "date">
+type RadioOptions = keyof Pick<Options, 'group' | 'course'>
 
 const typeToSettingsMapper: Record<RadioOptions, Settings> = {
   course: {
@@ -22,12 +21,7 @@ const typeToSettingsMapper: Record<RadioOptions, Settings> = {
     title: "Выбор группы",
     postfix: "-ая академическая",
     options: ["1", "2", "3", "4"],
-  },
-  specialty: {
-    title: "Выбор специализации",
-    postfix: "",
-    options: Object.values(Specialty),
-  },
+  }
 }
 
 export default defineComponent({
@@ -43,9 +37,9 @@ export default defineComponent({
 
     const { postfix, title, options } = typeToSettingsMapper[type.value]
 
-    const selection = ref(accessor.options[type.value])
+    const selection = ref(accessor.options[type.value] ? accessor.options[type.value]! - 1 : null )
     watch(selection, value => {
-      accessor[`SET_${type.value.toUpperCase()}`](value)
+      accessor[`SET_${type.value.toUpperCase()}`](value! + 1)
     })
 
     return {

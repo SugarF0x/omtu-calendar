@@ -28,6 +28,9 @@ export default defineComponent({
       <div class="colorCode" :style="`background-color: ${event.color}`" />
     </v-card-title>
     <v-card-text>
+      <h2 v-if="event.change" class="warningMessage" :class="event.change">
+        {{ event.change === 'cancelled' ? "ПЕРЕНЕСЕНО/ОТМЕНЕНО" : "ОТРАБОТКА" }}
+      </h2>
       <ul>
         <li>Аудитория: {{ event.room }}</li>
         <li v-if="event.professor">Преподаватель: <br />{{ event.professor }}</li>
@@ -44,4 +47,17 @@ export default defineComponent({
   height: 32px;
   border-radius: 50%;
 }
+
+.warningMessage {
+  margin-bottom: 1rem;
+}
+
+.cancelled {
+  color: red;
+}
+
+.added {
+  color: green;
+}
+
 </style>

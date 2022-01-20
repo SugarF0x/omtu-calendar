@@ -1,7 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, useRoute } from "@nuxtjs/composition-api"
 import { format, isBefore, isSameDay, parse } from "date-fns"
-import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
@@ -9,6 +8,7 @@ export default defineComponent({
     const route = useRoute()
     const accessor = useAccessor()
     const group = computed(() => accessor.options.group)
+    const specialties = computed(() => accessor.options.specialties)
 
     const day = computed(() => route.value.params.day)
     const parsedDate = computed(() => (day.value ? parse(day.value, "yyyy-MM-dd", new Date()) : null))
@@ -17,7 +17,12 @@ export default defineComponent({
     const events = computed(() => {
       if (!parsedDate.value) return []
 
-      return EVENTS.filter(event => event.group === group.value && isSameDay(event.start, parsedDate.value!)).sort(
+      return accessor.data.events.filter(
+        event =>
+          event.groups.includes(group.value!)
+          && event.specialties.some(entry => specialties.value.includes(entry))
+          && isSameDay(event.start, parsedDate.value!)
+      ).sort(
         (a, b) => (isBefore(a.start, b.start) ? -1 : 1),
       )
     })

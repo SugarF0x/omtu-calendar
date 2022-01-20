@@ -1,7 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, ref, useRouter, watch } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
-import { EVENTS } from "~/assets/subjects"
 import { useAccessor } from "~/store"
 import { useVuetify } from "~/hooks"
 
@@ -13,7 +12,6 @@ interface DateClickEvent {
 }
 
 export default defineComponent({
-  middleware: ["FTUE"],
   setup() {
     const router = useRouter()
     const vuetify = useVuetify()
@@ -25,6 +23,7 @@ export default defineComponent({
 
     const accessor = useAccessor()
     const group = computed(() => accessor.options.group)
+    const specialties = computed(() => accessor.options.specialties)
     const date = computed(() => accessor.options.date)
 
     const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
@@ -32,7 +31,12 @@ export default defineComponent({
       value.value = format(new Date(date.value), "yyyy-MM-dd")
     })
 
-    const events = computed(() => EVENTS.filter(event => event.group === group.value))
+    const events = computed(() => accessor.data.events.filter(
+      event =>
+        event.groups.includes(group.value!)
+        && event.specialties.some(entry => specialties.value.includes(entry))
+      )
+    )
 
     const isWide = computed(() => !["xs", "sm"].includes(vuetify.breakpoint.name))
     const weekdays = computed(() => [1, 2, 3, 4, 5, 6, isWide.value ? 0 : null].filter(n => n !== null))
@@ -76,6 +80,7 @@ export default defineComponent({
           tile
           :color="event.color"
           class="event"
+          :class="event.change"
           @click="openDay(date)"
         >
           {{ event.name }}
@@ -101,6 +106,14 @@ export default defineComponent({
   text-overflow: ellipsis !important;
   overflow: hidden !important;
   max-height: 48px;
+}
+
+.cancelled {
+  border: 2px solid red !important;
+}
+
+.added {
+  border: 2px solid green !important;
 }
 </style>
 

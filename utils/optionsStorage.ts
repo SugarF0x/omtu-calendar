@@ -1,21 +1,20 @@
 import { startOfMonth } from "date-fns"
-import { Specialty } from "~/types"
 
 export interface Options {
   group: number | null
   course: number | null
-  specialty: Specialty | null
+  specialties: string[]
   date: string
 }
 
 const defaultOptions: Options = {
   group: null,
   course: null,
-  specialty: null,
+  specialties: [],
   date: startOfMonth(new Date()).toISOString(),
 }
 
-export function getOptions(): Options {
+export function loadCachedOptions(): Options {
   const storedString = localStorage.getItem("options")
   if (storedString)
     return {
@@ -27,6 +26,10 @@ export function getOptions(): Options {
   return defaultOptions
 }
 
-export function setOptions(options: Options) {
+export function cacheOptions(options: Options) {
   localStorage.setItem("options", JSON.stringify(options))
+}
+
+export function clearCachedOptions() {
+  localStorage.removeItem('options')
 }

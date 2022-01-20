@@ -2,6 +2,7 @@
 import { defineComponent, ref } from "@nuxtjs/composition-api"
 
 export default defineComponent({
+  middleware: ["DataLoader", "FTUE"],
   setup() {
     const drawer = ref<null | boolean>(null)
 
@@ -15,11 +16,11 @@ export default defineComponent({
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" right fixed app width="280">
-      <v-container class="fill-height flex-column drawer">
+      <v-container class="flex-column drawer">
         <month-selector class="item" />
         <options-selector type="course" class="item" />
         <options-selector type="group" class="item" />
-        <options-selector type="specialty" class="item" />
+        <specialty-picker class="item" />
       </v-container>
     </v-navigation-drawer>
 
@@ -56,10 +57,6 @@ export default defineComponent({
 
   & + & {
     margin-top: 1rem;
-  }
-
-  &:last-child {
-    margin-bottom: 1rem;
   }
 }
 </style>

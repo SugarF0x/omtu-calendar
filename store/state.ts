@@ -1,7 +1,7 @@
-import { getOptions } from "~/utils"
+import { loadCachedOptions } from "~/utils"
 
 export const defaultState = () => ({
-  options: getOptions(),
+  options: loadCachedOptions(),
 })
 
 export const state = () => defaultState()
