@@ -42,7 +42,6 @@ export default defineComponent({
     )
 
     const isWide = computed(() => !["xs", "sm"].includes(vuetify.breakpoint.name))
-    const weekdays = computed(() => [1, 2, 3, 4, 5, 6, isWide.value ? 0 : null].filter(n => n !== null))
 
     const getEvents = (value: string) => {
       const date = parse(value, "yyyy-MM-dd", new Date())
@@ -52,7 +51,6 @@ export default defineComponent({
     return {
       value,
       events,
-      weekdays,
       group,
       getEvents,
       isWide,
@@ -67,8 +65,8 @@ export default defineComponent({
     <v-calendar
       v-model="value"
       class="calendar"
-      :weekdays="weekdays"
       color="red"
+      :weekdays="[1,2,3,4,5,6,0]"
       event-category="selectedGroup"
       event-overlap-mode="stack"
       @touchstart:day="openDay"
@@ -79,7 +77,7 @@ export default defineComponent({
       <template #day="{ date }">
         <v-sheet
           v-for="event in getEvents(date)"
-          :key="event.name"
+          :key="event.id"
           tile
           :color="event.color"
           class="event"

@@ -1,19 +1,16 @@
 <script lang="ts">
-import { defineComponent, onMounted, useRouter } from "@nuxtjs/composition-api"
+import { defineComponent, onMounted } from "@nuxtjs/composition-api"
 import { millisecondsInHour } from "date-fns"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
-  layout: "clear",
   setup() {
     const accessor = useAccessor()
-    const router = useRouter()
 
     onMounted(async () => {
       const isCacheLosingSuccessful = await accessor.data.loadCachedData()
       if (!isCacheLosingSuccessful || accessor.data.parsedUpdateTime! - Date.now() > millisecondsInHour * 24 * 7)
         await accessor.data.getData()
-      router.push("/")
     })
   },
 })
@@ -33,5 +30,3 @@ export default defineComponent({
     </v-row>
   </v-container>
 </template>
-
-<style lang="scss" scoped></style>

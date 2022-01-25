@@ -1,14 +1,12 @@
 <script lang="ts">
-import { computed, defineComponent, useRouter } from "@nuxtjs/composition-api"
+import { computed, defineComponent } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
 
 const contact = "antuzov"
 
 export default defineComponent({
-  layout: "clear",
-  middleware: ["DataLoader"],
-  setup() {
-    const router = useRouter()
+  emits: ['confirm'],
+  setup(_, { emit }) {
     const accessor = useAccessor()
 
     const options = computed(() => accessor.options)
@@ -18,7 +16,7 @@ export default defineComponent({
     const isDisabled = computed(() => group.value === null || course.value === null)
 
     const proceed = () => {
-      router.replace("/")
+      emit('confirm')
     }
 
     return {

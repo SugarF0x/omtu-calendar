@@ -17,6 +17,13 @@ function replaceDashWithEmptyString(value: string) {
 }
 
 export const getters = getterTree(state, {
+  isDataLoaded: state => {
+    return [
+      state.sheets.core.length > 0,
+      state.sheets.specialties.length > 0,
+      state.sheets.amendments.length > 0,
+    ].every(Boolean)
+  },
   parsedSheets: (state): FormattedSheets => {
     const sheets = state.sheets
     const formatted: FormattedSheets = {
