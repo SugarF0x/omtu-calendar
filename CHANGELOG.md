@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.2...v0.7.3) (2022-01-25)
+
+
+### Bug Fixes
+
+* selected month not saving ([6a3dd36](https://github.com/SugarF0x/omtu-calendar/commit/6a3dd366a77fdd6b40495f154f739ad9eb0794b2))
+
+
+
 ## [0.7.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.0...v0.7.2) (2022-01-20)
 
 
@@ -32,23 +41,6 @@
 
 * calendar value type ([7aadcbd](https://github.com/SugarF0x/omtu-calendar/commit/7aadcbd8dfc4f344945f1f840d3c46a720f214a6))
 * day color a11y visibility ([6ad97f4](https://github.com/SugarF0x/omtu-calendar/commit/6ad97f474a2a63f66d2186e84a8ed8636650c25f))
-
-
-
-# [0.6.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.5.0...v0.6.0) (2022-01-01)
-
-
-### Bug Fixes
-
-* drawer overflow ([8256918](https://github.com/SugarF0x/omtu-calendar/commit/8256918fb7cd108c7a9d11e00417e4aff57d55b5))
-
-
-### Features
-
-* add course selection ([3b39fea](https://github.com/SugarF0x/omtu-calendar/commit/3b39feacfca4926de8b09838960427d34856ce97))
-* add disclaimer ([7c0257c](https://github.com/SugarF0x/omtu-calendar/commit/7c0257c3d3fa289ce489950b42d5c169997d543b))
-* add First Time User Experience page ([52221fd](https://github.com/SugarF0x/omtu-calendar/commit/52221fd0dd111d35e976f747061630f66d9a9ecb))
-* add specialty selector ([0414adc](https://github.com/SugarF0x/omtu-calendar/commit/0414adc3ea877be2705f645f89ce0930f5da9c34))
 
 
 
