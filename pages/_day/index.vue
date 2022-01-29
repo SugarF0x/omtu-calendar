@@ -48,7 +48,7 @@ export default defineComponent({
     </v-card>
 
     <div v-else v-frag>
-      <event-item v-for="event in events" :key="event.name" :event="event" class="mb-3" />
+      <event-item v-for="event in events" :key="event.id" :event="event" class="mb-3" />
     </div>
   </v-container>
 </template>
