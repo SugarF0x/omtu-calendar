@@ -83,8 +83,8 @@ export const getters = getterTree(state, {
           room: entry.room,
           groups: entry.groups,
           specialties: entry.specialties,
-          start: parse(`${date} ${TIMETABLE[entry.start][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-          end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 1][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+          start: parse(`${date} ${TIMETABLE[entry.start - 1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+          end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 2][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
           note: entry.note,
           color: getColorFromText(entry.title)
         })
@@ -104,8 +104,8 @@ export const getters = getterTree(state, {
         change: 'added',
         id: `${event.id}-${entry.id}`,
         note: entry.note,
-        start: parse(`${date} ${TIMETABLE[entry.start][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 1][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        start: parse(`${date} ${TIMETABLE[entry.start - 1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
+        end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 2][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
       })
     }
 
