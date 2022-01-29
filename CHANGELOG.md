@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.8.0...v0.8.1) (2022-01-29)
+
+
+### Bug Fixes
+
+* mistimed events ([9dd46d4](https://github.com/SugarF0x/omtu-calendar/commit/9dd46d4b454f0e27aedfdb403656aaf9211b5087))
+
+
+
 # [0.8.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.3...v0.8.0) (2022-01-29)
 
 
@@ -39,15 +48,6 @@
 ### Features
 
 * add update data button ([de98e9b](https://github.com/SugarF0x/omtu-calendar/commit/de98e9bc1d7f3148de5f09e3f20088a9c3d2229a))
-
-
-
-## [0.6.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.6.1...v0.6.2) (2022-01-12)
-
-
-### Bug Fixes
-
-* date change bug ([24fb40b](https://github.com/SugarF0x/omtu-calendar/commit/24fb40b5f5ebb222f8be82860401215995e341b5))
 
 
 
