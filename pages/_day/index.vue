@@ -17,16 +17,14 @@ export default defineComponent({
     const events = computed(() => {
       if (!parsedDate.value) return []
 
-      return accessor.data.events.filter(
-        event =>
-          event.groups.includes(group.value!)
-          && (
-            event.specialties.length === accessor.data.sheets.specialties.length
-            || event.specialties.some(entry => specialties.value.includes(entry))
-          ) && isSameDay(event.start, parsedDate.value!)
-      ).sort(
-        (a, b) => (isBefore(a.start, b.start) ? -1 : 1),
-      )
+      return accessor.data.events.filter(event => {
+        const isGroupMatch = event.groups.includes(group.value!)
+        const isForAllSpecialties = event.specialties.length === accessor.data.sheets.specialties.length
+        const isSpecialtyMatch = isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
+        const isDayMatch = isSameDay(event.start, parsedDate.value!)
+
+        return isGroupMatch && isSpecialtyMatch && isDayMatch
+      }).sort((a, b) => (isBefore(a.start, b.start) ? -1 : 1))
     })
 
     return {

@@ -29,14 +29,13 @@ export default defineComponent({
       value.value = format(new Date(date.value), "yyyy-MM-dd")
     })
 
-    const events = computed(() => accessor.data.events.filter(
-      event =>
-        event.groups.includes(group.value!)
-        && (
-          event.specialties.length === accessor.data.sheets.specialties.length
-          || event.specialties.some(entry => specialties.value.includes(entry))
-        )
-      )
+    const events = computed(() => accessor.data.events.filter(event => {
+        const isGroupMatch = event.groups.includes(group.value!)
+        const isForAllSpecialties = event.specialties.length === accessor.data.sheets.specialties.length
+        const isSpecialtyMatch = isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
+
+        return isGroupMatch && isSpecialtyMatch
+      })
     )
 
     const getEvents = (value: string) => {
