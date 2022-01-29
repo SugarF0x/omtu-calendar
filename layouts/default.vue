@@ -46,12 +46,12 @@ export default defineComponent({
       </v-navigation-drawer>
 
       <v-app-bar app class="navbar">
-        <router-link to="/" class="link">
-          <v-toolbar-title>
+        <v-toolbar-title>
+          <router-link to="/" class="link">
             ОМТУ Календрь
-            <span class="version">v.{{ version }}</span>
-          </v-toolbar-title>
-        </router-link>
+          </router-link>
+          <a class="version" target="_blank" href="https://github.com/SugarF0x/omtu-calendar/blob/master/CHANGELOG.md">v.{{ version }}</a>
+        </v-toolbar-title>
 
         <v-spacer />
 
