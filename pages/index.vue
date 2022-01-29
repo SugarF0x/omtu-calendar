@@ -2,7 +2,6 @@
 import { computed, defineComponent, ref, useRouter, watch } from "@nuxtjs/composition-api"
 import { parse, isSameDay, format } from "date-fns"
 import { useAccessor } from "~/store"
-import { useVuetify } from "~/hooks"
 
 interface DateClickEvent {
   date: string
@@ -14,7 +13,6 @@ interface DateClickEvent {
 export default defineComponent({
   setup() {
     const router = useRouter()
-    const vuetify = useVuetify()
 
     const openDay = (meta: DateClickEvent | string) => {
       const url = typeof meta === "string" ? meta : meta.date
@@ -41,8 +39,6 @@ export default defineComponent({
       )
     )
 
-    const isWide = computed(() => !["xs", "sm"].includes(vuetify.breakpoint.name))
-
     const getEvents = (value: string) => {
       const date = parse(value, "yyyy-MM-dd", new Date())
       return events.value.filter(event => isSameDay(event.start, date))
@@ -53,7 +49,6 @@ export default defineComponent({
       events,
       group,
       getEvents,
-      isWide,
       openDay,
     }
   },
