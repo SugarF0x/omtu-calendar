@@ -42,10 +42,14 @@ export default defineComponent({
     <div class="d-flex justify-end">
       <v-sheet class="d-inline-block pa-3 display-1 mb-3">{{ localedDate }}</v-sheet>
     </div>
-    <event-item v-for="event in events" :key="event.name" :event="event" class="mb-3" />
+
     <v-card v-if="!events.length">
       <v-card-title class="justify-center">Сегодня занятий нет</v-card-title>
     </v-card>
+
+    <div v-else v-frag>
+      <event-item v-for="event in events" :key="event.name" :event="event" class="mb-3" />
+    </div>
   </v-container>
 </template>
 

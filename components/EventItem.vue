@@ -31,12 +31,18 @@ export default defineComponent({
       <h2 v-if="event.change" class="warningMessage" :class="event.change">
         {{ event.change === 'cancelled' ? "ПЕРЕНЕСЕНО/ОТМЕНЕНО" : "ОТРАБОТКА" }}
       </h2>
+
       <ul>
         <li>Аудитория: {{ event.room }}</li>
         <li v-if="event.professor">Преподаватель: <br />{{ event.professor }}</li>
         <li>Начало: {{ formatEventTime(event.start) }}</li>
         <li>Конец: {{ formatEventTime(event.end) }}</li>
       </ul>
+
+      <div v-if="event.note" class="note">
+        <h3>Примечание:</h3>
+        <q>{{ event.note }}</q>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -60,4 +66,7 @@ export default defineComponent({
   color: green;
 }
 
+.note {
+  margin-top: 1rem;
+}
 </style>
