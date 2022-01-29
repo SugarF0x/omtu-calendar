@@ -30,7 +30,7 @@ export default defineComponent({
     <DataLoaderModal v-if="!isDataLoaded" />
     <FTUE v-else-if="isFTUE || !isFTUEConfirmed" @confirm="confirmFTUE" />
 
-    <div v-frag>
+    <div v-else v-frag>
       <v-navigation-drawer v-model="drawer" right fixed app width="280">
         <v-container class="flex-column drawer">
           <month-selector class="item" />
