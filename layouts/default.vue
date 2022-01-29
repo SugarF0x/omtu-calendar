@@ -1,6 +1,9 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
+import pkg from '~/package.json'
+
+const version = pkg.version
 
 export default defineComponent({
   setup() {
@@ -15,6 +18,7 @@ export default defineComponent({
     const drawer = ref<null | boolean>(null)
 
     return {
+      version,
       drawer,
       isDataLoaded,
       isFTUE,
@@ -43,7 +47,10 @@ export default defineComponent({
 
       <v-app-bar app class="navbar">
         <router-link to="/" class="link">
-          <v-toolbar-title> ОМТУ Календрь </v-toolbar-title>
+          <v-toolbar-title>
+            ОМТУ Календрь
+            <span class="version">v.{{ version }}</span>
+          </v-toolbar-title>
         </router-link>
 
         <v-spacer />
@@ -76,5 +83,9 @@ export default defineComponent({
   & + & {
     margin-top: 1rem;
   }
+}
+
+.version {
+  font-size: .5em;
 }
 </style>
