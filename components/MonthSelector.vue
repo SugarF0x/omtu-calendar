@@ -8,7 +8,7 @@ export default defineComponent({
     const accessor = useAccessor()
     const date = computed(() => accessor.options.date)
 
-    const monthLocale = computed(() => format(new Date(date.value), "MMMM yyyy"))
+    const monthLocale = computed(() => format(new Date(date.value), "MMM yyyy"))
     const handleMonthIncrease = () => {
       accessor.INC_MONTH()
     }
@@ -26,12 +26,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card>
-    <v-card-title class="justify-center">{{ monthLocale }}</v-card-title>
-    <v-card-actions>
-      <v-btn @click="handleMonthDecrease">&lt;</v-btn>
-      <v-spacer />
-      <v-btn @click="handleMonthIncrease">&gt;</v-btn>
-    </v-card-actions>
+  <v-card class="pa-2 d-flex justify-space-between">
+    <v-btn @click="handleMonthDecrease">&lt;</v-btn>
+    <div class="title d-flex justify-center align-center text-no-wrap">{{ monthLocale }}</div>
+    <v-btn @click="handleMonthIncrease">&gt;</v-btn>
   </v-card>
 </template>
