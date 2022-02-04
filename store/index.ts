@@ -5,6 +5,8 @@ import { getters } from './getters'
 import { state } from "~/store/state"
 import { mutations } from "~/store/mutations"
 
+// TODO: store versioning & migration
+
 export const accessor = getAccessorType({
   state,
   getters,

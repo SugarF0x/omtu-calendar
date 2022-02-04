@@ -8,6 +8,8 @@ import { RawAmendmentEntry, RawCoreEntry, RawSpecialtyEntry } from "~/types"
 const SHEET_ID = "1d5yh2_8iCB6SzrDIv-F9EzdMfSyBUz7mjmVXVmwfHAE"
 const parser = new PublicGoogleSheetsParser()
 
+// TODO: runtime type guard on fetch
+
 export const actions = actionTree(
   { state, mutations },
   {
