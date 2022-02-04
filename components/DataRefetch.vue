@@ -25,17 +25,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card>
-    <v-card-title class="justify-center">Расписание</v-card-title>
-    <v-card-text class="text-center">
-      Последний раз данные обновлялись:
-      <br>
-      {{ time }}
-    </v-card-text>
-    <v-card-actions>
-      <v-btn color="primary" class="flex-grow-1" :loading="isUpdating" @click="update">Обновить данные</v-btn>
-    </v-card-actions>
-  </v-card>
+  <div class="d-flex flex-column">
+    <v-btn color="primary">Обновить данные</v-btn>
+    <small class="ml-auto grey--text">{{ time }}</small>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
