@@ -9,7 +9,7 @@ export default defineComponent({
 
     onMounted(async () => {
       const isCacheLosingSuccessful = await accessor.data.loadCachedData()
-      if (!isCacheLosingSuccessful || accessor.data.parsedUpdateTime! - Date.now() > millisecondsInHour * 24 * 7)
+      if (!isCacheLosingSuccessful || Date.now() - accessor.data.parsedUpdateTime! > millisecondsInHour * 24 * 7)
         await accessor.data.getData()
     })
   },
