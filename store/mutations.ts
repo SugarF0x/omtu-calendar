@@ -25,6 +25,9 @@ export const mutations = mutationTree(state, {
   INC_MONTH: state => {
     state.month = addMonths(new Date(state.month), 1).toISOString()
   },
+  SET_MONTH: (state, value: string) => {
+    state.month = value
+  }
 })
 
 export default mutations
