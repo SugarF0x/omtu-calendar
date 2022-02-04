@@ -63,10 +63,8 @@ export default defineComponent({
       :weekdays="[1,2,3,4,5,6,0]"
       event-category="selectedGroup"
       event-overlap-mode="stack"
-      @touchstart:day="openDay"
-      @mousedown:day="openDay"
-      @click:event="openDay"
-      @click:day="openDay"
+      @touchend:day="openDay"
+      @mouseup:day="openDay"
     >
       <template #day="{ date }">
         <v-sheet
