@@ -26,7 +26,7 @@ export default defineComponent({
 
 <template>
   <div class="d-flex flex-column">
-    <v-btn color="primary">Обновить данные</v-btn>
+    <v-btn color="primary" :loading="isUpdating" @click="update">Обновить данные</v-btn>
     <small class="ml-auto grey--text">{{ time }}</small>
   </div>
 </template>
