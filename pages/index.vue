@@ -22,7 +22,7 @@ export default defineComponent({
     const accessor = useAccessor()
     const group = computed(() => accessor.options.group)
     const specialties = computed(() => accessor.options.specialties)
-    const date = computed(() => accessor.options.date)
+    const date = computed(() => accessor.month)
 
     const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
     watch([date], () => {

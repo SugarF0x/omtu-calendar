@@ -1,17 +1,13 @@
-import { startOfMonth } from "date-fns"
-
 export interface Options {
   group: number | null
   course: number | null
   specialties: string[]
-  date: string
 }
 
 const defaultOptions: Options = {
   group: null,
   course: 1,
   specialties: [],
-  date: startOfMonth(new Date()).toISOString(),
 }
 
 export function loadCachedOptions(): Options {

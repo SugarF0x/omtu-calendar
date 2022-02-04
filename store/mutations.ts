@@ -1,6 +1,6 @@
 import { mutationTree } from "typed-vuex"
 import { addMonths } from "date-fns"
-import { state, defaultState } from "./state"
+import { defaultState, state } from "./state"
 import { cacheOptions } from "~/utils"
 
 export const mutations = mutationTree(state, {
@@ -20,14 +20,10 @@ export const mutations = mutationTree(state, {
     state.options.specialties = value
   },
   DEC_MONTH: state => {
-    const newDate = addMonths(new Date(state.options.date), -1).toISOString()
-    cacheOptions({ ...state.options, date: newDate })
-    state.options.date = newDate
+    state.month = addMonths(new Date(state.month), -1).toISOString()
   },
   INC_MONTH: state => {
-    const newDate = addMonths(new Date(state.options.date), 1).toISOString()
-    cacheOptions({ ...state.options, date: newDate })
-    state.options.date = newDate
+    state.month = addMonths(new Date(state.month), 1).toISOString()
   },
 })
 
