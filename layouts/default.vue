@@ -38,8 +38,8 @@ export default defineComponent({
       <v-navigation-drawer v-model="drawer" right fixed app width="280">
         <v-container class="flex-column drawer">
           <month-selector class="item" />
-          <options-selector type="course" class="item" />
-          <options-selector type="group" class="item" />
+          <course-selector class="item" />
+          <group-selector class="item" />
           <specialty-picker class="item" />
           <data-refetch class="item" />
         </v-container>

@@ -15,9 +15,7 @@ export default defineComponent({
 
     const isDisabled = computed(() => group.value === null || course.value === null)
 
-    const proceed = () => {
-      emit('confirm')
-    }
+    const proceed = () => { emit('confirm') }
 
     return {
       isDisabled,
@@ -37,10 +35,10 @@ export default defineComponent({
     <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="6" md="4">
-          <options-selector type="course" />
+          <course-selector />
         </v-col>
         <v-col cols="12" sm="6" md="4">
-          <options-selector type="group" />
+          <group-selector />
         </v-col>
         <v-col cols="12" sm="6" md="4">
           <specialty-picker />

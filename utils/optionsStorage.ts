@@ -9,7 +9,7 @@ export interface Options {
 
 const defaultOptions: Options = {
   group: null,
-  course: null,
+  course: 1,
   specialties: [],
   date: startOfMonth(new Date()).toISOString(),
 }
