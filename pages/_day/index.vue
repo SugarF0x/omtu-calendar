@@ -1,11 +1,12 @@
 <script lang="ts">
-import { computed, defineComponent, useRoute } from "@nuxtjs/composition-api"
+import { computed, defineComponent, useRoute, useRouter } from "@nuxtjs/composition-api"
 import { format, isBefore, isSameDay, isSameMonth, parse, startOfMonth } from "date-fns"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
   setup() {
     const route = useRoute()
+    const router = useRouter()
     const accessor = useAccessor()
     const group = computed(() => accessor.options.group)
     const specialties = computed(() => accessor.options.specialties)
@@ -35,9 +36,14 @@ export default defineComponent({
       }).sort((a, b) => (isBefore(a.start, b.start) ? -1 : 1))
     })
 
+    const back = () => {
+      router.replace('/')
+    }
+
     return {
       events,
       localedDate,
+      back
     }
   },
 })
@@ -55,6 +61,13 @@ export default defineComponent({
 
     <div v-else v-frag>
       <event-item v-for="event in events" :key="event.id" :event="event" class="mb-3" />
+    </div>
+
+    <div class="d-flex justify-end">
+      <v-btn @click="back">
+        <v-icon left>mdi-undo-variant</v-icon>
+        назад
+      </v-btn>
     </div>
   </v-container>
 </template>
