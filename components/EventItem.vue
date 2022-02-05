@@ -22,10 +22,9 @@ export default defineComponent({
 
 <template>
   <v-card>
-    <v-card-title class="text-break">
+    <v-card-title class="d-flex justify-space-between flex-nowrap text-break">
       <div>{{ event.name }}</div>
-      <v-spacer />
-      <div class="colorCode" :style="`background-color: ${event.color}`" />
+      <div class="colorCode ml-2" :style="`background-color: ${event.color}`" />
     </v-card-title>
     <v-card-text>
       <h2 v-if="event.change" class="warningMessage" :class="event.change">
@@ -49,7 +48,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .colorCode {
-  width: 32px;
+  margin-bottom: auto;
+  min-width: 32px;
   height: 32px;
   border-radius: 50%;
 }
