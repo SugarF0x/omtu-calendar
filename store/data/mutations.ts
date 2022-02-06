@@ -8,6 +8,9 @@ export const mutations = mutationTree(state, {
   SET_LOADING: (state, payload: boolean) => {
     state.isLoading = payload
   },
+  SET_DATA_LOADED: state => {
+    state.isDataLoaded = true
+  },
   SET_ERROR: (state, payload: string | null) => {
     state.error = payload
   },

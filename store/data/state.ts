@@ -9,6 +9,7 @@ export interface Sheets {
 export interface DataStoreState {
   sheets: Sheets,
   updateTime: null | string
+  isDataLoaded: boolean
   isLoading: boolean
   error: string | null
 }
@@ -20,6 +21,7 @@ export const defaultState = (): DataStoreState => ({
     amendments: [],
   },
   updateTime: null,
+  isDataLoaded: false,
   isLoading: false,
   error: null,
 })
