@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent, useMeta, useRouter } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
-import { clearCachedOptions } from "~/utils"
 
 const contact = "antuzov"
 
@@ -24,9 +23,8 @@ export default defineComponent({
 
     const resetData = () => {
       accessor.data.RESET_STATE()
-      accessor.data.clearCachedData()
       accessor.RESET_STATE()
-      clearCachedOptions()
+      accessor.CLEAR_CACHE()
       reload()
     }
 

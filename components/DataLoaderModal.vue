@@ -1,17 +1,12 @@
 <script lang="ts">
 import { defineComponent, onMounted } from "@nuxtjs/composition-api"
-import { millisecondsInHour } from "date-fns"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
 
-    onMounted(async () => {
-      const isCacheLosingSuccessful = await accessor.data.loadCachedData()
-      if (!isCacheLosingSuccessful || Date.now() - accessor.data.parsedUpdateTime! > millisecondsInHour * 24 * 7)
-        await accessor.data.getData()
-    })
+    onMounted(() => { accessor.data.getData() })
   },
 })
 </script>

@@ -27,7 +27,7 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   css: ["~/assets/global.scss"],
-  plugins: ["~/plugins/pwa-update.ts", "~/plugins/fragment.ts"],
+  plugins: ["~/plugins/pwa-update.ts", "~/plugins/fragment.ts", { src: '~/plugins/persist.js', mode: 'client' }],
   components: true,
   buildModules: [
     "@nuxt/typescript-build",

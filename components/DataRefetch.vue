@@ -1,6 +1,6 @@
 <script lang="ts">
-import { computed, defineComponent } from "@nuxtjs/composition-api"
-import { format } from "date-fns"
+import { computed, defineComponent, onMounted } from "@nuxtjs/composition-api"
+import { format, millisecondsInHour } from "date-fns"
 import { useAccessor } from "~/store"
 import { TIMETABLE_FORMAT, DAYS_FORMAT } from "~/consts"
 
@@ -12,6 +12,10 @@ export default defineComponent({
     const update = () => {
       accessor.data.getData()
     }
+
+    onMounted(() => {
+      if (Date.now() - accessor.data.parsedUpdateTime! > millisecondsInHour * 24 * 7) update()
+    })
 
     const isUpdating = computed(() => accessor.data.isLoading)
 

@@ -13,7 +13,7 @@ const parser = new PublicGoogleSheetsParser()
 export const actions = actionTree(
   { state, mutations },
   {
-    async getData({ commit, dispatch }) {
+    async getData({ commit }) {
       commit('SET_LOADING', true)
 
       try {
@@ -23,7 +23,6 @@ export const actions = actionTree(
 
         commit('SET_SHEETS', { specialties, core, amendments })
         commit('SET_UPDATE_TIME', new Date().toISOString())
-        dispatch('cacheData')
       } catch (error) {
         if (error instanceof Error) {
           commit('SET_ERROR', error.message)
@@ -35,23 +34,6 @@ export const actions = actionTree(
       }
 
       commit('SET_LOADING', false)
-    },
-    cacheData({ state }) {
-      localStorage.setItem('data', JSON.stringify({
-        sheets: state.sheets,
-        updateTime: state.updateTime
-      }))
-    },
-    loadCachedData({ commit }) {
-      const storedData = localStorage.getItem("data")
-      if (!storedData) return false
-      const parsedData = JSON.parse(storedData)
-      commit('SET_SHEETS', parsedData.sheets)
-      commit('SET_UPDATE_TIME', parsedData.updateTime)
-      return true
-    },
-    clearCachedData() {
-      localStorage.removeItem('data')
     }
   },
 )
