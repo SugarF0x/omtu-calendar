@@ -52,7 +52,7 @@ export default defineComponent({
           <router-link to="/" class="link">
             ОМТУ Календарь
           </router-link>
-          <v-chip class="version ml-1" color="primary" link target="_blank" :href="CHANGELOG_HREF">v.{{ VERSION }}</v-chip>
+          <v-chip class="version ml-2" color="primary" link target="_blank" :href="CHANGELOG_HREF">v.{{ VERSION }}</v-chip>
         </v-toolbar-title>
 
         <v-spacer />
