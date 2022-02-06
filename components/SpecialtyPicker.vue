@@ -9,7 +9,7 @@ export default defineComponent({
     const specialties = computed(() => accessor.options.specialties)
 
     const initialSelection = computed(() => specialtyTypes.value.filter(entry => specialties.value.includes(entry.id)))
-    const handleChange = (values: string[]) => { accessor.SET_SPECIALTIES([...values]) }
+    const handleChange = (values: string[]) => { accessor.options.SET_SPECIALTIES([...values]) }
 
     return {
       specialtyTypes,

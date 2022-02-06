@@ -1,18 +1,16 @@
 import { getAccessorType } from "typed-vuex"
 import { wrapProperty } from "@nuxtjs/composition-api"
 import * as data from './data'
-import { getters } from './getters'
+import * as options from './options'
 import { state } from "~/store/state"
 import { mutations } from "~/store/mutations"
 
-// TODO: store versioning & migration
-
 export const accessor = getAccessorType({
   state,
-  getters,
   mutations,
   modules: {
-    data
+    data,
+    options
   }
 })
 

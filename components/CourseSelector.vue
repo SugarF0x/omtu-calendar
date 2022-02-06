@@ -7,7 +7,7 @@ export default defineComponent({
     const accessor = useAccessor()
 
     const selection = ref(accessor.options.course ? accessor.options.course - 1 : null )
-    watch(selection, value => { accessor.SET_COURSE(value! + 1) })
+    watch(selection, value => { accessor.options.SET_COURSE(value! + 1) })
 
     return {
       selection

@@ -7,7 +7,7 @@ export default defineComponent({
     const accessor = useAccessor()
 
     const selection = ref(accessor.options.group ? accessor.options.group - 1 : null )
-    watch(selection, value => { accessor.SET_GROUP(value! + 1) })
+    watch(selection, value => { accessor.options.SET_GROUP(value! + 1) })
 
     return {
       selection

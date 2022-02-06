@@ -11,7 +11,7 @@ export default defineComponent({
 
     const isDataLoaded = computed(() => accessor.data.isDataLoaded)
 
-    const isFTUE = computed(() => accessor.isFTUE)
+    const isFTUE = computed(() => accessor.options.isFTUE)
     const isFTUEConfirmed = ref(!isFTUE.value)
     const confirmFTUE = () => { isFTUEConfirmed.value = true }
 

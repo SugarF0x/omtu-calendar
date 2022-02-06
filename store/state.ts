@@ -1,8 +1,10 @@
 import { startOfMonth } from "date-fns"
-import { loadCachedOptions } from "~/utils"
 
-export const defaultState = () => ({
-  options: loadCachedOptions(),
+export interface StoreState {
+  month: string
+}
+
+export const defaultState = (): StoreState => ({
   month: startOfMonth(new Date()).toISOString()
 })
 
