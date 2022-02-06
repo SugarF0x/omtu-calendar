@@ -3,7 +3,8 @@ import { computed, defineComponent, ref } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
 import pkg from '~/package.json'
 
-const version = pkg.version
+const VERSION = pkg.version
+const CHANGELOG_HREF = 'https://github.com/SugarF0x/omtu-calendar/blob/master/CHANGELOG.md'
 
 export default defineComponent({
   setup() {
@@ -18,7 +19,8 @@ export default defineComponent({
     const drawer = ref<null | boolean>(null)
 
     return {
-      version,
+      VERSION,
+      CHANGELOG_HREF,
       drawer,
       isDataLoaded,
       isFTUE,
@@ -46,11 +48,11 @@ export default defineComponent({
       </v-navigation-drawer>
 
       <v-app-bar app class="navbar">
-        <v-toolbar-title>
+        <v-toolbar-title class="d-flex">
           <router-link to="/" class="link">
             ОМТУ Календарь
           </router-link>
-          <a class="version" target="_blank" href="https://github.com/SugarF0x/omtu-calendar/blob/master/CHANGELOG.md">v.{{ version }}</a>
+          <v-chip class="version ml-1" color="primary" link target="_blank" :href="CHANGELOG_HREF">v.{{ VERSION }}</v-chip>
         </v-toolbar-title>
 
         <v-spacer />
@@ -87,5 +89,8 @@ export default defineComponent({
 
 .version {
   font-size: .5em;
+  height: auto;
+  margin-top: auto;
+  padding: 0 8px;
 }
 </style>
