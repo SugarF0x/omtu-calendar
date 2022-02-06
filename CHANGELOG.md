@@ -1,3 +1,21 @@
+# [0.10.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.9.0...v0.10.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* **style:** _day margin collapse ([ba7b579](https://github.com/SugarF0x/omtu-calendar/commit/ba7b579a0ff13de6dcd8e32bdd41f52f98c570e0))
+* **typo:** layout title ([b9cb2f4](https://github.com/SugarF0x/omtu-calendar/commit/b9cb2f4992c553c8b465433b3acab73b9fb3d811))
+* **ui:** day event color code layour shift ([1eb4009](https://github.com/SugarF0x/omtu-calendar/commit/1eb400905af19dc0d41de498179391ed28865791))
+
+
+### Features
+
+* **ui:** add day back button ([51a77a0](https://github.com/SugarF0x/omtu-calendar/commit/51a77a06618bfde1fa58db1b0143d612ad07d6ed))
+* **ui:** wrap changelog into a chip ([e2a3511](https://github.com/SugarF0x/omtu-calendar/commit/e2a3511b4a1dd58fe11a2e8aac058251835b1915))
+* **ux:** add table data validation with feedback ([7969b69](https://github.com/SugarF0x/omtu-calendar/commit/7969b69b96a2e64bdd9d3b4dab1199afe050a177))
+
+
+
 # [0.9.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.8.1...v0.9.0) (2022-02-04)
 
 
@@ -49,15 +67,6 @@
 ### Bug Fixes
 
 * selected month not saving ([6a3dd36](https://github.com/SugarF0x/omtu-calendar/commit/6a3dd366a77fdd6b40495f154f739ad9eb0794b2))
-
-
-
-## [0.7.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.0...v0.7.2) (2022-01-20)
-
-
-### Bug Fixes
-
-* no events displayed with no specialty selected ([1daa181](https://github.com/SugarF0x/omtu-calendar/commit/1daa181ddd84e1c21790623a43c5c8bc70acabb5))
 
 
 
