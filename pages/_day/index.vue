@@ -52,18 +52,18 @@ export default defineComponent({
 <template>
   <v-container>
     <div class="d-flex justify-end">
-      <v-sheet class="d-inline-block pa-3 display-1 mb-3">{{ localedDate }}</v-sheet>
+      <v-sheet class="d-inline-block pa-3 display-1">{{ localedDate }}</v-sheet>
     </div>
 
-    <v-card v-if="!events.length">
+    <v-card v-if="!events.length" class="mt-3">
       <v-card-title class="justify-center">Сегодня занятий нет</v-card-title>
     </v-card>
 
     <div v-else v-frag>
-      <event-item v-for="event in events" :key="event.id" :event="event" class="mb-3" />
+      <event-item v-for="event in events" :key="event.id" :event="event" class="mt-3" />
     </div>
 
-    <div class="d-flex justify-end">
+    <div class="d-flex justify-end mt-3">
       <v-btn @click="back">
         <v-icon left>mdi-undo-variant</v-icon>
         назад
