@@ -1,3 +1,12 @@
+## [0.10.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.10.0...v0.10.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* **ui:** force version chip styles ([4290a08](https://github.com/SugarF0x/omtu-calendar/commit/4290a084327ce54f8357865764b64b9e68a0adb7))
+
+
+
 # [0.10.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.9.0...v0.10.0) (2022-02-06)
 
 
@@ -58,15 +67,6 @@
 * add event note display ([fec9d12](https://github.com/SugarF0x/omtu-calendar/commit/fec9d12899957db9356d9de508054846c7d96a7b))
 * display calendar version ([06cc186](https://github.com/SugarF0x/omtu-calendar/commit/06cc18630c1e92762f7a8744c93d5721051d0219))
 * link version to changelog ([30c5d2d](https://github.com/SugarF0x/omtu-calendar/commit/30c5d2debfa0ec5c6082c52cfbdf9f1ed7781a8b))
-
-
-
-## [0.7.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.7.2...v0.7.3) (2022-01-25)
-
-
-### Bug Fixes
-
-* selected month not saving ([6a3dd36](https://github.com/SugarF0x/omtu-calendar/commit/6a3dd366a77fdd6b40495f154f739ad9eb0794b2))
 
 
 
