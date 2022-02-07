@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, ref, useRouter, watch } from "@nuxtjs/composition-api"
-import { parse, isSameDay, format } from "date-fns"
+import { parse, isSameDay, format, isBefore } from "date-fns"
 import { useAccessor } from "~/store"
 
 interface DateClickEvent {
@@ -29,18 +29,22 @@ export default defineComponent({
       value.value = format(new Date(date.value), "yyyy-MM-dd")
     })
 
-    const events = computed(() => accessor.data.events.filter(event => {
+    const events = computed(() =>
+      accessor.data.events.filter(event => {
         const isGroupMatch = event.groups.includes(group.value!)
         const isForAllSpecialties = event.specialties.length === accessor.data.sheets.specialties.length
-        const isSpecialtyMatch = isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
+        const isSpecialtyMatch =
+          isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
 
         return isGroupMatch && isSpecialtyMatch
-      })
+      }),
     )
 
     const getEvents = (value: string) => {
       const date = parse(value, "yyyy-MM-dd", new Date())
-      return events.value.filter(event => isSameDay(event.start, date))
+      return events.value
+        .filter(event => isSameDay(event.start, date))
+        .sort((a, b) => (isBefore(a.start, b.start) ? -1 : 1))
     }
 
     return {
@@ -60,7 +64,7 @@ export default defineComponent({
       v-model="value"
       class="calendar"
       color="red"
-      :weekdays="[1,2,3,4,5,6,0]"
+      :weekdays="[1, 2, 3, 4, 5, 6, 0]"
       event-category="selectedGroup"
       event-overlap-mode="stack"
       @touchend:day="openDay"
