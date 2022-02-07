@@ -88,9 +88,9 @@ export default defineComponent({
 }
 
 .version {
-  font-size: .5em;
-  height: auto;
-  margin-top: auto;
-  padding: 0 8px;
+  font-size: .5em !important;
+  height: auto !important;
+  margin-top: auto !important;
+  padding: 0 8px !important;
 }
 </style>
