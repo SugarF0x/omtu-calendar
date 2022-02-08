@@ -36,7 +36,7 @@ export default defineComponent({
     <DataLoaderModal v-if="!isDataLoaded" />
     <FTUE v-else-if="isFTUE || !isFTUEConfirmed" @confirm="confirmFTUE" />
 
-    <div v-else v-frag>
+    <template v-else>
       <v-navigation-drawer v-model="drawer" right fixed app width="280">
         <v-container class="flex-column drawer">
           <month-selector class="item" />
@@ -65,7 +65,7 @@ export default defineComponent({
       <v-main>
         <nuxt />
       </v-main>
-    </div>
+    </template>
   </v-app>
 </template>
 

@@ -60,9 +60,9 @@ export default defineComponent({
       <v-card-title class="justify-center">Сегодня занятий нет</v-card-title>
     </v-card>
 
-    <div v-else v-frag>
+    <template v-else>
       <event-item v-for="event in events" :key="event.id" :event="event" class="mt-3" />
-    </div>
+    </template>
 
     <div class="d-flex justify-end mt-3">
       <v-btn @click="back">
