@@ -67,6 +67,7 @@ export default defineComponent({
       :weekdays="[1, 2, 3, 4, 5, 6, 0]"
       event-category="selectedGroup"
       event-overlap-mode="stack"
+      locale="ru"
       @touchend:day="openDay"
       @mouseup:day="openDay"
     >
@@ -111,6 +112,10 @@ export default defineComponent({
 
 .added {
   border: 2px solid green !important;
+}
+
+::v-deep .v-calendar-weekly__day-label .v-btn__content {
+  text-transform: capitalize;
 }
 </style>
 
