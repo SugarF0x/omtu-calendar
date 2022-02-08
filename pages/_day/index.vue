@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent, useRoute, useRouter } from "@nuxtjs/composition-api"
 import { format, isBefore, isSameDay, isSameMonth, parse, startOfMonth } from "date-fns"
+import { ru } from "date-fns/locale"
 import { useAccessor } from "~/store"
 
 export default defineComponent({
@@ -21,7 +22,7 @@ export default defineComponent({
 
       return date
     })
-    const localedDate = computed(() => (parsedDate.value ? format(parsedDate.value, "dd MMMM") : null))
+    const localedDate = computed(() => (parsedDate.value ? format(parsedDate.value, "dd MMMM", { locale: ru }) : null))
 
     const events = computed(() => {
       if (!parsedDate.value) return []
