@@ -40,3 +40,10 @@ export default defineComponent({
     </v-card-text>
   </v-card>
 </template>
+
+<style scoped lang="scss">
+::v-deep .v-list-item__title {
+  white-space: unset;
+  text-overflow: unset;
+}
+</style>
