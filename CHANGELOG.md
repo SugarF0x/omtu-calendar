@@ -1,3 +1,16 @@
+## [0.10.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.10.2...v0.10.3) (2022-02-08)
+
+
+### Bug Fixes
+
+* **ui:** force calendar ru locale ([e1724db](https://github.com/SugarF0x/omtu-calendar/commit/e1724dbf1c3e9335ea2628e95bf4a0de9b11bb34))
+* **ui:** force russian month locale ([58aff44](https://github.com/SugarF0x/omtu-calendar/commit/58aff440adde7d1ee1bff51065f0d592c9d61409))
+* **ui:** jitter on _day back action ([3979684](https://github.com/SugarF0x/omtu-calendar/commit/3979684a5829a3c32b621a46acda48be02ad2538))
+* **ui:** wrap specialties for mobile ([cd7abf8](https://github.com/SugarF0x/omtu-calendar/commit/cd7abf8495967db060313ac0b00585c7ba178c05))
+* **ux:** prevent month snapping on out of month day select ([c8759d1](https://github.com/SugarF0x/omtu-calendar/commit/c8759d1d1da90f2e4333855d523875463a9c1d73))
+
+
+
 ## [0.10.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.10.1...v0.10.2) (2022-02-07)
 
 
@@ -50,15 +63,6 @@
 * **ux:** hint course change unavailability ([3a3e7d9](https://github.com/SugarF0x/omtu-calendar/commit/3a3e7d9ba51ef3ecf0adb7b98fa84a087295adaa))
 * **ux:** match month to opened day ([dea3e6d](https://github.com/SugarF0x/omtu-calendar/commit/dea3e6dba0b6e56136432237b8bdc1f6aecc629e))
 * **ux:** reset selected month to current on restart ([788b950](https://github.com/SugarF0x/omtu-calendar/commit/788b95086648817482dc65079576562a21995fe0))
-
-
-
-## [0.8.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.8.0...v0.8.1) (2022-01-29)
-
-
-### Bug Fixes
-
-* mistimed events ([9dd46d4](https://github.com/SugarF0x/omtu-calendar/commit/9dd46d4b454f0e27aedfdb403656aaf9211b5087))
 
 
 
