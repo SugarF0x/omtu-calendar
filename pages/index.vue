@@ -16,7 +16,16 @@ export default defineComponent({
 
     const openDay = (meta: DateClickEvent | string) => {
       const url = typeof meta === "string" ? meta : meta.date
-      router.push(`/${url}`)
+      router.push(`/${url}?noMonthChange=true`)
+    }
+
+    const touchStartDay = ref('')
+    const handleTouchStart = ({ date }: DateClickEvent) => {
+      touchStartDay.value = date
+    }
+    const handleTouchEnd = ({ date }: DateClickEvent) => {
+      if (date === touchStartDay.value) openDay(date)
+      touchStartDay.value = ''
     }
 
     const accessor = useAccessor()
@@ -53,6 +62,8 @@ export default defineComponent({
       group,
       getEvents,
       openDay,
+      handleTouchStart,
+      handleTouchEnd
     }
   },
 })
@@ -68,8 +79,14 @@ export default defineComponent({
       event-category="selectedGroup"
       event-overlap-mode="stack"
       locale="ru"
-      @touchend:day="openDay"
-      @mouseup:day="openDay"
+      @touchstart:day="handleTouchStart"
+      @touchstart:date="handleTouchStart"
+      @mousedown:day="handleTouchStart"
+      @mousedown:date="handleTouchStart"
+      @touchend:day="handleTouchEnd"
+      @touchend:date="handleTouchEnd"
+      @mouseup:day="handleTouchEnd"
+      @mouseup:date="handleTouchEnd"
     >
       <template #day="{ date }">
         <v-sheet

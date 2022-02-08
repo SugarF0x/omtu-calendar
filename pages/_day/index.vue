@@ -13,12 +13,14 @@ export default defineComponent({
     const specialties = computed(() => accessor.options.specialties)
     const month = computed(() => accessor.month)
 
+    const shouldChangeMonth = computed(() => !route.value.query.noMonthChange)
+
     const day = computed(() => route.value.params.day)
     const parsedDate = computed(() => {
       if (!day.value) return null
 
       const date = parse(day.value, "yyyy-MM-dd", new Date())
-      if (!isSameMonth(date, new Date(month.value))) accessor.SET_MONTH(startOfMonth(new Date(day.value)).toISOString())
+      if (shouldChangeMonth.value && !isSameMonth(date, new Date(month.value))) accessor.SET_MONTH(startOfMonth(new Date(day.value)).toISOString())
 
       return date
     })
