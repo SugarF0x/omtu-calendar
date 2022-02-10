@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.10.3...v0.11.0) (2022-02-10)
+
+
+### Features
+
+* restructure data table ([88e4069](https://github.com/SugarF0x/omtu-calendar/commit/88e4069726d717bfc8e9b4826a9a3db713f595e1))
+
+
+
 ## [0.10.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.10.2...v0.10.3) (2022-02-08)
 
 
@@ -44,25 +53,6 @@
 * **ui:** add day back button ([51a77a0](https://github.com/SugarF0x/omtu-calendar/commit/51a77a06618bfde1fa58db1b0143d612ad07d6ed))
 * **ui:** wrap changelog into a chip ([e2a3511](https://github.com/SugarF0x/omtu-calendar/commit/e2a3511b4a1dd58fe11a2e8aac058251835b1915))
 * **ux:** add table data validation with feedback ([7969b69](https://github.com/SugarF0x/omtu-calendar/commit/7969b69b96a2e64bdd9d3b4dab1199afe050a177))
-
-
-
-# [0.9.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.8.1...v0.9.0) (2022-02-04)
-
-
-### Bug Fixes
-
-* day open on touch start ([f557bdd](https://github.com/SugarF0x/omtu-calendar/commit/f557bdd37f491cb854f8c7a540f222dc790eb1f4))
-* scheduled data refetch not firing ([da567da](https://github.com/SugarF0x/omtu-calendar/commit/da567da79fa003a3d692dfff3dfab4d63e684451))
-
-
-### Features
-
-* **style:** compress data refetch button ([6eddec0](https://github.com/SugarF0x/omtu-calendar/commit/6eddec05c104306c27ac0d80123db92f7a9e1146))
-* **style:** compress options selectors ([a32feff](https://github.com/SugarF0x/omtu-calendar/commit/a32feff318f55bb9d6da91daa4c97036470896b8))
-* **ux:** hint course change unavailability ([3a3e7d9](https://github.com/SugarF0x/omtu-calendar/commit/3a3e7d9ba51ef3ecf0adb7b98fa84a087295adaa))
-* **ux:** match month to opened day ([dea3e6d](https://github.com/SugarF0x/omtu-calendar/commit/dea3e6dba0b6e56136432237b8bdc1f6aecc629e))
-* **ux:** reset selected month to current on restart ([788b950](https://github.com/SugarF0x/omtu-calendar/commit/788b95086648817482dc65079576562a21995fe0))
 
 
 
