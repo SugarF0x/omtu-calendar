@@ -1,19 +1,27 @@
 import { getterTree } from 'typed-vuex'
-import { addWeeks, format, parse } from "date-fns"
+import { endOfDay, setHours, setMinutes, parse } from "date-fns"
 import { state }from './'
-import { AmendmentEntry, CoreEntry, OccurrenceType, Specialties, Event } from "~/types"
-import { DAYS_FORMAT, TIMETABLE, TIMETABLE_FORMAT } from "~/consts"
-import { getColorFromText } from "~/utils"
+import { Subject, Event, TransformedEvent, Specialties } from "~/types"
+import { DAYS_FORMAT } from "~/consts"
+import { getColorFromText, parseDates } from "~/utils"
 
 export interface FormattedSheets {
   specialties: Specialties
-  core: CoreEntry[]
-  amendments: AmendmentEntry[]
+  subjects: Subject[]
+  events: Event[]
 }
 
-function replaceDashWithEmptyString(value: string) {
-  if (value === '-') return ''
+function replaceDashWithUndefined(value: string) {
+  if (value === '-') return undefined
   return value
+}
+
+function applyTime(date: Date, time: string) {
+  const [start] = time.split(' - ')
+  if (isNaN(Number(start.replaceAll(':','')))) return endOfDay(date)
+
+  const [hours, minutes] = start.split(':')
+  return setHours(setMinutes(date, Number(minutes)), Number(hours))
 }
 
 export const getters = getterTree(state, {
@@ -21,85 +29,59 @@ export const getters = getterTree(state, {
     const sheets = state.sheets
     const formatted: FormattedSheets = {
       specialties: {},
-      core: [],
-      amendments: []
+      subjects: [],
+      events: []
     }
 
     for (const entry of sheets.specialties) {
       formatted.specialties[entry.id] = entry.title
     }
 
-    for (const entry of sheets.core) {
-      formatted.core.push({
+    for (const entry of sheets.subjects) {
+      formatted.subjects.push({
         id: Number(entry.id),
-        amount: Number(entry.amount),
-        groups: entry.groups === '-' ? [1,2,3,4] : entry.groups.split(',').map(item => Number(item)),
-        note: replaceDashWithEmptyString(entry.note),
-        room: Number(entry.room),
-        duration: Number(entry.duration),
-        specialties: entry.specialties === '-' ? Object.keys(formatted.specialties) : entry.specialties.split(','),
-        start: Number(entry.start),
-        professor: replaceDashWithEmptyString(entry.professor),
+        professor: replaceDashWithUndefined(entry.professor),
         title: entry.title,
-        type: entry.type as OccurrenceType,
-        startDate: entry.startDate
+        color:  entry.color === '-' ? getColorFromText(entry.title) : entry.color,
+        specs: entry.specs === '-' ? Object.keys(formatted.specialties) : entry.specs.split(',')
       })
     }
 
-    for (const entry of sheets.amendments) {
-      formatted.amendments.push({
+    for (const entry of sheets.events) {
+      formatted.events.push({
         id: Number(entry.id),
-        event: entry.event,
-        note: replaceDashWithEmptyString(entry.note),
-        start: Number(entry.start),
-        newDate: entry.newDate,
-        duration: Number(entry.duration)
+        subjectId: Number(entry.subjectId),
+        time: entry.time,
+        note: replaceDashWithUndefined(entry.note),
+        room: entry.room,
+        groups: entry.groups === '-' ? [1,2,3,4] : entry.groups.split(',').map(item => Number(item)),
+        dates: parseDates(entry.dates)
       })
     }
 
     return formatted
   },
   parsedUpdateTime: state => state.updateTime ? new Date(state.updateTime).valueOf() : null,
-  events: (_, getters): Event[] => {
+  events: (_, getters): TransformedEvent[] => {
     const parsedSheets = getters.parsedSheets as FormattedSheets
 
-    const events: Event[] = []
+    const events: TransformedEvent[] = []
 
-    for (const entry of parsedSheets.core) {
-      for (let i = 0; i < entry.amount; i++) {
-        const date = format(addWeeks(parse(entry.startDate, DAYS_FORMAT, new Date()), entry.type === 'weekly' ? i : i*2), DAYS_FORMAT)
+    for (const entry of parsedSheets.events) {
+      for (const day of entry.dates) {
+        const subject = parsedSheets.subjects.find(subj => subj.id === entry.subjectId)
+        if (!subject) throw new Error('Неопознанный ID предмета')
 
         events.push({
-          id: `${entry.id}#${i+1}`,
-          name: entry.title,
-          professor: entry.professor,
+          id: `${entry.id}#${day}`,
+          date: applyTime(parse(day, DAYS_FORMAT, new Date()), entry.time),
+          note: entry.note,
+          time: entry.time,
           room: entry.room,
           groups: entry.groups,
-          specialties: entry.specialties,
-          start: parse(`${date} ${TIMETABLE[entry.start - 1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-          end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 2][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-          note: entry.note,
-          color: getColorFromText(entry.title)
+          subject
         })
       }
-    }
-
-    for (const entry of parsedSheets.amendments) {
-      const event = events.find(item => item.id === entry.event)
-      if (!event) continue
-      event.change = 'cancelled'
-      event.note = entry.note
-
-      const date = format(parse(entry.newDate, DAYS_FORMAT, new Date()), DAYS_FORMAT)
-
-      events.push({
-        ...event,
-        change: 'added',
-        id: `${event.id}-${entry.id}`,
-        note: entry.note,
-        start: parse(`${date} ${TIMETABLE[entry.start - 1][0]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-        end: parse(`${date} ${TIMETABLE[entry.start + entry.duration - 2][1]}`, `${DAYS_FORMAT} ${TIMETABLE_FORMAT}`, new Date()),
-      })
     }
 
     return events

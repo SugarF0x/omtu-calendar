@@ -1,41 +1,28 @@
 <script lang="ts">
 import { defineComponent, PropType } from "@nuxtjs/composition-api"
-import { format } from "date-fns"
-import { Event } from "~/types"
-
-const formatEventTime = (date: Date) => format(date, "HH:mm")
+import { TransformedEvent } from "~/types"
 
 export default defineComponent({
   props: {
     event: {
-      type: Object as PropType<Event>,
+      type: Object as PropType<TransformedEvent>,
       required: true,
     },
-  },
-  setup() {
-    return {
-      formatEventTime,
-    }
-  },
+  }
 })
 </script>
 
 <template>
   <v-card>
     <v-card-title class="d-flex justify-space-between flex-nowrap text-break">
-      <div>{{ event.name }}</div>
-      <div class="colorCode ml-2" :style="`background-color: ${event.color}`" />
+      <div>{{ event.subject.title }}</div>
+      <div class="colorCode ml-2" :style="`background-color: ${event.subject.color}`" />
     </v-card-title>
     <v-card-text>
-      <h2 v-if="event.change" class="warningMessage" :class="event.change">
-        {{ event.change === 'cancelled' ? "ПЕРЕНЕСЕНО/ОТМЕНЕНО" : "ОТРАБОТКА" }}
-      </h2>
-
       <ul>
         <li>Аудитория: {{ event.room }}</li>
-        <li v-if="event.professor">Преподаватель: <br />{{ event.professor }}</li>
-        <li>Начало: {{ formatEventTime(event.start) }}</li>
-        <li>Конец: {{ formatEventTime(event.end) }}</li>
+        <li v-if="event.subject.professor">Преподаватель: <br />{{ event.subject.professor }}</li>
+        <li>Время: {{ event.time }}</li>
       </ul>
 
       <div v-if="event.note" class="note">

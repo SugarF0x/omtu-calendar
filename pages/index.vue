@@ -41,9 +41,9 @@ export default defineComponent({
     const events = computed(() =>
       accessor.data.events.filter(event => {
         const isGroupMatch = event.groups.includes(group.value!)
-        const isForAllSpecialties = event.specialties.length === accessor.data.sheets.specialties.length
+        const isForAllSpecialties = event.subject.specs.length === accessor.data.sheets.specialties.length
         const isSpecialtyMatch =
-          isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
+          isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
 
         return isGroupMatch && isSpecialtyMatch
       }),
@@ -52,8 +52,8 @@ export default defineComponent({
     const getEvents = (value: string) => {
       const date = parse(value, "yyyy-MM-dd", new Date())
       return events.value
-        .filter(event => isSameDay(event.start, date))
-        .sort((a, b) => (isBefore(a.start, b.start) ? -1 : 1))
+        .filter(event => isSameDay(event.date, date))
+        .sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1))
     }
 
     return {
@@ -93,12 +93,11 @@ export default defineComponent({
           v-for="event in getEvents(date)"
           :key="event.id"
           tile
-          :color="event.color"
+          :color="event.subject.color"
           class="event"
-          :class="event.change"
           @click="openDay(date)"
         >
-          {{ event.name }}
+          {{ event.subject.title }}
         </v-sheet>
       </template>
     </v-calendar>
@@ -121,14 +120,6 @@ export default defineComponent({
   text-overflow: ellipsis !important;
   overflow: hidden !important;
   max-height: 48px;
-}
-
-.cancelled {
-  border: 2px solid red !important;
-}
-
-.added {
-  border: 2px solid green !important;
 }
 
 ::v-deep .v-calendar-weekly__day-label .v-btn__content {

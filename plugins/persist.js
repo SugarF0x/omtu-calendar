@@ -19,6 +19,10 @@ export default ({ store }) => {
 
 function migrate(state) {
   switch (state.version) {
+    case 0: return migrate({
+      version: 1,
+      options: state.options
+    })
     default: return state
   }
 }

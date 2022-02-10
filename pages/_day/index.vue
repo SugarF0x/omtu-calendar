@@ -31,12 +31,12 @@ export default defineComponent({
 
       return accessor.data.events.filter(event => {
         const isGroupMatch = event.groups.includes(group.value!)
-        const isForAllSpecialties = event.specialties.length === accessor.data.sheets.specialties.length
-        const isSpecialtyMatch = isForAllSpecialties || event.specialties.some(entry => specialties.value.includes(entry))
-        const isDayMatch = isSameDay(event.start, parsedDate.value!)
+        const isForAllSpecialties = event.subject.specs.length === accessor.data.sheets.specialties.length
+        const isSpecialtyMatch = isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
+        const isDayMatch = isSameDay(event.date, parsedDate.value!)
 
         return isGroupMatch && isSpecialtyMatch && isDayMatch
-      }).sort((a, b) => (isBefore(a.start, b.start) ? -1 : 1))
+      }).sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1))
     })
 
     const back = () => {

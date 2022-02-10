@@ -1,56 +1,52 @@
-export type OccurrenceType = "weekly" | "bi-weekly"
-
-export interface RawCoreEntry {
-  id: string
-  startDate: string
-  title: string
-  professor: string
-  room: string
-  groups: string
-  specialties: string
-  start: string
-  duration: string
-  type: string
-  amount: string
-  note: string
-}
-
-export interface CoreEntry {
-  id: number
-  startDate: string
-  title: string
-  professor?: string
-  room: number
-  groups: number[]
-  specialties: string[]
-  start: number
-  duration: number
-  type: OccurrenceType
-  amount: number
-  note?: string
-}
-
-export interface RawSpecialtyEntry {
+export interface RawSpecialty {
   id: string
   title: string
 }
 
 export type Specialties = Record<string, string>
 
-export interface RawAmendmentEntry {
+export interface RawSubject {
   id: string
-  event: string
-  newDate: string
-  start: string
-  duration: string
-  note: string
+  title: string
+  professor: string
+  specs: string
+  color: string
 }
 
-export interface AmendmentEntry {
+export interface Subject {
   id: number
-  event: string
-  newDate: string
-  start: number
-  duration: number
+  title: string
+  professor?: string
+  specs: string[]
+  color: string
+}
+
+export interface RawEvent {
+  id: string
+  subjectId: string
+  groups: string
+  time: string
+  room: string
+  note: string
+  dates: string
+}
+
+export interface Event {
+  id: number
+  subjectId: number
+  groups: number[]
+  time: string
+  room: string
   note?: string
+  dates: string[]
+}
+
+export interface TransformedEvent {
+  id: string
+  room: string
+  groups: number[]
+  time: string
+  date: Date
+  note?: string
+  subject: Subject
 }

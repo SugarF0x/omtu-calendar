@@ -1,9 +1,9 @@
-import { RawAmendmentEntry, RawCoreEntry, RawSpecialtyEntry } from "~/types"
+import { RawEvent, RawSubject, RawSpecialty } from "~/types"
 
 export interface Sheets {
-  specialties: RawSpecialtyEntry[]
-  core: RawCoreEntry[]
-  amendments: RawAmendmentEntry[]
+  specialties: RawSpecialty[]
+  subjects: RawSubject[]
+  events: RawEvent[]
 }
 
 export interface DataStoreState {
@@ -17,8 +17,8 @@ export interface DataStoreState {
 export const defaultState = (): DataStoreState => ({
   sheets: {
     specialties: [],
-    core: [],
-    amendments: [],
+    subjects: [],
+    events: [],
   },
   updateTime: null,
   isDataLoaded: false,

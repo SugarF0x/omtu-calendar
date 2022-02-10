@@ -1,4 +1,4 @@
-import { RawAmendmentEntry, RawCoreEntry, RawSpecialtyEntry } from "~/types"
+import { RawSubject, RawEvent, RawSpecialty } from "~/types"
 
 function isOfStringType(val: unknown): val is string {
   return typeof val === 'string'
@@ -20,6 +20,6 @@ function getValidator<T>(entries: number) {
   }
 }
 
-export const validateSpecialty = getValidator<RawSpecialtyEntry>(2)
-export const validateCoreEntry = getValidator<RawCoreEntry>(12)
-export const validateAmendment = getValidator<RawAmendmentEntry>(6)
+export const validateSpecialty = getValidator<RawSpecialty>(2)
+export const validateSubject = getValidator<RawSubject>(5)
+export const validateEvent = getValidator<RawEvent>(7)
