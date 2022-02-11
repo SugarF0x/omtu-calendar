@@ -14,7 +14,7 @@ export interface RawSubject {
 }
 
 export interface Subject {
-  id: number
+  id: string
   title: string
   professor?: string
   specs: string[]
@@ -32,8 +32,8 @@ export interface RawEvent {
 }
 
 export interface Event {
-  id: number
-  subjectId: number
+  id: string
+  subjectId: string
   groups: number[]
   time: string
   room: string

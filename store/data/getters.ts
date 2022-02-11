@@ -39,7 +39,7 @@ export const getters = getterTree(state, {
 
     for (const entry of sheets.subjects) {
       formatted.subjects.push({
-        id: Number(entry.id),
+        id: entry.id,
         professor: replaceDashWithUndefined(entry.professor),
         title: entry.title,
         color:  entry.color === '-' ? getColorFromText(entry.title) : entry.color,
@@ -49,8 +49,8 @@ export const getters = getterTree(state, {
 
     for (const entry of sheets.events) {
       formatted.events.push({
-        id: Number(entry.id),
-        subjectId: Number(entry.subjectId),
+        id: entry.id,
+        subjectId: entry.subjectId,
         time: entry.time,
         note: replaceDashWithUndefined(entry.note),
         room: entry.room,
