@@ -13,16 +13,17 @@ interface DateClickEvent {
 export default defineComponent({
   setup() {
     const router = useRouter()
+    const accessor = useAccessor()
+
+    const course = computed(() => accessor.options.course)
+    const group = computed(() => accessor.options.group)
+    const specialties = computed(() => accessor.options.specialties)
+    const date = computed(() => accessor.month)
 
     const openDay = (meta: DateClickEvent | string) => {
       const url = typeof meta === "string" ? meta : meta.date
       router.push(`/${url}?noMonthChange=true`)
     }
-
-    const accessor = useAccessor()
-    const group = computed(() => accessor.options.group)
-    const specialties = computed(() => accessor.options.specialties)
-    const date = computed(() => accessor.month)
 
     const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
     watch([date], () => {
@@ -31,12 +32,13 @@ export default defineComponent({
 
     const events = computed(() =>
       accessor.data.events.filter(event => {
+        const isCourseMatch = event.course === course.value
         const isGroupMatch = event.groups.includes(group.value!)
         const isForAllSpecialties = event.subject.specs.length === accessor.data.sheets.specialties.length
         const isSpecialtyMatch =
           isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
 
-        return isGroupMatch && isSpecialtyMatch
+        return isCourseMatch && isGroupMatch && isSpecialtyMatch
       }),
     )
 

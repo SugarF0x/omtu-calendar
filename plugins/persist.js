@@ -12,7 +12,8 @@ export default ({ store }) => {
     reducer: (state) => ({
       version: state.version,
       data: state.data,
-      options: state.options
+      options: state.options,
+      env: state.env
     })
   }).plugin(store);
 }
@@ -22,6 +23,18 @@ function migrate(state) {
     case 0: return migrate({
       version: 1,
       options: state.options
+    })
+    case 1: return migrate({
+      ...state,
+      version: 2,
+      data: {
+        ...state.data,
+        sheets: {
+          specialties: state.data.sheets.specialties.map(entry => ({ ...entry, course: 1 })),
+          subjects: state.data.sheets.subjects.map(entry => ({ ...entry, course: 1 })),
+          events: state.data.sheets.events.map(entry => ({ ...entry, course: 1 }))
+        }
+      }
     })
     default: return state
   }

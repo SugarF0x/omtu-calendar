@@ -23,12 +23,11 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col v-for="n in 2" :key="n" cols="6" class="pt-0">
-            <v-radio disabled :label="`${n}-й курс`" class="item" />
+            <v-radio :label="`${n}-й курс`" class="item" />
           </v-col>
         </v-row>
       </v-container>
     </v-radio-group>
-    <small class="pb-2 red--text mx-4 d-flex">На данный момент расписание для второго курса недоступно</small>
   </v-card>
 </template>
 

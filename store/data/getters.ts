@@ -38,24 +38,28 @@ export const getters = getterTree(state, {
     }
 
     for (const entry of sheets.subjects) {
+      const { course, title, id } = entry
       formatted.subjects.push({
-        id: entry.id,
         professor: replaceDashWithUndefined(entry.professor),
-        title: entry.title,
         color:  entry.color === '-' ? getColorFromText(entry.title) : entry.color,
-        specs: entry.specs === '-' ? Object.keys(formatted.specialties) : entry.specs.split(',')
+        specs: entry.specs === '-' ? Object.keys(formatted.specialties) : entry.specs.split(','),
+        id,
+        course,
+        title
       })
     }
 
     for (const entry of sheets.events) {
+      const { id, subjectId, time, room, course } = entry
       formatted.events.push({
-        id: entry.id,
-        subjectId: entry.subjectId,
-        time: entry.time,
         note: replaceDashWithUndefined(entry.note),
-        room: entry.room,
         groups: entry.groups === '-' ? [1,2,3,4] : entry.groups.split(',').map(item => Number(item)),
-        dates: parseDates(entry.dates)
+        dates: parseDates(entry.dates),
+        id,
+        subjectId,
+        time,
+        room,
+        course
       })
     }
 
@@ -69,16 +73,18 @@ export const getters = getterTree(state, {
 
     for (const entry of parsedSheets.events) {
       for (const day of entry.dates) {
-        const subject = parsedSheets.subjects.find(subj => subj.id === entry.subjectId)
+        const subject = parsedSheets.subjects.find(subj => subj.id === entry.subjectId && subj.course === entry.course)
         if (!subject) throw new Error('Неопознанный ID предмета')
 
+        const { note, time, room, groups, course } = entry
         events.push({
           id: `${entry.id}#${day}`,
           date: applyTime(parse(day, DAYS_FORMAT, new Date()), entry.time),
-          note: entry.note,
-          time: entry.time,
-          room: entry.room,
-          groups: entry.groups,
+          note,
+          time,
+          room,
+          groups,
+          course,
           subject
         })
       }

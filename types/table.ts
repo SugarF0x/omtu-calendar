@@ -1,11 +1,20 @@
-export interface RawSpecialty {
+/**
+ * this is a runtime interface
+ * this field will not be present in the docs
+ * but will be mapped onto entries on fetch
+ */
+interface Course {
+  course: number
+}
+
+export interface RawSpecialty extends Course {
   id: string
   title: string
 }
 
 export type Specialties = Record<string, string>
 
-export interface RawSubject {
+export interface RawSubject extends Course {
   id: string
   title: string
   professor: string
@@ -13,7 +22,7 @@ export interface RawSubject {
   color: string
 }
 
-export interface Subject {
+export interface Subject extends Course {
   id: string
   title: string
   professor?: string
@@ -21,7 +30,7 @@ export interface Subject {
   color: string
 }
 
-export interface RawEvent {
+export interface RawEvent extends Course {
   id: string
   subjectId: string
   groups: string
@@ -31,7 +40,7 @@ export interface RawEvent {
   dates: string
 }
 
-export interface Event {
+export interface Event extends Course {
   id: string
   subjectId: string
   groups: number[]
@@ -41,7 +50,7 @@ export interface Event {
   dates: string[]
 }
 
-export interface TransformedEvent {
+export interface TransformedEvent extends Course {
   id: string
   room: string
   groups: number[]

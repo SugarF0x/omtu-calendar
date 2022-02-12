@@ -6,7 +6,7 @@ export interface OptionsState {
 
 export const defaultState = (): OptionsState => ({
   group: null,
-  course: 1,
+  course: null,
   specialties: [],
 })
 

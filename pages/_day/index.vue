@@ -9,6 +9,8 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
     const accessor = useAccessor()
+
+    const course = computed(() => accessor.options.course)
     const group = computed(() => accessor.options.group)
     const specialties = computed(() => accessor.options.specialties)
     const month = computed(() => accessor.month)
@@ -30,12 +32,13 @@ export default defineComponent({
       if (!parsedDate.value) return []
 
       return accessor.data.events.filter(event => {
+        const isCourseMatch = event.course === course.value
         const isGroupMatch = event.groups.includes(group.value!)
         const isForAllSpecialties = event.subject.specs.length === accessor.data.sheets.specialties.length
         const isSpecialtyMatch = isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
         const isDayMatch = isSameDay(event.date, parsedDate.value!)
 
-        return isGroupMatch && isSpecialtyMatch && isDayMatch
+        return isCourseMatch && isGroupMatch && isSpecialtyMatch && isDayMatch
       }).sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1))
     })
 
