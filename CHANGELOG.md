@@ -1,3 +1,14 @@
+## [0.11.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.11.1...v0.11.2) (2022-02-12)
+
+
+### Bug Fixes
+
+* **ui:** add a small gap between date & event cards ([f5f4cd9](https://github.com/SugarF0x/omtu-calendar/commit/f5f4cd9bbff2782ef01773ef999f897f13e06710))
+* **ux:** locale format time since last data update ([3c2008f](https://github.com/SugarF0x/omtu-calendar/commit/3c2008f8728e618a46f1fe4065ff120370aab8e2))
+* **ux:** unusable scroll on mobile ([79fdbab](https://github.com/SugarF0x/omtu-calendar/commit/79fdbab1cbbda139220963942cbcf293bc1b2c0c))
+
+
+
 ## [0.11.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.11.0...v0.11.1) (2022-02-11)
 
 
