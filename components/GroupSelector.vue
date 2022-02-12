@@ -23,7 +23,7 @@ export default defineComponent({
       <v-container>
         <v-row>
           <v-col v-for="n in 4" :key="n" cols="6" class="pt-0">
-            <v-radio :label="`${n}-ая ак.`" class="item" />
+            <v-radio :label="`${n}-ая яз.`" class="item" />
           </v-col>
         </v-row>
       </v-container>
