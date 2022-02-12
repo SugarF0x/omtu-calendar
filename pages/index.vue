@@ -120,6 +120,10 @@ export default defineComponent({
   text-overflow: ellipsis !important;
   overflow: hidden !important;
   max-height: 48px;
+
+  &:nth-child(2) {
+    margin-top: 4px;
+  }
 }
 
 ::v-deep .v-calendar-weekly__day-label .v-btn__content {
