@@ -1,3 +1,21 @@
+# [0.12.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.11.2...v0.12.0) (2022-02-13)
+
+
+### Bug Fixes
+
+* **style:** support ToC depth ([163354b](https://github.com/SugarF0x/omtu-calendar/commit/163354bcda7eb8224e7b312c38bf0119bb651625))
+* **typo:** group types ([65144b2](https://github.com/SugarF0x/omtu-calendar/commit/65144b2c1b00f2ecec337654a5b3123e458fe439))
+
+
+### Features
+
+* add support for two courses ([7d7fd15](https://github.com/SugarF0x/omtu-calendar/commit/7d7fd151eddaf4ca25e79ad5cab57035fec6089a))
+* **admin:** add comprehensive docs ([1cc91e6](https://github.com/SugarF0x/omtu-calendar/commit/1cc91e6459ed6cb55fa3060b31e86c46c9b37144))
+* **admin:** add dev panel ([61034fb](https://github.com/SugarF0x/omtu-calendar/commit/61034fbb68566868b77277eff6681fe2c0ee1982))
+* **admin:** add instructions page ([e10108b](https://github.com/SugarF0x/omtu-calendar/commit/e10108b9156a7d8835588f6f5005b9db856ace0f))
+
+
+
 ## [0.11.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.11.1...v0.11.2) (2022-02-12)
 
 
