@@ -1,3 +1,15 @@
+## [0.12.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.0...v0.12.1) (2022-02-13)
+
+
+### Bug Fixes
+
+* bind specialty picker to course ([3bad5d7](https://github.com/SugarF0x/omtu-calendar/commit/3bad5d7a8618bcb6bd89cb593964a665549df170))
+* initial store version mismatch ([485a19f](https://github.com/SugarF0x/omtu-calendar/commit/485a19f960087fe619042688aea0c31b4cba164e))
+* **ui:** missing admin icons on mobile ([e9e34fb](https://github.com/SugarF0x/omtu-calendar/commit/e9e34fb7029a909b15d068c0f3e6eeb37c3a6410))
+* **ui:** table overflow ([9f1bc57](https://github.com/SugarF0x/omtu-calendar/commit/9f1bc575c8275b7409f7e32e3090e34e17b3ca52))
+
+
+
 # [0.12.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.11.2...v0.12.0) (2022-02-13)
 
 
