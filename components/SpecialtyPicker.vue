@@ -5,7 +5,8 @@ import { useAccessor } from "~/store"
 export default defineComponent({
   setup() {
     const accessor = useAccessor()
-    const specialtyTypes = computed(() => accessor.data.sheets.specialties)
+    const course = computed(() => accessor.options.course)
+    const specialtyTypes = computed(() => accessor.data.sheets.specialties.filter(entry => entry.course === course.value))
     const specialties = computed(() => accessor.options.specialties)
 
     const initialSelection = computed(() => specialtyTypes.value.filter(entry => specialties.value.includes(entry.id)))
@@ -15,7 +16,8 @@ export default defineComponent({
       specialtyTypes,
       specialties,
       initialSelection,
-      handleChange
+      handleChange,
+      course
     }
   },
 })
@@ -27,6 +29,7 @@ export default defineComponent({
     <v-card-text>
       <v-select
         class="mt-0"
+        :disabled="!course"
         :value="initialSelection"
         filled
         hide-details
