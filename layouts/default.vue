@@ -16,6 +16,8 @@ export default defineComponent({
     const isFTUEConfirmed = ref(!isFTUE.value)
     const confirmFTUE = () => { isFTUEConfirmed.value = true }
 
+    const isDev = computed(() => accessor.env.isDev)
+
     const drawer = ref<null | boolean>(null)
 
     return {
@@ -25,7 +27,8 @@ export default defineComponent({
       isDataLoaded,
       isFTUE,
       isFTUEConfirmed,
-      confirmFTUE
+      confirmFTUE,
+      isDev,
     }
   },
 })
@@ -56,6 +59,17 @@ export default defineComponent({
         </v-toolbar-title>
 
         <v-spacer />
+
+        <v-app-bar-nav-icon v-if="isDev">
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-btn icon to="/dev" v-bind="attrs" v-on="on">
+                <v-icon>mdi-dev-to</v-icon>
+              </v-btn>
+            </template>
+            <span>Административная панель</span>
+          </v-tooltip>
+        </v-app-bar-nav-icon>
 
         <v-app-bar-nav-icon class="d-flex d-lg-none" @click="drawer = !drawer">
           <v-icon>mdi-cog</v-icon>
