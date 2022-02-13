@@ -39,6 +39,7 @@ export default defineComponent({
         v-for="link of toc"
         :key="link.id"
         :class="{ active: link.id === activeId }"
+        :style="`margin-left: ${20 * (link.depth - 2)}px`"
         class="li"
         @click="$vuetify.goTo(getElement(link.id), options)"
       >
