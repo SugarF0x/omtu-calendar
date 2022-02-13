@@ -68,6 +68,11 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+.tableWrapper {
+  width: 100%;
+  overflow: scroll;
+}
+
 .content {
   table {
     border-collapse: collapse;
