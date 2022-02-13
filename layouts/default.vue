@@ -42,6 +42,10 @@ export default defineComponent({
     <template v-else>
       <v-navigation-drawer v-model="drawer" right fixed app width="280">
         <v-container class="flex-column drawer">
+          <div class="d-flex d-lg-none justify-space-around item">
+            <dev-instructions-button />
+            <dev-admin-panel-button />
+          </div>
           <month-selector class="item" />
           <course-selector class="item" />
           <group-selector class="item" />
@@ -62,25 +66,11 @@ export default defineComponent({
 
         <div v-if="isDev" class="d-none d-lg-flex">
           <v-app-bar-nav-icon>
-            <v-tooltip bottom open-delay="250">
-              <template #activator="{ on, attrs }">
-                <v-btn icon to="/dev/instructions" exact v-bind="attrs" v-on="on">
-                  <v-icon>mdi-information</v-icon>
-                </v-btn>
-              </template>
-              <span>Инструкция</span>
-            </v-tooltip>
+            <dev-instructions-button />
           </v-app-bar-nav-icon>
 
           <v-app-bar-nav-icon>
-            <v-tooltip bottom open-delay="250">
-              <template #activator="{ on, attrs }">
-                <v-btn icon to="/dev" exact v-bind="attrs" v-on="on">
-                  <v-icon>mdi-dev-to</v-icon>
-                </v-btn>
-              </template>
-              <span>Административная панель</span>
-            </v-tooltip>
+            <dev-admin-panel-button />
           </v-app-bar-nav-icon>
         </div>
 
