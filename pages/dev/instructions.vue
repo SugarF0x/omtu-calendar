@@ -69,13 +69,24 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .content {
-  * {
-    margin: 0;
-    padding: 0;
+  table {
+    border-collapse: collapse;
   }
 
-  *:not(:first-child) {
-    margin-top: 1rem;
+  th, td {
+    border: 1px solid grey;
+  }
+
+  td {
+    padding: 0 4px;
+  }
+
+  p:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  ul {
+    margin: 16px 0;
   }
 }
 
