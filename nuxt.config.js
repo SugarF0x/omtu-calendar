@@ -36,7 +36,7 @@ export default {
     "nuxt-typed-vuex",
     ["nuxt-storm", { nested: true, alias: true }],
   ],
-  modules: ["@nuxtjs/pwa"],
+  modules: ["@nuxtjs/pwa", '@nuxt/content'],
   pwa: {
     manifest: {
       name: TITLE,
@@ -48,6 +48,9 @@ export default {
       name: TITLE,
       description: DESCRIPTION,
     },
+  },
+  content: {
+    liveEdit: false
   },
   vuetify: {
     customVariables: ["~/assets/variables.scss"],

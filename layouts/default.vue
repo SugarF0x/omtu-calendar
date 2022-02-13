@@ -60,16 +60,29 @@ export default defineComponent({
 
         <v-spacer />
 
-        <v-app-bar-nav-icon v-if="isDev">
-          <v-tooltip bottom>
-            <template #activator="{ on, attrs }">
-              <v-btn icon to="/dev" v-bind="attrs" v-on="on">
-                <v-icon>mdi-dev-to</v-icon>
-              </v-btn>
-            </template>
-            <span>Административная панель</span>
-          </v-tooltip>
-        </v-app-bar-nav-icon>
+        <div v-if="isDev" class="d-none d-lg-flex">
+          <v-app-bar-nav-icon>
+            <v-tooltip bottom open-delay="250">
+              <template #activator="{ on, attrs }">
+                <v-btn icon to="/dev/instructions" exact v-bind="attrs" v-on="on">
+                  <v-icon>mdi-information</v-icon>
+                </v-btn>
+              </template>
+              <span>Инструкция</span>
+            </v-tooltip>
+          </v-app-bar-nav-icon>
+
+          <v-app-bar-nav-icon>
+            <v-tooltip bottom open-delay="250">
+              <template #activator="{ on, attrs }">
+                <v-btn icon to="/dev" exact v-bind="attrs" v-on="on">
+                  <v-icon>mdi-dev-to</v-icon>
+                </v-btn>
+              </template>
+              <span>Административная панель</span>
+            </v-tooltip>
+          </v-app-bar-nav-icon>
+        </div>
 
         <v-app-bar-nav-icon class="d-flex d-lg-none" @click="drawer = !drawer">
           <v-icon>mdi-cog</v-icon>

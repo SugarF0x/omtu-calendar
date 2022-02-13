@@ -27,7 +27,8 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-      "@nuxtjs/composition-api"
+      "@nuxtjs/composition-api",
+      "@nuxt/content"
     ]
   },
   "exclude": [

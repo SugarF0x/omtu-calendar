@@ -57,7 +57,7 @@ export default defineComponent({
 
 <template>
   <div class="d-flex align-center">
-    <v-tooltip top>
+    <v-tooltip top open-delay="250">
       <template #activator="{ on, attrs }">
         <v-btn icon :disabled="!canRestore" class="mr-1" v-bind="attrs" @click="handleRestore" v-on="on">
           <v-icon>
@@ -75,7 +75,7 @@ export default defineComponent({
       counter="44"
       @change="handleChange"
     />
-    <v-tooltip top>
+    <v-tooltip top open-delay="250">
       <template #activator="{ on, attrs }">
         <v-btn icon :disabled="!canOpen" class="ml-1" link target="_blank" :href="href" v-bind="attrs" v-on="on">
           <v-icon>
