@@ -1,3 +1,12 @@
+## [0.12.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.1...v0.12.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* **store:** add v1 -> v2 migration fallback ([d30f449](https://github.com/SugarF0x/omtu-calendar/commit/d30f44933a8f50694212d04bf18f6cae2dbb9276))
+
+
+
 ## [0.12.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.0...v0.12.1) (2022-02-13)
 
 
