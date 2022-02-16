@@ -30,9 +30,9 @@ function migrate(state) {
       data: {
         ...state.data,
         sheets: {
-          specialties: state.data.sheets.specialties.map(entry => ({ ...entry, course: 1 })),
-          subjects: state.data.sheets.subjects.map(entry => ({ ...entry, course: 1 })),
-          events: state.data.sheets.events.map(entry => ({ ...entry, course: 1 }))
+          specialties: (state.data?.sheets?.specialties ?? []).map(entry => ({ ...entry, course: 1 })),
+          subjects: (state.data?.sheets?.subjects ?? []).map(entry => ({ ...entry, course: 1 })),
+          events: (state.data?.sheets?.events ?? []).map(entry => ({ ...entry, course: 1 }))
         }
       }
     })
