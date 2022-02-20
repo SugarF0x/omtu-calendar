@@ -32,7 +32,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      if (Date.now() - accessor.data.parsedUpdateTime! > millisecondsInHour * 24 * 7) update()
+      if (Date.now() - accessor.data.parsedUpdateTime! > millisecondsInHour * 24) update()
     })
 
     const isUpdating = computed(() => accessor.data.isLoading)
