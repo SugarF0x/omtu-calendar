@@ -1,3 +1,12 @@
+## [0.12.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.2...v0.12.3) (2022-02-20)
+
+
+### Bug Fixes
+
+* **data:** set data refetch to every 24h ([a673ef0](https://github.com/SugarF0x/omtu-calendar/commit/a673ef0345a717604475f634bf3233e8bdb9e258))
+
+
+
 ## [0.12.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.1...v0.12.2) (2022-02-16)
 
 
