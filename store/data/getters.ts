@@ -76,9 +76,11 @@ export const getters = getterTree(state, {
         const subject = parsedSheets.subjects.find(subj => subj.id === entry.subjectId && subj.course === entry.course)
         if (!subject) throw new Error('Неопознанный ID предмета')
 
+        const dayIndex = entry.dates.indexOf(day) + 1
+
         const { note, time, room, groups, course } = entry
         events.push({
-          id: `${entry.id}#${day}`,
+          id: `${entry.id}#${dayIndex}`,
           date: applyTime(parse(day, DAYS_FORMAT, new Date()), entry.time),
           note,
           time,
