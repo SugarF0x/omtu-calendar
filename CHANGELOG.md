@@ -1,3 +1,12 @@
+## [0.12.4](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.3...v0.12.4) (2022-02-21)
+
+
+### Bug Fixes
+
+* **ui:** hide dev icons from drawer on mobile ([f8ad553](https://github.com/SugarF0x/omtu-calendar/commit/f8ad553a3f59c342afccfba3bb52a3a9d1116c33))
+
+
+
 ## [0.12.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.2...v0.12.3) (2022-02-20)
 
 
