@@ -42,7 +42,7 @@ export default defineComponent({
     <template v-else>
       <v-navigation-drawer v-model="drawer" right fixed app width="280">
         <v-container class="flex-column drawer">
-          <div class="d-flex d-lg-none justify-space-around item">
+          <div v-if="isDev" class="d-flex d-lg-none justify-space-around item">
             <dev-instructions-button />
             <dev-admin-panel-button />
           </div>
