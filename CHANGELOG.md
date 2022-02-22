@@ -1,3 +1,21 @@
+## [0.12.4](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.3...v0.12.4) (2022-02-21)
+
+
+### Bug Fixes
+
+* **ui:** hide dev icons from drawer on mobile ([f8ad553](https://github.com/SugarF0x/omtu-calendar/commit/f8ad553a3f59c342afccfba3bb52a3a9d1116c33))
+
+
+
+## [0.12.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.2...v0.12.3) (2022-02-20)
+
+
+### Bug Fixes
+
+* **data:** set data refetch to every 24h ([a673ef0](https://github.com/SugarF0x/omtu-calendar/commit/a673ef0345a717604475f634bf3233e8bdb9e258))
+
+
+
 ## [0.12.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.1...v0.12.2) (2022-02-16)
 
 
