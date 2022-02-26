@@ -1,7 +1,8 @@
 <script lang="ts">
-import { computed, defineComponent, PropType } from "@nuxtjs/composition-api"
+import { computed, defineComponent, PropType, toRefs } from "@nuxtjs/composition-api"
 import { TransformedEvent } from "~/types"
 import { useAccessor } from "~/store"
+import { locateRawEvent } from "~/utils"
 
 export default defineComponent({
   props: {
@@ -10,13 +11,17 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props) {
+    const { event } = toRefs(props)
     const accessor = useAccessor()
 
     const isDev = computed(() => accessor.env.isDev)
+    const events = computed(() => accessor.data.sheets.events)
+    const rawEvent = computed(() => locateRawEvent(events.value, event.value))
 
     return {
-      isDev
+      isDev,
+      rawEvent
     }
   }
 })
@@ -48,6 +53,13 @@ export default defineComponent({
             <v-expansion-panel-content>
               <hr>
               <pre class="mt-5">{{ JSON.stringify(event, null, 2) }}</pre>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel class="grey darken-3">
+            <v-expansion-panel-header>RAW_EVENT_DATA</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <hr>
+              <pre class="mt-5">{{ JSON.stringify(rawEvent, null, 2) }}</pre>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
