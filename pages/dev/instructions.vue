@@ -37,7 +37,7 @@ export default defineComponent({
 
         // Track all sections that have an `id` applied
         document
-        .querySelectorAll(".nuxt-content h2[id], .nuxt-content h3[id]")
+        .querySelectorAll(".nuxt-content [id]")
         .forEach(section => {
           observer.value!.observe(section);
         });

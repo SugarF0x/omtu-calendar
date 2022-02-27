@@ -99,6 +99,7 @@ export default defineComponent({
 .calendar {
   max-height: 160vw;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .event {

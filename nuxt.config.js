@@ -50,7 +50,10 @@ export default {
     },
   },
   content: {
-    liveEdit: false
+    liveEdit: false,
+    markdown: {
+      tocDepth: 4
+    }
   },
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
