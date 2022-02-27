@@ -1,3 +1,20 @@
+# [0.13.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.4...v0.13.0) (2022-02-27)
+
+
+### Bug Fixes
+
+* **admin:** invisible ToC entries over >h3 ([0e8c880](https://github.com/SugarF0x/omtu-calendar/commit/0e8c880ce739bf2884514262231af7ce13daa582))
+* **ux:** set cursor over calendar to pointer ([3012d4a](https://github.com/SugarF0x/omtu-calendar/commit/3012d4aafba7d5700fb63054d0f374117a4300d9))
+
+
+### Features
+
+* **admin:** add dev event item data panel ([91c4ea3](https://github.com/SugarF0x/omtu-calendar/commit/91c4ea3b254b2585a6808389c17fc96e6ce86b58))
+* **admin:** add raw event locator & display ([0b70d05](https://github.com/SugarF0x/omtu-calendar/commit/0b70d058248408e1d694ce2ef32be71a798c1218))
+* **admin:** expand docs to include event edits ([5ecdac0](https://github.com/SugarF0x/omtu-calendar/commit/5ecdac0917fc4e8672ff49820990653278058740))
+
+
+
 ## [0.12.4](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.3...v0.12.4) (2022-02-21)
 
 
