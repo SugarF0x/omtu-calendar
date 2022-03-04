@@ -2,7 +2,8 @@
 import { defineComponent, useMeta, useRouter } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
 
-const contact = "antuzov"
+const TUZOV_CONTANT = "antuzov"
+const OMTU_CONTACT = 'mgimobot'
 
 export default defineComponent({
   layout: "empty",
@@ -32,7 +33,8 @@ export default defineComponent({
       router,
       reload,
       resetData,
-      contact
+      TUZOV_CONTANT,
+      OMTU_CONTACT
     }
   },
   head: {},
@@ -49,10 +51,14 @@ export default defineComponent({
           {{ error.config }}
         </code>
         <div class="mt-3">
-          Где-то когда-то что-то пошло как-то не так. Вероятнее всего произошла ошибка в данных расписания и их
-          сброс и перезагрузка может помочь. Если вы продолжаете видеть это сообщение - напишите Алексею в
-          телеграмм на
-          <a :href="`https://telegram.me/${contact}`" target="_blank">@{{ contact }}</a>
+          Вероятнее всего произошла ошибка в данных расписания.
+          Попробуйте обновить данные вручную (кнопка внизу правого меню).
+          <br>
+          Если вы продолжаете видеть это сообщение - напишите в телеграмме
+          ОМТУ
+          <a :href="`https://telegram.me/${OMTU_CONTACT}`" target="_blank">@{{ OMTU_CONTACT }}</a>
+          или Алексею
+          <a :href="`https://telegram.me/${TUZOV_CONTANT}`" target="_blank">@{{ TUZOV_CONTANT }}</a>
         </div>
       </v-card-text>
       <v-card-actions>
