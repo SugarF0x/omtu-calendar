@@ -1,3 +1,14 @@
+## [0.13.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.0...v0.13.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **data:** change event dates format ([c998566](https://github.com/SugarF0x/omtu-calendar/commit/c9985668c65fa1beb9223665d84715ce3fb74d9a))
+* **data:** update data migration ([9f0b4bc](https://github.com/SugarF0x/omtu-calendar/commit/9f0b4bc439126f06c3df5cc836c2466364c1335a))
+* **ux:** update error messages ([4c9c778](https://github.com/SugarF0x/omtu-calendar/commit/4c9c7787b88fe28ff31cdaf40c5b029a1a285ad2))
+
+
+
 # [0.13.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.12.4...v0.13.0) (2022-02-27)
 
 
