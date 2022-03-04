@@ -36,6 +36,20 @@ function migrate(state) {
         }
       }
     })
+    case 2: return migrate({
+      ...state,
+      version: 3,
+      data: {
+        ...state.data,
+        sheets: {
+          ...(state.data?.sheets || {}),
+          events: (state.data?.sheets?.events ?? []).map(entry => ({
+            ...entry,
+            dates: entry.dates.replaceAll('/','.').replaceAll('-','/')
+          }))
+        }
+      }
+    })
     default: return state
   }
 }
