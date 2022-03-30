@@ -105,7 +105,9 @@ export default defineComponent({
 .event {
   text-overflow: ellipsis !important;
   overflow: hidden !important;
-  max-height: 48px;
+  padding: 4px 2px;
+  font-size: .8em;
+  line-height: 1rem;
 
   &:nth-child(2) {
     margin-top: 4px;
