@@ -1,3 +1,12 @@
+## [0.13.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.1...v0.13.2) (2022-03-30)
+
+
+### Bug Fixes
+
+* **style:** reduce event text size ([97228ed](https://github.com/SugarF0x/omtu-calendar/commit/97228edbb719bac0bef1e1f7f47c5b200b725c72))
+
+
+
 ## [0.13.1](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.0...v0.13.1) (2022-03-04)
 
 
