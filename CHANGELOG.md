@@ -1,3 +1,12 @@
+## [0.13.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.2...v0.13.3) (2022-04-18)
+
+
+### Bug Fixes
+
+* **ci:** add release step ([22184b2](https://github.com/SugarF0x/omtu-calendar/commit/22184b245f8cdb9a57131cb29aa80cdee19a1ddc))
+
+
+
 ## [0.13.2](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.1...v0.13.2) (2022-03-30)
 
 
