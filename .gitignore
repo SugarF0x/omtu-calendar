@@ -91,3 +91,6 @@ sw.*
 
 # nuxt-storm auto-generated components
 .components.gen.js
+
+# generation zip
+dist.zip
