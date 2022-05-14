@@ -1,11 +1,15 @@
 name: ci
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
     paths-ignore:
+      - '.eslintrc.js'
       - 'package.json'
       - 'CHANGELOG.md'
+      - 'bot/**'
+      - '.github/**'
 
 jobs:
   build:
