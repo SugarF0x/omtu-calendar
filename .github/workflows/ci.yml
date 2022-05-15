@@ -5,9 +5,7 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - '.eslintrc.js'
-      - 'package.json'
-      - 'CHANGELOG.md'
+      - '*'
       - 'bot/**'
       - '.github/**'
 
