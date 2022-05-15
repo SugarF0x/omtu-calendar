@@ -246,7 +246,7 @@ async function main() {
     // return isDayMatch && isCourseMatch && isGroupMatch && isSpecialtyMatch
   }).sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1))
 
-  if (!todayEvents.length) resolve('Сегодня занятий нет!')
+  if (!todayEvents.length) resolve('Сегодня занятий нет')
 
   resolve(formatResponse(todayEvents))
 }
