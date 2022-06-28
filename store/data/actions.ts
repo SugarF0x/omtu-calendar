@@ -25,6 +25,8 @@ export const actions = actionTree(
       commit('SET_LOADING', true)
       commit('SET_ERROR', null)
 
+      await this.app.$accessor.env.getTableIDs()
+
       const combinedSheets: Sheets = {
         specialties: [],
         subjects: [],
