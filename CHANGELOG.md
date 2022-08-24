@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.3...v1.0.0) (2022-06-28)
+
+
+* feat!: add JSON config for sheets IDs ([5fedb07](https://github.com/SugarF0x/omtu-calendar/commit/5fedb07b9116b6fafbd5089ed3a850214b8a7758))
+
+
+### BREAKING CHANGES
+
+* well, something might break :shrug:
+
+
+
 ## [0.13.3](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.2...v0.13.3) (2022-04-18)
 
 
