@@ -26,6 +26,7 @@ export default defineComponent({
     <v-card class="mt-5 pa-5" :disabled="!isDevModeEnabled">
       <h2>Таблицы курсов</h2>
       <small class="grey--text">Указанный ID Google таблицы будет использован в качестве данных для соответствующего курса</small>
+      <small class="grey--text">При включённом режиме разработки, данные из shets.json не подтягиваются</small>
       <div class="mt-3">
         <dev-sheets-id-input :course="1" />
         <dev-sheets-id-input :course="2" />
