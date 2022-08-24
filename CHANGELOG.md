@@ -1,3 +1,14 @@
+## [1.0.1](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.0...v1.0.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* **dev:** fix broken dev test sheet ids ([36e4608](https://github.com/SugarF0x/omtu-calendar/commit/36e4608d148e2c1e3eacdbf8e656ce10708aa943))
+* **og:** update url ([1b8406b](https://github.com/SugarF0x/omtu-calendar/commit/1b8406be1769fce4840b323698d15f63f0a7e12a))
+* update default calendar id ([ebbbe96](https://github.com/SugarF0x/omtu-calendar/commit/ebbbe96773ee7e44da8be94a6e1ecda2657ed4ec))
+
+
+
 # [1.0.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.13.3...v1.0.0) (2022-06-28)
 
 
