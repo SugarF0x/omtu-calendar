@@ -15,7 +15,7 @@ export function parseDates(dates: string): string[] {
     const [days, month, year] = months.split(DATE_SEPARATOR)
     for (const day of days.split(DAYS_SEPARATOR)) {
       const date = `${day}.${month}.${year}`
-      if (date.length !== DAYS_FORMAT.length || isNaN(Number(`${day}${month}${year}`))) throw new Error(`Неверный формат даты: ${splitAndStrippedDates}`)
+      if (date.length !== DAYS_FORMAT.length || isNaN(Number(`${day}${month}${year}`))) throw new Error(`Неверный формат даты: ${splitAndStrippedDates}, получено ${date}`)
       result.push(`${day}.${month}.${year}`)
     }
   }

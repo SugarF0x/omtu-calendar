@@ -74,7 +74,7 @@ export const getters = getterTree(state, {
     for (const entry of parsedSheets.events) {
       for (const day of entry.dates) {
         const subject = parsedSheets.subjects.find(subj => subj.id === entry.subjectId && subj.course === entry.course)
-        if (!subject) throw new Error('Неопознанный ID предмета')
+        if (!subject) throw new Error(`Неопознанный ID предмета: ${entry.subjectId} для ${entry.course} курса`)
 
         const dayIndex = entry.dates.indexOf(day) + 1
 
