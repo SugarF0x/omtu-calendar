@@ -8,7 +8,7 @@ export default {
   ssr: false,
   target: "static",
   htmlAttrs: {
-    lang: "ru",
+    lang: "ru"
   },
   head: {
     title: TITLE,
@@ -22,9 +22,9 @@ export default {
       { name: "og:description", content: DESCRIPTION },
       { name: "og:image", content: "/form_header.jpg" },
       { hid: "og:image:width", name: "og:image:width", content: "1600" },
-      { hid: "og:image:height", name: "og:image:height", content: "800" },
+      { hid: "og:image:height", name: "og:image:height", content: "800" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   css: ["~/assets/global.scss"],
   plugins: ["~/plugins/pwa-update.ts", "~/plugins/fragment.ts", { src: '~/plugins/persist.js', mode: 'client' }],
@@ -34,7 +34,7 @@ export default {
     "@nuxtjs/vuetify",
     "@nuxtjs/composition-api/module",
     "nuxt-typed-vuex",
-    ["nuxt-storm", { nested: true, alias: true }],
+    ["nuxt-storm", { nested: true, alias: true }]
   ],
   modules: ["@nuxtjs/pwa", '@nuxt/content'],
   pwa: {
@@ -42,12 +42,12 @@ export default {
       name: TITLE,
       short_name: TITLE,
       description: DESCRIPTION,
-      lang: "ru",
+      lang: "ru"
     },
     meta: {
       name: TITLE,
-      description: DESCRIPTION,
-    },
+      description: DESCRIPTION
+    }
   },
   content: {
     liveEdit: false,
@@ -67,13 +67,13 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+          success: colors.green.accent3
+        }
+      }
+    }
   },
   build: {},
   generate: {
-    interval: 2000,
-  },
+    interval: 2000
+  }
 }
