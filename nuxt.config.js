@@ -2,7 +2,7 @@ import colors from "vuetify/es5/util/colors"
 
 const TITLE = "ОМТУ Календарь"
 const DESCRIPTION = "Календарь расписания занятий ОМТУ"
-const URL = "https://omtucalendar.jp2.ru"
+const URL = "https://omtu.jp2.ru"
 
 export default {
   ssr: false,
