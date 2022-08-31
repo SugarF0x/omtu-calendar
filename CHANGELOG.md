@@ -1,3 +1,16 @@
+## [1.0.2](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.1...v1.0.2) (2022-08-31)
+
+
+### Bug Fixes
+
+* crash on date input with stripped start padding ([1470642](https://github.com/SugarF0x/omtu-calendar/commit/1470642640ca1eec2ad61bfe6fbe8474995f9293))
+* crash on table data error ([cc65c65](https://github.com/SugarF0x/omtu-calendar/commit/cc65c65e80d848df271f009e388183798efb0ba6))
+* failing migration ([afed5d1](https://github.com/SugarF0x/omtu-calendar/commit/afed5d10bdbb843066797202daee21edad6661c3))
+* just redeploy ([9ebbc6b](https://github.com/SugarF0x/omtu-calendar/commit/9ebbc6ba81268b14c10ff149041f4f0eb31f3013))
+* sheets json caching ([ee65927](https://github.com/SugarF0x/omtu-calendar/commit/ee6592767a73c32fb9eec4eaf9c74324364ab8db))
+
+
+
 ## [1.0.1](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.0...v1.0.1) (2022-08-24)
 
 
