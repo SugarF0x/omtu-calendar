@@ -2,8 +2,6 @@
 import { computed, defineComponent } from "@nuxtjs/composition-api"
 import { useAccessor } from "~/store"
 
-const contact = "antuzov"
-
 export default defineComponent({
   emits: ['confirm'],
   setup(_, { emit }) {
@@ -45,7 +43,12 @@ export default defineComponent({
         </v-col>
       </v-row>
     </v-container>
-    <v-btn class="mt-4" :disabled="isDisabled" @click="proceed">Продолжить</v-btn>
+    <v-btn class="my-4" :disabled="isDisabled" @click="proceed">Продолжить</v-btn>
+
+    <div class="footnote">
+      Календарь создан студентом ОМТУ'23,
+      <a :href="`https://telegram.me/antuzov`" target="_blank">Тузовым Алексеем</a>
+    </div>
   </div>
 </template>
 
@@ -53,5 +56,15 @@ export default defineComponent({
 .wrapper {
   padding: 2rem;
   text-align: center;
+}
+
+.footnote {
+  font-size: .8em;
+  opacity: .8;
+
+  a {
+    color: cyan;
+    opacity: .8;
+  }
 }
 </style>

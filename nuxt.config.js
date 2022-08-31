@@ -17,6 +17,7 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: DESCRIPTION },
       { name: "format-detection", content: "telephone=no" },
+      { name: "author", content: "@SugarF0x" },
       { name: "og:url", content: URL },
       { name: "og:title", content: TITLE },
       { name: "og:description", content: DESCRIPTION },
