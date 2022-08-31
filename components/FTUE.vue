@@ -18,7 +18,6 @@ export default defineComponent({
     return {
       isDisabled,
       proceed,
-      contact,
     }
   },
 })
