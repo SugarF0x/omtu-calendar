@@ -8,7 +8,12 @@ export const actions = actionTree(
     async getTableIDs({ commit, state }) {
       if (state.isDev) return
 
-      const sheets = await fetch('/sheets.json').then((e): Promise<EnvState['tables']> => e.json())
+      const noCacheHeaders = new Headers()
+      noCacheHeaders.append('pragma', 'no-cache')
+      noCacheHeaders.append('cache-control', 'no-cache')
+
+      const sheets = await fetch('/sheets.json', { headers: noCacheHeaders }).then((e): Promise<EnvState['tables']> => e.json())
+
       commit('SET_TABLE_ID', { course: 1, id: sheets["1"] })
       commit('SET_TABLE_ID', { course: 2, id: sheets["2"] })
     }
