@@ -45,13 +45,7 @@ export default defineComponent({
         </v-col>
       </v-row>
     </v-container>
-    <v-btn :disabled="isDisabled" @click="proceed">Продолжить</v-btn>
-    <h2 class="mt-5"><b>ВНИМАНИЕ</b></h2>
-    <p>Этот ресурс не является официальным и может содержать в себе неточности</p>
-    <p>
-      При нахождении ошибок, напишите Алексею в телеграмм на
-      <a :href="`https://telegram.me/${contact}`" target="_blank">@{{ contact }}</a>
-    </p>
+    <v-btn class="mt-4" :disabled="isDisabled" @click="proceed">Продолжить</v-btn>
   </div>
 </template>
 
