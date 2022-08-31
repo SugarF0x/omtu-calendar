@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card>
+  <v-card class="fill-height">
     <v-card-title>Курс</v-card-title>
     <v-radio-group v-model="selection" name="type" class="radio" hide-details>
       <v-container>

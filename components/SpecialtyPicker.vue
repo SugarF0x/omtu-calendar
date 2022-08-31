@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-card>
+  <v-card class="fill-height">
     <v-card-title>Специализации</v-card-title>
     <v-card-text>
       <v-select
