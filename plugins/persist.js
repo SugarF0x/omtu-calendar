@@ -50,6 +50,7 @@ function migrate(state) {
         }
       }
     })
+    case 3: return migrate({})
     default: return state
   }
 }

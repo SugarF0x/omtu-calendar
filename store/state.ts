@@ -6,7 +6,7 @@ export interface StoreState {
 }
 
 export const defaultState = (): StoreState => ({
-  version: 2,
+  version: 4,
   month: startOfMonth(new Date()).toISOString()
 })
 
