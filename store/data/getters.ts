@@ -51,16 +51,21 @@ export const getters = getterTree(state, {
 
     for (const entry of sheets.events) {
       const { id, subjectId, time, room, course } = entry
-      formatted.events.push({
-        note: replaceDashWithUndefined(entry.note),
-        groups: entry.groups === '-' ? [1,2,3,4] : entry.groups.split(',').map(item => Number(item)),
-        dates: parseDates(entry.dates),
-        id,
-        subjectId,
-        time,
-        room,
-        course
-      })
+
+      try {
+        const dates = parseDates(entry.dates)
+
+        formatted.events.push({
+          note: replaceDashWithUndefined(entry.note),
+          groups: entry.groups === '-' ? [1,2,3,4] : entry.groups.split(',').map(item => Number(item)),
+          dates,
+          id,
+          subjectId,
+          time,
+          room,
+          course
+        })
+      } catch(e) {}
     }
 
     return formatted
