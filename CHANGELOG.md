@@ -1,3 +1,15 @@
+## [1.0.3](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.2...v1.0.3) (2022-08-31)
+
+
+### Bug Fixes
+
+* add author meta & footnote ([c92d649](https://github.com/SugarF0x/omtu-calendar/commit/c92d649bb506a385a099835e6493b892291eb9c2))
+* ftue carts height ([b098e01](https://github.com/SugarF0x/omtu-calendar/commit/b098e01d00b217bc9df70e56ce7509bd6e78dd31))
+* remove ftue unofficial disclaimer ([5125ab5](https://github.com/SugarF0x/omtu-calendar/commit/5125ab5835f4932f8dc237efc1842acf34137320))
+* typo ([a68d9ca](https://github.com/SugarF0x/omtu-calendar/commit/a68d9ca08350482c880514f648ec30a5421af9b9))
+
+
+
 ## [1.0.2](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.1...v1.0.2) (2022-08-31)
 
 
