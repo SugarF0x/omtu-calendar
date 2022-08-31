@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.3...v1.0.4) (2022-08-31)
+
+
+### Bug Fixes
+
+* remove missing variable ([6840d3c](https://github.com/SugarF0x/omtu-calendar/commit/6840d3cc981f23cff458db4e5a92892994f4be72))
+
+
+
 ## [1.0.3](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.2...v1.0.3) (2022-08-31)
 
 
