@@ -1,25 +1,30 @@
 name: ci
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ master ]
+    branches:
+      - master
     paths-ignore:
       - '*'
       - 'bot/**'
       - '.github/**'
 
-jobs:
-  build:
-    name: "Generate changelog & build dist"
-    runs-on: self-hosted
+env:
+  RELEASE_PATH: dist.zip
 
-    strategy:
-      matrix:
-        node-version: [14.x]
+jobs:
+  setup:
+    name: Checkout & generate changelog
+    runs-on: ubuntu-latest
+
+    outputs:
+      clean_changelog: ${{ steps.changelog.outputs.clean_changelog }}
+      tag: ${{ steps.changelog.outputs.tag }}
+      skipped: ${{ steps.changelog.outputs.skipped }}
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Generate Changelog
         id: changelog
@@ -28,11 +33,21 @@ jobs:
           git-message: 'chore(release): {version}'
           release-count: 0
 
-      - name: Use Node.js ${{ matrix.node-version }}
+  build:
+    name: Build distributive
+    needs: [ setup ]
+    if: ${{ needs.setup.outputs.skipped == 'false' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs and npm
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 14
+          cache: npm
 
       - run: npm i
       - run: npm run build
@@ -40,11 +55,28 @@ jobs:
       - run: npm run gzip
       - run: npm run zip
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v3
         with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-          files: dist.zip
+          name: release
+          path: ${{ env.RELEASE_PATH }}
+          retention-days: 3
+
+  release:
+    name: Create release
+    needs: [ setup, build ]
+    if: ${{ needs.setup.outputs.skipped == 'false' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: release
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.setup.outputs.tag }}
+          name: ${{ needs.setup.outputs.tag }}
+          body: ${{ needs.setup.outputs.clean_changelog }}
+          files: ${{ env.RELEASE_PATH }}
