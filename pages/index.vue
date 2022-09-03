@@ -4,7 +4,9 @@
 
 <template>
   <ion-page>
-    hello peepee
+    <div class="p-4">
+      <button class="btn">Hello daisyUI</button>
+    </div>
   </ion-page>
 </template>
 
