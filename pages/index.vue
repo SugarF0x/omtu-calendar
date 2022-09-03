@@ -3,11 +3,9 @@
 </script>
 
 <template>
-  <ion-page>
-    <div class="p-4">
-      <button class="btn">Hello daisyUI</button>
-    </div>
-  </ion-page>
+  <div class="p-4">
+    <button class="btn">Hello daisyUI</button>
+  </div>
 </template>
 
 <style scoped lang="scss">
