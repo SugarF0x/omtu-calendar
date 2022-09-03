@@ -34,7 +34,7 @@ export default defineComponent({
       accessor.data.events.filter(event => {
         const isCourseMatch = event.course === course.value
         const isGroupMatch = event.groups.includes(group.value!)
-        const isForAllSpecialties = event.subject.specs.length === accessor.data.sheets.specialties.length
+        const isForAllSpecialties = !event.subject.specs.length
         const isSpecialtyMatch =
           isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
 

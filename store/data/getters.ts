@@ -42,7 +42,7 @@ export const getters = getterTree(state, {
       formatted.subjects.push({
         professor: replaceDashWithUndefined(entry.professor),
         color:  entry.color === '-' ? getColorFromText(entry.title) : entry.color,
-        specs: entry.specs === '-' ? Object.keys(formatted.specialties) : entry.specs.split(','),
+        specs: entry.specs === '-' ? [] : entry.specs.split(','),
         id,
         course,
         title
