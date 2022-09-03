@@ -7,4 +7,7 @@ export default <Config> {
     extend: {},
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: ['synthwave'],
+  },
 }
