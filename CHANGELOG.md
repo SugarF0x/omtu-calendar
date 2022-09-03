@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.4...v1.0.5) (2022-09-03)
+
+
+### Bug Fixes
+
+* missing events for all-spec subjects ([4cec1a7](https://github.com/SugarF0x/omtu-calendar/commit/4cec1a7c582650be6f3e4794d56bde87ee8497b6))
+
+
+
 ## [1.0.4](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.3...v1.0.4) (2022-08-31)
 
 
