@@ -82,10 +82,11 @@ const attributes = ref([
 </script>
 
 <template>
-  <div>
-    <button class="btn">Hello daisyUI</button>
+  <div class="wrapper">
     <calendar
       class="custom-calendar max-w-full"
+      :first-day-of-week="2"
+      locale="ru"
       :masks="masks"
       :attributes="attributes"
       is-expanded
@@ -97,7 +98,7 @@ const attributes = ref([
             <p
               v-for="attr in attributes"
               :key="attr.key"
-              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
+              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1 item"
               :class="attr.customData.class"
             >
               {{ attr.customData.title }}
@@ -118,6 +119,13 @@ const attributes = ref([
   display: none;
 }
 
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 :deep(.custom-calendar.vc-container) {
   --day-border: 1px solid #b8c2cc;
   --day-border-highlight: 1px solid #b8c2cc;
@@ -125,8 +133,14 @@ const attributes = ref([
   --day-height: 90px;
   --weekday-bg: #f8fafc;
   --weekday-border: 1px solid #eaeaea;
+
   border-radius: 0;
   width: 100%;
+
+  & .vc-title {
+    text-transform: capitalize;
+  }
+
   & .vc-header {
     background-color: #f1f5f8;
     padding: 10px 0;
@@ -163,5 +177,9 @@ const attributes = ref([
   & .vc-day-dots {
     margin-bottom: 5px;
   }
+}
+
+.item {
+  overflow-x: scroll;
 }
 </style>

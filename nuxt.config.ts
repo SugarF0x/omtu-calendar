@@ -4,5 +4,8 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   ssr: false,
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['v-calendar/dist/style.css']
+  css: [
+    '~/assets/styles/global.scss',
+    'v-calendar/dist/style.css'
+  ]
 })
