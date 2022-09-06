@@ -180,6 +180,7 @@ const attributes = ref([
 }
 
 .item {
+  min-width: 100%;
   width: fit-content;
 }
 </style>
