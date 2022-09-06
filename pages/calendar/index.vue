@@ -9,7 +9,6 @@ onMounted(() => { cockAndBall.value = true })
 
 const month = ref(new Date().getMonth())
 const year = ref(new Date().getFullYear())
-const masks = ref({ weekdays: 'WWW' })
 const attributes = ref([
   {
     key: 1,
@@ -88,18 +87,22 @@ const attributes = ref([
 
 <template>
   <div class="wrapper">
+    <NuxtLink to="/settings">
+      <button class="btn btn-primary"> go to settings </button>
+    </NuxtLink>
+
     <calendar
       class="custom-calendar max-w-full"
       :first-day-of-week="2"
       locale="ru"
-      :masks="masks"
+      :masks="{ weekdays: 'WWW' }"
       :attributes="attributes"
       is-expanded
     >
       <template v-slot:day-content="{ day, attributes }">
-        <div class="flex flex-col h-full z-10 overflow-hidden">
+        <div class="flex flex-col h-full z-10">
           <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
-          <div class="flex-grow overflow-y-auto overflow-x-auto">
+          <div class="flex-grow overflow-scroll">
             <p
               v-for="attr in attributes"
               :key="attr.key"
@@ -116,17 +119,10 @@ const attributes = ref([
 </template>
 
 <style scoped lang="scss">
-::-webkit-scrollbar {
-  width: 0;
-}
-
-::-webkit-scrollbar-track {
-  display: none;
-}
-
 .wrapper {
   min-height: 100%;
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
 }
@@ -160,7 +156,6 @@ const attributes = ref([
     padding: 5px 0;
   }
   & .vc-day {
-    padding: 0 5px 3px 5px;
     text-align: left;
     height: var(--day-height);
     min-width: var(--day-width);
@@ -185,6 +180,6 @@ const attributes = ref([
 }
 
 .item {
-  overflow-x: scroll;
+  width: fit-content;
 }
 </style>
