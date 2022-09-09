@@ -1,9 +1,6 @@
-import { Plugin } from '@nuxt/types'
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate"
+import { defineNuxtPlugin } from "#app"
 
-// @ts-ignore, this suppression is a webstorm-specific issue that will be solved in the next release
-const PiniaPersist: Plugin = ({ $pinia }) => {
+export default defineNuxtPlugin(({ $pinia }) => {
   $pinia.use(piniaPluginPersistedstate)
-}
-
-export default PiniaPersist
+})
