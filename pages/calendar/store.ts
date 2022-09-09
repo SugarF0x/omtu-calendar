@@ -4,13 +4,12 @@ import { ref } from "#imports"
 export const useCalendarStore = defineStore(
   "calendar",
   () => {
-    const cockAndBall = ref(false)
+    const month = ref(new Date().getMonth())
 
     return {
-      cockAndBall
+      month
     }
-  },
-  {
-    persist: true,
+  }, {
+    persist: false
   }
 )
