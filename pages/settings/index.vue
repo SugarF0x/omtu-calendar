@@ -11,24 +11,16 @@ const { specialties, course, group } = storeToRefs(useSettingsStore())
 <template>
   <div class="wrapper">
     <h2> Specialties </h2>
-    <pre>
-      {{ JSON.stringify(specialties, null, 2) }}
-    </pre>
+    <pre>{{ JSON.stringify(specialties, null, 2) }}</pre>
 
     <h2> Course </h2>
-    <pre>
-      {{ JSON.stringify(course, null, 2) }}
-    </pre>
+    <pre>{{ JSON.stringify(course, null, 2) }}</pre>
 
     <h2> Group </h2>
-    <pre>
-      {{ JSON.stringify(group, null, 2) }}
-    </pre>
+    <pre>{{ JSON.stringify(group, null, 2) }}</pre>
 
     <h2> Config </h2>
-    <pre style="font-size: .75em">
-      {{ JSON.stringify(config, null, 2) }}
-    </pre>
+    <pre style="font-size: .75em">{{ JSON.stringify(config, null, 2) }}</pre>
 
     <button @click="fetchConfig"> fetch cock and ball </button>
   </div>
