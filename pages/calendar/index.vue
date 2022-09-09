@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
-import { onMounted, ref } from "#imports"
 import { useCalendarStore } from './store'
 import { storeToRefs } from "pinia"
 
-const { cockAndBall } = storeToRefs(useCalendarStore())
-onMounted(() => { cockAndBall.value = true })
+const { month, year } = storeToRefs(useCalendarStore())
 
-const month = ref(new Date().getMonth())
-const year = ref(new Date().getFullYear())
-const attributes = ref([
+const attributes = $ref([
   {
     key: 1,
     customData: {

@@ -1,5 +1,4 @@
 import { defineStore } from "pinia"
-import { ref } from "#imports"
 import { isError } from "~/utils"
 import { Config } from './types'
 import { fetchConfigRequest } from './api'
@@ -7,26 +6,26 @@ import { fetchConfigRequest } from './api'
 export const useConfigStore = defineStore(
   "config",
   () => {
-    const config = ref<Config | null>(null)
-    const isLoading = ref(false)
-    const error = ref<Error | null>(null)
+    let config = $ref<Config | null>(null)
+    let isLoading = $ref(false)
+    let error = $ref<Error | null>(null)
 
     async function fetchConfig() {
-      error.value = null
-      isLoading.value = true
+      error = null
+      isLoading = true
 
       const response = await fetchConfigRequest()
-      isLoading.value = false
+      isLoading = false
 
-      if (isError(response)) error.value = response
-      else config.value = response
+      if (isError(response)) error = response
+      else config = response
     }
 
-    return {
+    return $$({
       config,
       isLoading,
       error,
       fetchConfig
-    }
+    })
   }
 )

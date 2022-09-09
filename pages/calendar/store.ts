@@ -1,14 +1,15 @@
 import { defineStore } from "pinia"
-import { ref } from "#imports"
 
 export const useCalendarStore = defineStore(
   "calendar",
   () => {
-    const month = ref(new Date().getMonth())
+    const month = $ref(new Date().getMonth())
+    const year = $ref(new Date().getFullYear())
 
-    return {
-      month
-    }
+    return $$({
+      month,
+      year
+    })
   }, {
     persist: false
   }
