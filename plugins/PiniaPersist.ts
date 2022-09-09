@@ -1,7 +1,12 @@
 import { createPersistedState } from "pinia-plugin-persistedstate"
 import { defineNuxtPlugin } from "#app"
+import { Pinia } from "pinia"
 
-export default defineNuxtPlugin(({ $pinia }) => {
+export default defineNuxtPlugin(nuxt => {
+  const $pinia = nuxt.$pinia as Pinia
+
+  $pinia.use((pinia) => { pinia.options.persist = true })
+
   $pinia.use(createPersistedState({
     serializer: {
       deserialize: (store) => {
