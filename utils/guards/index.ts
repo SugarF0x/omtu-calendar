@@ -1,3 +1,3 @@
-export * from './isStringRecord'
-export * from './isObjectWithKeys'
 export * from './isRecord'
+export * from './isStringRecord'
+export * from './isRecordWithKeysOfStringValues'
