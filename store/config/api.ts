@@ -5,10 +5,12 @@ import { Config } from "~/store"
 const expectedKeys: Array<keyof Config> = ['sheetIds', 'dataRefetchInterval']
 
 function isValidConfigResponse(response: unknown): response is Config {
+  if (!response) return false
   if (typeof response !== 'object') return false
-  if (Object.keys(response).some((key: keyof Config) => !expectedKeys.includes(key))) return false
-  const responseWithMatchedKeys = response as Config
+  if (Object.keys(response).some((key) => !expectedKeys.includes(key as keyof Config))) return false
+  const responseWithMatchedKeys = response as Record<keyof Config, unknown>
 
+  if (!Array.isArray(responseWithMatchedKeys.sheetIds)) return false
   if (responseWithMatchedKeys.sheetIds.length !== 2) return false
   if (responseWithMatchedKeys.sheetIds.some(value => typeof value !== 'string')) return false
 
