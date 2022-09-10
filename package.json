@@ -5,7 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test:types": "nuxi typecheck"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
