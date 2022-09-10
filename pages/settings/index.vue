@@ -2,9 +2,9 @@
 import { storeToRefs } from "pinia"
 import { useConfigStore, useSettingsStore } from "~/store"
 
-const settingsStore = useConfigStore()
-const { fetchConfig } = settingsStore
-const { config } = storeToRefs(settingsStore)
+const configStore = useConfigStore()
+const { fetchConfig } = configStore
+const { config } = storeToRefs(configStore)
 const { specialties, course, group } = storeToRefs(useSettingsStore())
 </script>
 
