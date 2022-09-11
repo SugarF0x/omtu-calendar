@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { DirtyRow, Row } from "~/utils/googleSheetParser/types"
-import { sanitizeRow } from "../sanitizeRow"
+import { sanitizeRow } from "~/utils/googleSheetParser/helpers"
 
 describe('sanitizeRow', () => {
   it("should remove all nulls", () => {
