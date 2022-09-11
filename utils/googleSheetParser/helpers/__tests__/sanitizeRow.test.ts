@@ -4,8 +4,6 @@ import { sanitizeRow } from "~/utils/googleSheetParser/helpers"
 
 describe('sanitizeRow', () => {
   it("should remove all nulls", () => {
-    expect(2).toEqual(2)
-
     const input: DirtyRow = {
       c: [
         { v: null },
