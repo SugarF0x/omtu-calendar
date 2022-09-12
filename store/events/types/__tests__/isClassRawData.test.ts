@@ -24,7 +24,7 @@ describe('isClassRawData', () => {
       room: "",
       note: "",
     }
-  ])("should invalidate malformed input", () => {
+  ])("should invalidate malformed input %#", () => {
     expect(isClassRawData({
       id: "",
       subjectId: "",

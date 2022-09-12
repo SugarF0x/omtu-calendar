@@ -23,7 +23,7 @@ describe('isSubjectRawData', () => {
       specs: "",
       color: "",
     }
-  ])('should invalidate malformed input', (input) => {
+  ])('should invalidate malformed input %#', (input) => {
     expect(isSubjectRawData(input)).not.toBeTruthy()
   })
 })
