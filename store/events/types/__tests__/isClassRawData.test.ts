@@ -14,7 +14,17 @@ describe('isClassRawData', () => {
     })).toBeTruthy()
   })
 
-  it("should invalidate malformed input", () => {
+  it.each([
+    {},
+    { id: "" },
+    { subjectId: "", note: "" },
+    {
+      id: 2,
+      subjectId: "",
+      room: "",
+      note: "",
+    }
+  ])("should invalidate malformed input", () => {
     expect(isClassRawData({
       id: "",
       subjectId: "",
