@@ -7,7 +7,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "tsc": "nuxi typecheck",
-    "vitest": "vitest --run --reporter verbose --globals"
+    "vitest": "vitest --run --reporter verbose --globals",
+    "vitest:report": "vitest --reporter=dot --reporter=json --outputFile=.vitest-result.json"
   },
   "devDependencies": {
     "@nuxt/test-utils-edge": "^3.0.0-rc.10-27713626.270055b",
