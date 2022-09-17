@@ -8,4 +8,5 @@ node_modules
 .idea
 dist
 dist.zip
+coverage
 .vitest-result.json

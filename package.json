@@ -8,12 +8,13 @@
     "postinstall": "nuxt prepare",
     "tsc": "nuxi typecheck",
     "vitest": "vitest --run --reporter verbose --globals",
-    "vitest:report": "vitest --reporter=dot --reporter=json --outputFile=.vitest-result.json"
+    "vitest:report": "vitest --run --reporter=dot --reporter=json --outputFile=.vitest-result.json --coverage"
   },
   "devDependencies": {
     "@nuxt/test-utils-edge": "^3.0.0-rc.10-27713626.270055b",
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/tailwindcss": "^5.3.2",
+    "@vitest/coverage-c8": "^0.23.2",
     "nuxt": "3.0.0-rc.8",
     "sass": "^1.54.8",
     "vitest": "^0.23.2"
