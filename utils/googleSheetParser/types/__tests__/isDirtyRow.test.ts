@@ -19,6 +19,11 @@ describe('isDirtyRow', () => {
   })
 
   it.each<unknown>([
+    null,
+    undefined,
+    123,
+    "321",
+    [],
     {},
     { abs: 123 },
     { c: 3232 },
