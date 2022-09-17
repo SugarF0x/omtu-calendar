@@ -59,22 +59,27 @@ http.createServer((req, res) => {
   })
 }).listen(8080)
 
+let isBrowserOpen = false
+function openBrowser() {
+  if (!isBrowserOpen) {
+    isBrowserOpen = true
+    open('http://localhost:8080')
+  }
+}
+
 setTimeout(() => {
-  let isBrowserOpen = false
   createClient("ws://localhost:51204/__vitest_api__", {
     WebSocketConstructor: WebSocket,
     handlers: {
       onFinished() {
         setTimeout(() => {
-          if (!isBrowserOpen) {
-            isBrowserOpen = true
-            open('http://localhost:8080')
-          }
-
+          openBrowser()
           ws?.send("HMR")
         }, 500)
       },
     },
     autoReconnect: true
   })
+
+  setTimeout(() => { openBrowser() }, 1000)
 }, 500)
