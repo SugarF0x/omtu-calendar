@@ -26,6 +26,9 @@ export default defineConfig({
   test: {
     deps: {
       inline: [/@nuxt\/test-utils-edge/]
+    },
+    coverage: {
+      reporter: ['text', 'json', 'html'],
     }
   },
   resolve: {

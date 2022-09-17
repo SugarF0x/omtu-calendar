@@ -11,6 +11,8 @@ describe('isCol', () => {
   })
 
   it.each([
+    undefined,
+    null,
     {},
     { id: "" },
     { label: "", type: "" },
