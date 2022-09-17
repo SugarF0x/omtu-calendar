@@ -14,7 +14,7 @@ describe('isStringRecord', () => {
     null,
     undefined,
     []
-  ])("should invalidate improper input", (input) => {
+  ])("should invalidate improper input %#", (input) => {
     expect(isStringRecord(input)).not.toBeTruthy()
   })
 })

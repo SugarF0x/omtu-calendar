@@ -13,7 +13,7 @@ describe('isRecord', () => {
     123,
     false,
     "asdawds"
-  ])("should invalidate anything that is not a record", (input) => {
+  ])("should invalidate anything that is not a record %#", (input) => {
     expect(isRecord(input)).not.toBeTruthy()
   })
 })
