@@ -14,8 +14,7 @@ export function isDirtyRow(row: unknown): row is DirtyRow {
   if (!isRecordWithKeys(row, ['c'])) return false
 
   const { c } = row
-  if (c === null) return true
-  if (Array.isArray(c)) return c.every(item => item === null || item.v === null || typeof item.v === 'string')
+  if (!Array.isArray(c)) return false
 
-  return false
+  return c.every(item => item === null || item.v === null || typeof item.v === 'string')
 }
