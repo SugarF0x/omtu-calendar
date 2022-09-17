@@ -8,8 +8,8 @@
     "postinstall": "nuxt prepare",
     "tsc": "nuxi typecheck",
     "vitest": "vitest --run --reporter verbose",
-    "vitest:watch": "vitest --ui",
-    "vitest:report": "vitest --run --reporter=dot --reporter=json --outputFile=.vitest-result.json --coverage"
+    "vitest:report": "vitest --run --coverage --reporter=json --outputFile=.vitest-result.json",
+    "vitest:watch": "vitest --ui"
   },
   "devDependencies": {
     "@nuxt/test-utils-edge": "^3.0.0-rc.10-27713626.270055b",

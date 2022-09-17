@@ -30,7 +30,7 @@ describe('isDirtyRow', () => {
     { c: [ { adawd: 'asdasd' } ] },
     { c: [ { v: 123123 } ] },
     { c: [ { v: {} } ] },
-  ])('should invalidate malformed input', (input) => {
+  ])('should invalidate malformed input %#', (input) => {
     expect(isDirtyRow(input)).not.toBeTruthy()
   })
 })
