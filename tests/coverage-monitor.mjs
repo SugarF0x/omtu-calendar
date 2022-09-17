@@ -65,14 +65,14 @@ setTimeout(() => {
     WebSocketConstructor: WebSocket,
     handlers: {
       onFinished() {
-        if (!isBrowserOpen) {
-          isBrowserOpen = true
-          setTimeout(() => {
+        setTimeout(() => {
+          if (!isBrowserOpen) {
+            isBrowserOpen = true
             open('http://localhost:8080')
-          }, 500)
-        }
+          }
 
-        ws?.send("HMR")
+          ws?.send("HMR")
+        }, 500)
       },
     },
     autoReconnect: true
