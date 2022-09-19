@@ -75,11 +75,11 @@ setTimeout(() => {
         setTimeout(() => {
           openBrowser()
           ws?.send("HMR")
-        }, 500)
+        }, 1000)
       },
     },
     autoReconnect: true
   })
 
   setTimeout(() => { openBrowser() }, 1000)
-}, 500)
+}, 1000)
