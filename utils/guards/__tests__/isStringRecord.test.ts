@@ -13,7 +13,9 @@ describe('isStringRecord', () => {
   it.each<unknown>([
     null,
     undefined,
-    []
+    [],
+    123,
+    'some more input'
   ])("should invalidate improper input %#", (input) => {
     expect(isStringRecord(input)).not.toBeTruthy()
   })
