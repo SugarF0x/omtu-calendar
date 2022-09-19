@@ -22,9 +22,11 @@ describe('isError', () => {
 describe('toError', () => {
   it.each<[unknown, Error]>([
     ['i am an error message', new Error('i am an error message')],
-    [1321312, new Error('Unknown Error')],
     [new Error('foo'), new Error('foo')],
-    [{ message: 'i am an error object' }, new Error('i am an error object')]
+    [{ message: 'i am an error object' }, new Error('i am an error object')],
+    [1321312, new Error('Unknown Error')],
+    [undefined, new Error('Unknown Error')],
+    [null, new Error('Unknown Error')],
   ])('should convert given data into Error instance %#', (input, output) => {
     expect(toError(input)).toEqual(output)
   })
