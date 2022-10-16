@@ -1,6 +1,6 @@
 import { isRecordWithKeysOfStringValues } from "~/utils"
 
-export interface ClassRawData {
+export interface ClassData {
   id: string
   subjectId: string
   groups: string
@@ -10,6 +10,6 @@ export interface ClassRawData {
   dates: string
 }
 
-export function isClassRawData(data: unknown): data is ClassRawData {
-  return isRecordWithKeysOfStringValues<keyof ClassRawData>(data, ["id", "subjectId", "groups", "time", "room", "note", "dates"])
+export function isClassData(data: unknown): data is ClassData {
+  return isRecordWithKeysOfStringValues<keyof ClassData>(data, ["id", "subjectId", "groups", "time", "room", "note", "dates"])
 }

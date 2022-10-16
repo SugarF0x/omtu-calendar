@@ -1,10 +1,10 @@
 import { isRecordWithKeysOfStringValues } from "~/utils"
 
-export interface SpecialtyRawData {
+export interface SpecialtyData {
   id: string
   title: string
 }
 
-export function isSpecialtyRawData(data: unknown): data is SpecialtyRawData {
-  return isRecordWithKeysOfStringValues<keyof SpecialtyRawData>(data, ["id", "title"])
+export function isSpecialtyData(data: unknown): data is SpecialtyData {
+  return isRecordWithKeysOfStringValues<keyof SpecialtyData>(data, ["id", "title"])
 }

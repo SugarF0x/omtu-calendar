@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { isSpecialtyRawData } from "~/store/data"
+import { isSpecialtyData } from "~/store/data/types"
 
-describe('isSpecialtyRawData', () => {
+describe('isSpecialtyData', () => {
   it('should validate proper input', () => {
-    expect(isSpecialtyRawData({
+    expect(isSpecialtyData({
       id: "",
       title: ""
     })).toBeTruthy()
@@ -15,6 +15,6 @@ describe('isSpecialtyRawData', () => {
     {},
     { id: 1, title: "" }
   ])("should invalidate malformed input %#", (input) => {
-    expect(isSpecialtyRawData(input)).not.toBeTruthy()
+    expect(isSpecialtyData(input)).not.toBeTruthy()
   })
 })

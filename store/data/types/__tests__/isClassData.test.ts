@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { isClassRawData } from "~/store/data"
+import { isClassData } from "~/store/data/types"
 
-describe('isClassRawData', () => {
+describe('isClassData', () => {
   it('should validate proper input', () => {
-    expect(isClassRawData({
+    expect(isClassData({
       id: "",
       subjectId: "",
       groups: "",
@@ -25,7 +25,7 @@ describe('isClassRawData', () => {
       note: "",
     }
   ])("should invalidate malformed input %#", () => {
-    expect(isClassRawData({
+    expect(isClassData({
       id: "",
       subjectId: "",
       room: "",

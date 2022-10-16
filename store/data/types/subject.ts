@@ -1,6 +1,6 @@
 import { isRecordWithKeysOfStringValues } from "~/utils"
 
-export interface SubjectRawData {
+export interface SubjectData {
   id: string
   title: string
   professor: string
@@ -8,6 +8,6 @@ export interface SubjectRawData {
   color: string
 }
 
-export function isSubjectRawData(data: unknown): data is SubjectRawData {
-  return isRecordWithKeysOfStringValues<keyof SubjectRawData>(data, ["id", "title", "professor", "specs", "color"])
+export function isSubjectData(data: unknown): data is SubjectData {
+  return isRecordWithKeysOfStringValues<keyof SubjectData>(data, ["id", "title", "professor", "specs", "color"])
 }

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { isSubjectRawData } from "~/store/data"
+import { isSubjectData } from "~/store/data/types"
 
-describe('isSubjectRawData', () => {
+describe('isSubjectData', () => {
   it('should validate proper input', () => {
-    expect(isSubjectRawData({
+    expect(isSubjectData({
       id: "",
       title: "",
       professor: "",
@@ -24,6 +24,6 @@ describe('isSubjectRawData', () => {
       color: "",
     }
   ])('should invalidate malformed input %#', (input) => {
-    expect(isSubjectRawData(input)).not.toBeTruthy()
+    expect(isSubjectData(input)).not.toBeTruthy()
   })
 })
