@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isSpecialtyRawData } from "~/store/events"
+import { isSpecialtyRawData } from "~/store/data"
 
 describe('isSpecialtyRawData', () => {
   it('should validate proper input', () => {

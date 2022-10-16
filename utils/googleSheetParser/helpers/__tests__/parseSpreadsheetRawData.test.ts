@@ -8,7 +8,7 @@ import {
   MOCK_SPECIALTIES_DATA,
   MOCK_SUBJECTS_DATA,
 } from './mocks'
-import { isClassRawData, isSpecialtyRawData, isSubjectRawData } from "~/store/events"
+import { isClassRawData, isSpecialtyRawData, isSubjectRawData } from "~/store/data"
 import { isError } from "~/utils"
 
 function dummyValidator(e: unknown): e is Record<string, string> {
