@@ -2,7 +2,7 @@ import { toError } from "~/utils"
 import { sanitizeRow } from "./sanitizeRow"
 import { isTableRawResponse } from "../types"
 
-export function parseSpreadsheetRawData<Expected extends Record<string, string>>(data: string, isValid: (result: unknown) => result is Expected): Expected[] | Error {
+export function parseSpreadsheetRawData<Expected>(data: string, isValid: (result: unknown) => result is Expected): Expected[] | Error {
   try {
     const trimmedData = data.split('\n')[1].replace(/google.visualization.Query.setResponse\(|\);/g, '')
     const parsedData = JSON.parse(trimmedData)
