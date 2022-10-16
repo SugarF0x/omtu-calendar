@@ -7,7 +7,7 @@ export async function fetchSpreadsheetRawData(id: string, sheet: string): Promis
   const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?sheet=${sheet}`
 
   try {
-    return await $fetch(url)
+    return (await $fetch(url)).text()
   } catch (error) {
     return toError(error)
   }
