@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { ClassData, isClassData, isSpecialtyData, isSubjectData, SpecialtyData, SubjectData } from "./types"
-import { useConfigStore, useSettingsStore } from "~/store"
+import { useConfigStore } from "~/store"
 import { useHourlyRefetch } from "~/hooks"
 import { fetchDoc } from "~/utils/googleSheetParser"
 import { isError } from "~/utils"
@@ -8,9 +8,9 @@ import { isError } from "~/utils"
 export const useDataStore = defineStore(
   "data",
   () => {
-    let allSubjects = $ref<Array<SubjectData[]>>([])
-    let allSpecialties = $ref<Array<SpecialtyData[]>>([])
-    let allClasses = $ref<Array<ClassData[]>>([])
+    let subjects = $ref<Array<SubjectData[]>>([])
+    let specialties = $ref<Array<SpecialtyData[]>>([])
+    let classes = $ref<Array<ClassData[]>>([])
 
     const { config } = useConfigStore()
 
@@ -33,7 +33,7 @@ export const useDataStore = defineStore(
             break
           }
 
-          allSubjects[Number(course)] = subjectsResponse
+          subjects[Number(course)] = subjectsResponse
         }
 
         {
@@ -44,18 +44,18 @@ export const useDataStore = defineStore(
             break
           }
 
-          allSpecialties[Number(course)] = specialtiesResponse
+          specialties[Number(course)] = specialtiesResponse
         }
 
         {
-          const classesResponse = await fetchDoc<ClassData>(sheetId, 'Предметы', isClassData)
+          const classesResponse = await fetchDoc<ClassData>(sheetId, 'Занятия', isClassData)
 
           if (isError(classesResponse)) {
             error = classesResponse
             break
           }
 
-          allClasses[Number(course)] = classesResponse
+          classes[Number(course)] = classesResponse
         }
       }
 
@@ -68,6 +68,9 @@ export const useDataStore = defineStore(
       subjects,
       specialties,
       classes,
+      lastUpdateTimestamp,
+      isLoading,
+      error,
       fetchData
     })
   }

@@ -27,6 +27,7 @@ export const useConfigStore = defineStore(
 
     return $$({
       config,
+      updateTimestamp,
       isLoading,
       error,
       fetchConfig
