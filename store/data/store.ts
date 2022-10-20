@@ -12,12 +12,6 @@ export const useDataStore = defineStore(
     let allSpecialties = $ref<Array<SpecialtyData[]>>([])
     let allClasses = $ref<Array<ClassData[]>>([])
 
-    let { course } = useSettingsStore()
-
-    const subjects = $computed<SubjectData[]>(() => allSubjects[course ?? -1] ?? [])
-    const specialties = $computed<SpecialtyData[]>(() => allSpecialties[course ?? -1] ?? [])
-    const classes = $computed<ClassData[]>(() => allClasses[course ?? -1] ?? [])
-
     const { config } = useConfigStore()
 
     let lastUpdateTimestamp = $ref(new Date(0).toISOString())
