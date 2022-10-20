@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { isError } from "~/utils"
 import { Config } from './types'
 import { fetchConfigRequest } from './api'
-import { useRefetch } from "./hooks"
+import { useHourlyRefetch } from "~/hooks"
 
 export const useConfigStore = defineStore(
   "config",
@@ -25,7 +25,7 @@ export const useConfigStore = defineStore(
       else config = response
     }
 
-    useRefetch(fetchConfig, updateTimestamp, config?.dataRefetchInterval)
+    useHourlyRefetch(fetchConfig, updateTimestamp, config?.dataRefetchInterval)
 
     return $$({
       config,
