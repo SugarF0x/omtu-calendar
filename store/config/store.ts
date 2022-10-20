@@ -20,10 +20,13 @@ export const useConfigStore = defineStore(
       isLoading = false
 
       if (isError(response)) error = response
-      else config = response
+      else {
+        config = response
+        updateTimestamp = new Date().toISOString()
+      }
     }
 
-    useHourlyRefetch(fetchConfig, updateTimestamp, config?.dataRefetchInterval)
+    useHourlyRefetch(fetchConfig, $$(updateTimestamp), config?.dataRefetchInterval)
 
     return $$({
       config,

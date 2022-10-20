@@ -14,7 +14,7 @@ export const useDataStore = defineStore(
 
     const { config } = useConfigStore()
 
-    let lastUpdateTimestamp = $ref(new Date(0).toISOString())
+    let updateTimestamp = $ref(new Date(0).toISOString())
     let isLoading = $ref(false)
     let error = $ref<Error | null>(null)
 
@@ -60,15 +60,16 @@ export const useDataStore = defineStore(
       }
 
       isLoading = false
+      updateTimestamp = new Date().toISOString()
     }
 
-    useHourlyRefetch(fetchData, lastUpdateTimestamp, config?.dataRefetchInterval)
+    useHourlyRefetch(fetchData, $$(updateTimestamp), config?.dataRefetchInterval)
 
     return $$({
       subjects,
       specialties,
       classes,
-      lastUpdateTimestamp,
+      updateTimestamp,
       isLoading,
       error,
       fetchData
