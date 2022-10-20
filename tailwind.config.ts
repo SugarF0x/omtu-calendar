@@ -1,4 +1,5 @@
 import { Config } from "tailwindcss"
+// @ts-ignore
 import daisyui from 'daisyui'
 
 export default <Config> {
