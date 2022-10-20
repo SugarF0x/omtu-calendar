@@ -7,8 +7,6 @@ import { useHourlyRefetch } from "~/hooks"
 export const useConfigStore = defineStore(
   "config",
   () => {
-    let version = $ref(0)
-
     let config = $ref<Config | null>(null)
     let isLoading = $ref(false)
     let error = $ref<Error | null>(null)

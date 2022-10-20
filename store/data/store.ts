@@ -8,8 +8,6 @@ import { isError } from "~/utils"
 export const useDataStore = defineStore(
   "data",
   () => {
-    let version = $ref(0)
-
     let allSubjects = $ref<Array<SubjectData[]>>([])
     let allSpecialties = $ref<Array<SpecialtyData[]>>([])
     let allClasses = $ref<Array<ClassData[]>>([])
