@@ -22,7 +22,7 @@ function isValidConfigResponse(response: unknown): response is Config {
 
 export async function fetchConfigRequest(): Promise<Config | Error> {
   try {
-    const config = (await $fetch('/config.json')).json()
+    const config = (await $fetch('/config.json'))
     if (!isValidConfigResponse(config)) return new Error('Fetched config does not match schema')
     return config
   } catch (error) {
