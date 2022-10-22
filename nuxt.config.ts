@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
   ],
+  tailwindcss: {
+    configPath: 'tailwind.config.real'
+  },
   experimental: {
     reactivityTransform: true
   }
