@@ -1,8 +1,6 @@
-// @ts-ignore
-import daisyui from 'daisyui'
+const daisyui = require('daisyui')
 
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [],
   theme: {
     extend: {},
