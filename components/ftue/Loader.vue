@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import lang from './Loader.lang.json'
 import { useConfigStore } from "~/store"
 
 const { isLoading } = $(useConfigStore())
@@ -7,6 +8,7 @@ const { isLoading } = $(useConfigStore())
 <template>
   <div>
     <main v-if="isLoading" class="loaderWrapper">
+      <h1>{{ lang.title }}</h1>
       <progress class="progress w-56" />
     </main>
 
@@ -19,6 +21,7 @@ const { isLoading } = $(useConfigStore())
   @apply
   h-screen
   flex
+  flex-col
   justify-center
   items-center
 }

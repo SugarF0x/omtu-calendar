@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import lang from './lang.json'
+import lang from './index.lang.json'
 import { useRouter } from "#app"
 import { onBeforeMount } from "#imports"
 import { useSettingsStore } from "~/store"
