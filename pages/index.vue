@@ -22,6 +22,9 @@ onBeforeMount(() => {
             <p v-for="locale in lang.paragraph" :key="locale">{{ locale }}</p>
             <p><strong>{{ lang.paragraphNote }}</strong></p>
           </div>
+
+          <settings-course />
+
           <button class="btn btn-primary">Get Started</button>
         </div>
       </div>
