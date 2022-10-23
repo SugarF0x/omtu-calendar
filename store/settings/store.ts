@@ -7,7 +7,7 @@ export const useSettingsStore = defineStore(
     let group = $ref<number | null>(null)
     let specialties = $ref<string[]>([])
 
-    const isNewUser = $computed(() => !course && !group)
+    const isNewUser = $computed(() => !course || !group)
 
     return $$({
       course,
