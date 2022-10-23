@@ -2,8 +2,7 @@ import { defineStore } from "pinia"
 import { ClassData, isClassData, isSpecialtyData, isSubjectData, SpecialtyData, SubjectData } from "./types"
 import { useConfigStore } from "~/store"
 import { useHourlyRefetch } from "~/hooks"
-import { fetchDoc } from "~/utils/googleSheetParser"
-import { isError } from "~/utils"
+import { fetchDataFlow } from './helpers'
 
 export const useDataStore = defineStore(
   "data",
@@ -25,42 +24,20 @@ export const useDataStore = defineStore(
       isLoading = true
 
       for (const [course, sheetId] of Object.entries(config.sheetIds)) {
-        {
-          const subjectsResponse = await fetchDoc<SubjectData>(sheetId, 'Предметы', isSubjectData)
+        const courseNumber = Number(course)
 
-          if (isError(subjectsResponse)) {
-            error = subjectsResponse
-            break
-          }
+        await fetchDataFlow(sheetId, 'Предметы', isSubjectData, courseNumber, $$(error), $$(subjects))
+        if (error) break
 
-          subjects[Number(course)] = subjectsResponse
-        }
+        await fetchDataFlow(sheetId, 'Специализации', isSpecialtyData, courseNumber, $$(error), $$(specialties))
+        if (error) break
 
-        {
-          const specialtiesResponse = await fetchDoc<SpecialtyData>(sheetId, 'Специализации', isSpecialtyData)
-
-          if (isError(specialtiesResponse)) {
-            error = specialtiesResponse
-            break
-          }
-
-          specialties[Number(course)] = specialtiesResponse
-        }
-
-        {
-          const classesResponse = await fetchDoc<ClassData>(sheetId, 'Занятия', isClassData)
-
-          if (isError(classesResponse)) {
-            error = classesResponse
-            break
-          }
-
-          classes[Number(course)] = classesResponse
-        }
+        await fetchDataFlow(sheetId, 'Занятия', isClassData, courseNumber, $$(error), $$(classes))
+        if (error) break
       }
 
       isLoading = false
-      updateTimestamp = new Date().toISOString()
+      if (!error) updateTimestamp = new Date().toISOString()
     }
 
     useHourlyRefetch(fetchData, $$(updateTimestamp), config?.dataRefetchInterval)
