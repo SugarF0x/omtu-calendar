@@ -27,6 +27,7 @@ onBeforeMount(() => {
 
           <settings-course />
           <settings-group />
+          <settings-specialty />
         </div>
       </div>
     </div>
