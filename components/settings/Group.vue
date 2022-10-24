@@ -10,7 +10,7 @@ const { group } = $(useSettingsStore())
 <template>
   <div class="flex flex-col">
     <h2 class="card-title justify-center">{{ t("title") }}</h2>
-    <div class="btn-group justify-center">
+    <div class="btn-group justify-center mt-2">
       <input class="btn" type="radio" name="group" data-title="1" :value="0" v-model="group" />
       <input class="btn" type="radio" name="group" data-title="2" :value="1" v-model="group" />
       <input class="btn" type="radio" name="group" data-title="2" :value="2" v-model="group" />
