@@ -8,7 +8,11 @@ const { t, tm, rt } = useI18n()
 const { isNewUser } = $(useSettingsStore())
 
 const router = useRouter()
-onBeforeMount(() => { if (!isNewUser) router.replace('/calendar') })
+function proceedToCalendar() {
+  router.replace('/calendar')
+}
+
+onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
 </script>
 
 <template>
@@ -25,6 +29,8 @@ onBeforeMount(() => { if (!isNewUser) router.replace('/calendar') })
           <settings-course />
           <settings-group />
           <settings-specialty />
+
+          <button class="btn btn-primary" :disabled="isNewUser" @click="proceedToCalendar">{{ t('proceed') }}</button>
         </div>
       </div>
     </div>
@@ -37,4 +43,5 @@ paragraph:
   - Похоже, вы здесь первый раз или давно не заходили
   - Пожалуйста, выберите курс, группу и специализацию
 paragraphNote: Этот выбор можно поменять позднее
+proceed: Продолжить
 </i18n>
