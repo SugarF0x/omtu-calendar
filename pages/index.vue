@@ -26,8 +26,7 @@ onBeforeMount(() => {
           </div>
 
           <settings-course />
-
-          <button class="btn btn-primary">Get Started</button>
+          <settings-group />
         </div>
       </div>
     </div>
