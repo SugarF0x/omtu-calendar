@@ -2,7 +2,7 @@ import { RawClassData, ClassData } from "~/store"
 import { DATE_SEPARATOR, DAYS_FORMAT, DAYS_SEPARATOR, MONTHS_SEPARATOR } from "~/const"
 import { isError } from "~/utils"
 
-export function parseClassData(classData: Array<RawClassData[]>): Array<ClassData[]> | Error {
+export function parseClassData(classData: Array<RawClassData[]>): Array<ClassData[]> | never {
   const result: Array<ClassData[]> = Array.from({ length: classData.length }, () => [])
 
   for (const [course, courseClassData] of Object.entries(classData)) {
@@ -13,11 +13,12 @@ export function parseClassData(classData: Array<RawClassData[]>): Array<ClassDat
 
       const parsedNote = (!note || note === '-') ? undefined : note
 
-      const parsedGroups = groups.split(',').map(group => Number(group) - 1)
-      if (parsedGroups.some(isNaN)) return new Error(`Неправильно заданы группы: ожидается 1,2,3... , получено ${groups}`)
+      let parsedGroups = undefined
+      if (groups !== '-') parsedGroups = groups.split(',').map(group => Number(group) - 1)
+      if (parsedGroups && parsedGroups.some(isNaN)) throw new Error(`Неправильно заданы группы: ожидается 1,2,3... , получено ${groups}`)
 
       const parsedDates = parseDates(dates)
-      if (isError(parsedDates)) return parsedDates
+      if (isError(parsedDates)) throw parsedDates
 
       result[courseNumber].push({
         id,

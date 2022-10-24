@@ -3,7 +3,7 @@ import { isRawClassData, isSpecialtyData, isSubjectData, SpecialtyData, ClassDat
 import { useConfigStore } from "~/store"
 import { useHourlyRefetch } from "~/hooks"
 import { fetchDataFlow, parseClassData } from "./helpers"
-import { isError } from "~/utils"
+import { toError } from "~/utils"
 
 export const useDataStore = defineStore(
   "data",
@@ -17,7 +17,7 @@ export const useDataStore = defineStore(
 
     let updateTimestamp = $ref(new Date(0).toISOString())
     let isLoading = $ref(false)
-    let error = $ref<Error | null>(null)
+    let error = $ref<Error | null>(null) // TODO: replace all errors with strings (cuz cant persist error object)
 
     async function fetchData(): Promise<void> {
       if (!config?.sheetIds) return
@@ -25,22 +25,19 @@ export const useDataStore = defineStore(
       error = null
       isLoading = true
 
-      for (const [course, sheetId] of Object.entries(config.sheetIds)) {
-        const courseNumber = Number(course)
+      try {
+        for (const [course, sheetId] of Object.entries(config.sheetIds)) {
+          const courseNumber = Number(course)
 
-        await fetchDataFlow(sheetId, 'Предметы', isSubjectData, courseNumber, $$(error), $$(subjects))
-        if (error) break
+          await fetchDataFlow(sheetId, courseNumber, 'Предметы', isSubjectData, $$(subjects))
+          await fetchDataFlow(sheetId, courseNumber, 'Специализации', isSpecialtyData, $$(specialties))
+          await fetchDataFlow(sheetId, courseNumber, 'Занятия', isRawClassData, $$(rawClasses))
+        }
 
-        await fetchDataFlow(sheetId, 'Специализации', isSpecialtyData, courseNumber, $$(error), $$(specialties))
-        if (error) break
-
-        await fetchDataFlow(sheetId, 'Занятия', isRawClassData, courseNumber, $$(error), $$(rawClasses))
-        if (error) break
+        classes = parseClassData(rawClasses)
+      } catch (e) {
+        error = toError(e)
       }
-
-      const parsedClasses = parseClassData(rawClasses)
-      if (isError(parsedClasses)) error = parsedClasses
-      else classes = parsedClasses
 
       isLoading = false
       if (!error) updateTimestamp = new Date().toISOString()
