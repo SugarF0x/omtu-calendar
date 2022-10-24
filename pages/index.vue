@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from "#app"
-import { onBeforeMount } from "#imports"
 import { useSettingsStore } from "~/store"
 import { useI18n } from "vue-i18n"
 
@@ -9,9 +8,7 @@ const { t, tm, rt } = useI18n()
 const { isNewUser } = $(useSettingsStore())
 
 const router = useRouter()
-onBeforeMount(() => {
-  if (!isNewUser) router.replace('/calendar')
-})
+onBeforeMount(() => { if (!isNewUser) router.replace('/calendar') })
 </script>
 
 <template>

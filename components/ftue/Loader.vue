@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { useConfigStore } from "~/store"
+import { useConfigStore, useDataStore } from "~/store"
 import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
 
-const { isLoading } = $(useConfigStore())
+const { isLoading: isConfigLoading } = $(useConfigStore())
+const { isLoading: isDataLoading } = $(useDataStore())
+
+const isLoading = $computed(() => isConfigLoading || isDataLoading)
 </script>
 
 <template>

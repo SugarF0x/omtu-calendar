@@ -3,6 +3,7 @@ import { isError } from "~/utils"
 import { Config } from './types'
 import { fetchConfigRequest } from './api'
 import { useHourlyRefetch } from "~/hooks"
+import { useDataStore } from "~/store"
 
 export const useConfigStore = defineStore(
   "config",
@@ -17,13 +18,18 @@ export const useConfigStore = defineStore(
       isLoading = true
 
       const response = await fetchConfigRequest()
-      isLoading = false
 
-      if (isError(response)) error = response
-      else {
-        config = response
-        updateTimestamp = new Date().toISOString()
+      if (isError(response)) {
+        error = response
+        isLoading = false
+        return
       }
+
+      config = response
+      useDataStore().fetchData()
+
+      isLoading = false
+      updateTimestamp = new Date().toISOString()
     }
 
     useHourlyRefetch(fetchConfig, $$(updateTimestamp), config?.dataRefetchInterval)

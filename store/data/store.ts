@@ -13,7 +13,7 @@ export const useDataStore = defineStore(
     let rawClasses = $ref<Array<RawClassData[]>>([])
     let classes = $ref<Array<ClassData[]>>([])
 
-    const { config } = useConfigStore()
+    const { config } = $(useConfigStore())
 
     let updateTimestamp = $ref(new Date(0).toISOString())
     let isLoading = $ref(false)
