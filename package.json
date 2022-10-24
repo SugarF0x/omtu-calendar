@@ -14,6 +14,7 @@
     "test": "yarn tsc && yarn vitest:run"
   },
   "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^6.0.3",
     "@nuxt/test-utils-edge": "^3.0.0-rc.13-27776700.5a88510",
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/tailwindcss": "^6.1.0",
@@ -38,6 +39,7 @@
     "daisyui": "^2.33.0",
     "date-fns": "^2.29.3",
     "pinia-plugin-persistedstate": "^2.3.0",
-    "v-calendar": "^3.0.0-alpha.8"
+    "v-calendar": "^3.0.0-alpha.8",
+    "vue-i18n": "^9.2.2"
   }
 }

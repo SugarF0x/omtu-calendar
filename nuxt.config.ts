@@ -1,6 +1,5 @@
-import { defineNuxtConfig } from 'nuxt'
+import vueI18n from '@intlify/vite-plugin-vue-i18n'
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
   css: [
@@ -16,5 +15,15 @@ export default defineNuxtConfig({
   },
   experimental: {
     reactivityTransform: true
+  },
+  vite: {
+    plugins: [
+      vueI18n({
+        defaultSFCLang: 'yaml',
+        compositionOnly: true,
+        globalSFCScope: false,
+        forceStringify: true
+      })
+    ]
   }
 })
