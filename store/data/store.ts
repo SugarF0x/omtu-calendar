@@ -1,14 +1,16 @@
 import { defineStore } from "pinia"
-import { ClassData, isClassData, isSpecialtyData, isSubjectData, SpecialtyData, SubjectData } from "./types"
+import { isRawClassData, isSpecialtyData, isSubjectData, SpecialtyData, ClassData, SubjectData, RawClassData } from "./types"
 import { useConfigStore } from "~/store"
 import { useHourlyRefetch } from "~/hooks"
-import { fetchDataFlow } from './helpers'
+import { fetchDataFlow, parseClassData } from "./helpers"
+import { isError } from "~/utils"
 
 export const useDataStore = defineStore(
   "data",
   () => {
     let subjects = $ref<Array<SubjectData[]>>([])
     let specialties = $ref<Array<SpecialtyData[]>>([])
+    let rawClasses = $ref<Array<RawClassData[]>>([])
     let classes = $ref<Array<ClassData[]>>([])
 
     const { config } = useConfigStore()
@@ -32,9 +34,13 @@ export const useDataStore = defineStore(
         await fetchDataFlow(sheetId, 'Специализации', isSpecialtyData, courseNumber, $$(error), $$(specialties))
         if (error) break
 
-        await fetchDataFlow(sheetId, 'Занятия', isClassData, courseNumber, $$(error), $$(classes))
+        await fetchDataFlow(sheetId, 'Занятия', isRawClassData, courseNumber, $$(error), $$(rawClasses))
         if (error) break
       }
+
+      const parsedClasses = parseClassData(rawClasses)
+      if (isError(parsedClasses)) error = parsedClasses
+      else classes = parsedClasses
 
       isLoading = false
       if (!error) updateTimestamp = new Date().toISOString()
@@ -45,6 +51,7 @@ export const useDataStore = defineStore(
     return $$({
       subjects,
       specialties,
+      rawClasses,
       classes,
       updateTimestamp,
       isLoading,
