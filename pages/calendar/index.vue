@@ -72,17 +72,22 @@ const attributes = $computed<CalendarAttributes[]>(() => {
         </div>
       </template>
     </calendar>
+
+    <div class="settings">
+      <div class="selectors">
+        <settings-course />
+        <settings-group />
+      </div>
+      <settings-specialty />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.wrapper {
-  min-height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-}
+.wrapper { @apply min-h-screen flex flex-col justify-center align-middle }
+
+.settings { @apply my-4 px-4 }
+.selectors { @apply flex justify-between mb-4 }
 
 :deep(.custom-calendar.vc-container) {
   --day-border: 1px solid #b8c2cc;
