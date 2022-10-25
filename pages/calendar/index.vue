@@ -4,8 +4,24 @@ import { useDataStore, useSettingsStore } from "~/store"
 import { parse } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 
-const { course, specialties, group } = $(useSettingsStore())
+const { course, specialties, group, isNewUser } = $(useSettingsStore())
 const { subjects, classes } = $(useDataStore())
+
+const router = useRouter()
+onBeforeMount(() => { if (isNewUser) router.replace('/') })
+
+const route = useRoute()
+let classId = $ref((route.query.classId as string) ?? '')
+
+function setClassIdQuery(key?: string) {
+  if (key) {
+    router.replace({ query: { classId: key }})
+    classId = key
+  } else {
+    router.replace({})
+    classId = ''
+  }
+}
 
 interface CalendarAttributes {
   key: string
@@ -74,14 +90,15 @@ const attributes = $computed<CalendarAttributes[]>(() => {
               :key="attr.key"
               class="item modal-button"
               :style="`background-color: ${attr.customData.color};`"
+              @click="setClassIdQuery(attr.key)"
             >
               {{ attr.customData.title }}
 
               <teleport to="body">
                 <input type="checkbox" :id="attr.key" class="modal-toggle" />
-                <div class="modal">
+                <div class="modal" :class="{ 'modal-open': classId === attr.key }">
                   <div class="modal-box">
-                    <label :for="attr.key" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label :for="attr.key" class="btn btn-sm btn-circle absolute right-2 top-2" @click="setClassIdQuery()">✕</label>
                     <h3 class="font-bold text-xl mb-2"><u>{{ attr.customData.title }}</u></h3>
                     <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
                     <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
