@@ -1,5 +1,5 @@
 import { RawClassData, ClassData } from "~/store"
-import { DATE_SEPARATOR, DAYS_FORMAT, DAYS_SEPARATOR, MONTHS_SEPARATOR } from "~/const"
+import { DATE_SEPARATOR, DATE_FORMAT, DAYS_SEPARATOR, MONTHS_SEPARATOR } from "~/const"
 import { isError } from "~/utils"
 
 export function parseClassData(classData: Array<RawClassData[]>): Array<ClassData[]> | never {
@@ -46,7 +46,7 @@ export function parseDates(dates: string): string[] | Error {
 
     for (const day of days.split(DAYS_SEPARATOR)) {
       const date = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`
-      if (date.length !== DAYS_FORMAT.length || isNaN(Number(`${day}${month}${year}`))) return new Error(`Неверный формат даты: ${splitAndStrippedDates}, получено ${date}`)
+      if (date.length !== DATE_FORMAT.length || isNaN(Number(`${day}${month}${year}`))) return new Error(`Неверный формат даты: ${splitAndStrippedDates}, получено ${date}`)
       result.push(`${day}.${month}.${year}`)
     }
   }

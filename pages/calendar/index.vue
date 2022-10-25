@@ -1,100 +1,53 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
+import { parse } from "date-fns"
+import { DATE_FORMAT } from "~/const"
 
-const { course } = $(useSettingsStore())
-const { subjects } = $(useDataStore())
+const { course, specialties, group } = $(useSettingsStore())
+const { subjects, classes } = $(useDataStore())
 
-const subjectVars = $computed<string>(() => {
-  let colorVars: string = ''
-
-  for (const [course, courseSubjects] of Object.entries(subjects)) {
-    for (const subject of courseSubjects) {
-      colorVars += (`--subject-color-${course}-${subject.id}: ${subject.color};`)
-    }
+interface CalendarAttributes {
+  key: string
+  dates: Date[]
+  customData: {
+    title: string
+    color: string
   }
+}
 
-  return colorVars
+const attributes = $computed<CalendarAttributes[]>(() => {
+  if (course === null) return []
+  if (group === null) return []
+  if (!subjects[course]) return []
+  if (!classes[course]) return []
+
+  return classes[course].reduce<CalendarAttributes[]>((acc, val) => {
+    const subject = subjects[course].find(subject => subject.id === val.subjectId)
+    if (!subject) {
+      console.error(`Неверно указан id предмета: ${val.subjectId}, это занятие будет пропущено`)
+      return acc
+    }
+
+    if (subject.specs && !subject.specs.some(spec => specialties.includes(spec))) return acc
+    if (val.groups && !val.groups.includes(group)) return acc
+
+    acc.push({
+      key: val.id,
+      dates: val.dates.map(date => parse(date, DATE_FORMAT, new Date())),
+      customData: {
+        title: subject.title,
+        color: subject.color
+      }
+    })
+
+    return acc
+  }, [])
 })
-
-const attributes = $ref([
-  {
-    key: 1,
-    customData: {
-      title: 'Lunch with mom.',
-      class: 'bg-red-600 text-white',
-    },
-    dates: new Date(year.value, month.value, 1),
-  },
-  {
-    key: 2,
-    customData: {
-      title: 'Take Noah to basketball practice',
-      class: 'bg-blue-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 2),
-  },
-  {
-    key: 3,
-    customData: {
-      title: "Noah's basketball game.",
-      class: 'bg-blue-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 5),
-  },
-  {
-    key: 4,
-    customData: {
-      title: 'Take car to the shop',
-      class: 'bg-indigo-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 5),
-  },
-  {
-    key: 4,
-    customData: {
-      title: 'Meeting with new client.',
-      class: 'bg-teal-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 7),
-  },
-  {
-    key: 5,
-    customData: {
-      title: "Mia's gymnastics practice.",
-      class: 'bg-pink-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 11),
-  },
-  {
-    key: 6,
-    customData: {
-      title: 'Cookout with friends.',
-      class: 'bg-orange-500 text-white',
-    },
-    dates: { months: 5, ordinalWeekdays: { 2: 1 } },
-  },
-  {
-    key: 7,
-    customData: {
-      title: "Mia's gymnastics recital.",
-      class: 'bg-pink-500 text-white',
-    },
-    dates: new Date(year.value, month.value, 22),
-  },
-  {
-    key: 8,
-    customData: {
-      title: 'Visit great grandma.',
-      class: 'bg-red-600 text-white',
-    },
-    dates: new Date(year.value, month.value, 25),
-  },
-])
 </script>
 
 <template>
-  <div class="wrapper" :style="subjectVars">
+  <div class="wrapper">
     <calendar
       class="custom-calendar max-w-full"
       :first-day-of-week="2"
@@ -110,8 +63,8 @@ const attributes = $ref([
             <p
               v-for="attr in attributes"
               :key="attr.key"
-              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1 item"
-              :class="attr.customData.class"
+              class="item"
+              :style="`background-color: ${attr.customData.color};`"
             >
               {{ attr.customData.title }}
             </p>
@@ -186,5 +139,7 @@ const attributes = $ref([
 .item {
   min-width: 100%;
   width: fit-content;
+
+  @apply text-xs leading-tight rounded-sm p-1 mt-0 mb-1
 }
 </style>

@@ -1,4 +1,4 @@
-export const DAYS_FORMAT = 'dd.MM.yyyy'
+export const DATE_FORMAT = 'dd.MM.yyyy'
 // separator between ranges with different months
 export const MONTHS_SEPARATOR = '/'
 // separator between days-months-years
