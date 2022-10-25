@@ -16,6 +16,6 @@ export interface SubjectData {
   id: string
   title: string
   professor: string
-  specs: string[]
+  specs?: string[]
   color: string
 }

@@ -6,12 +6,17 @@ export function parseSubjectData(data: Array<RawSubjectData[]>): Array<SubjectDa
   for (const [course, subjects] of Object.entries(data)) {
     result[Number(course)] = subjects.map<SubjectData>(subject => ({
       ...subject,
-      specs: subject.specs.split(','),
+      specs: parseSpecs(subject.specs),
       color: parseColor(subject)
     }))
   }
 
   return result
+}
+
+function parseSpecs(specs: string): string[] | undefined {
+  if (specs === '-') return undefined
+  return specs.split(',')
 }
 
 function parseColor(data: RawSubjectData): string {
