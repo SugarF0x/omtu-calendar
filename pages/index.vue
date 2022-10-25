@@ -26,9 +26,11 @@ onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
             <p><strong>{{ t('paragraphNote') }}</strong></p>
           </div>
 
-          <settings-course />
-          <settings-group />
-          <settings-specialty />
+          <div class="selectors">
+            <settings-course />
+            <settings-group />
+            <settings-specialty class="specs" />
+          </div>
 
           <button class="btn btn-primary" :disabled="isNewUser" @click="proceedToCalendar">{{ t('proceed') }}</button>
         </div>
@@ -36,6 +38,21 @@ onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
     </div>
   </ftue-loader>
 </template>
+
+<style scoped lang="scss">
+.selectors > * + * {
+  @apply mt-4
+}
+
+.selectors {
+  @apply mb-4
+}
+
+.specs {
+  max-width: max(80%, 400px);
+  @apply mx-auto
+}
+</style>
 
 <i18n locale="ru">
 title: ОМТУ Календарь занятий
