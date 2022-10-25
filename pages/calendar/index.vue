@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
-import { useCalendarStore } from './store'
-import { storeToRefs } from "pinia"
 import { useDataStore, useSettingsStore } from "~/store"
 
-const { month, year } = storeToRefs(useCalendarStore())
 const { course } = $(useSettingsStore())
 const { subjects } = $(useDataStore())
 
