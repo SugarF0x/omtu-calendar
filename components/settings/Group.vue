@@ -13,8 +13,8 @@ const { group } = $(useSettingsStore())
     <div class="btn-group justify-center mt-2">
       <input class="btn" type="radio" name="group" data-title="1" :value="0" v-model="group" />
       <input class="btn" type="radio" name="group" data-title="2" :value="1" v-model="group" />
-      <input class="btn" type="radio" name="group" data-title="2" :value="2" v-model="group" />
-      <input class="btn" type="radio" name="group" data-title="2" :value="3" v-model="group" />
+      <input class="btn" type="radio" name="group" data-title="3" :value="2" v-model="group" />
+      <input class="btn" type="radio" name="group" data-title="4" :value="3" v-model="group" />
     </div>
   </div>
 </template>
