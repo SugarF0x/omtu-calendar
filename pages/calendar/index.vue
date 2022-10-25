@@ -84,10 +84,22 @@ const attributes = $computed<CalendarAttributes[]>(() => {
 </template>
 
 <style scoped lang="scss">
-.wrapper { @apply min-h-screen flex flex-col justify-center align-middle }
+.wrapper { @apply min-h-screen flex flex-col justify-center items-center }
 
-.settings { @apply my-4 px-4 }
 .selectors { @apply flex justify-between mb-4 }
+.settings {
+  min-width: min(600px, 100%);
+  max-width: max(600px, 50%);
+
+  @apply my-4 px-4
+}
+
+.item {
+  min-width: 100%;
+  width: fit-content;
+
+  @apply text-xs leading-tight rounded-sm p-1 mt-0 mb-1 block
+}
 
 :deep(.custom-calendar.vc-container) {
   --day-border: 1px solid #b8c2cc;
@@ -98,6 +110,8 @@ const attributes = $computed<CalendarAttributes[]>(() => {
   --weekday-border: 1px solid #eaeaea;
 
   border-radius: 0;
+  min-width: min(1000px, 100%);
+  max-width: max(1000px, 50%);
   width: 100%;
 
   & .vc-title {
@@ -139,12 +153,5 @@ const attributes = $computed<CalendarAttributes[]>(() => {
   & .vc-day-dots {
     margin-bottom: 5px;
   }
-}
-
-.item {
-  min-width: 100%;
-  width: fit-content;
-
-  @apply text-xs leading-tight rounded-sm p-1 mt-0 mb-1
 }
 </style>
