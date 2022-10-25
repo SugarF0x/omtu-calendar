@@ -8,7 +8,7 @@ import {
   MOCK_SPECIALTIES_DATA,
   MOCK_SUBJECTS_DATA,
 } from './mocks'
-import { isRawClassData, isSpecialtyData, isSubjectData } from "~/store/data/types"
+import { isRawClassData, isSpecialtyData, isRawSubjectData } from "~/store/data/types"
 import { isError } from "~/utils"
 
 function dummyValidator(e: unknown): e is Record<string, string> {
@@ -18,7 +18,7 @@ function dummyValidator(e: unknown): e is Record<string, string> {
 describe('parseSpreadsheetRawData', () => {
   it.each<[string, string, unknown, (data: unknown) => data is any]>([
     ['specialties', MOCK_SPECIALTIES_DATA, EXPECTED_SPECIALTIES_RESULT, isSpecialtyData],
-    ['subjects', MOCK_SUBJECTS_DATA, EXPECTED_SUBJECTS_RESULT, isSubjectData],
+    ['subjects', MOCK_SUBJECTS_DATA, EXPECTED_SUBJECTS_RESULT, isRawSubjectData],
     ['classes', MOCK_CLASSES_DATA, EXPECTED_CLASSES_RESULT, isRawClassData],
   ])("should properly parse %s", (_, input, output, validator) => {
     expect(parseSpreadsheetRawData(input, validator)).toEqual(output)

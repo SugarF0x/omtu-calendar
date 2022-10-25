@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { isRawClassData } from "~/store/data/types"
 
-describe('isClassData', () => {
+describe('isRawClassData', () => {
   it('should validate proper input', () => {
     expect(isRawClassData({
       id: "",
