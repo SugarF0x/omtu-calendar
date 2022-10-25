@@ -13,6 +13,10 @@ interface CalendarAttributes {
   customData: {
     title: string
     color: string
+    room: string
+    professor: string
+    time: string
+    note?: string
   }
 }
 
@@ -37,7 +41,11 @@ const attributes = $computed<CalendarAttributes[]>(() => {
       dates: val.dates.map(date => parse(date, DATE_FORMAT, new Date())),
       customData: {
         title: subject.title,
-        color: subject.color
+        color: subject.color,
+        professor: subject.professor,
+        room: val.room,
+        time: val.time,
+        note: val.note
       }
     })
 
@@ -60,14 +68,29 @@ const attributes = $computed<CalendarAttributes[]>(() => {
         <div class="flex flex-col h-full z-10">
           <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
           <div class="flex-grow overflow-scroll">
-            <p
+            <label
               v-for="attr in attributes"
+              :for="attr.key"
               :key="attr.key"
-              class="item"
+              class="item modal-button"
               :style="`background-color: ${attr.customData.color};`"
             >
               {{ attr.customData.title }}
-            </p>
+
+              <teleport to="body">
+                <input type="checkbox" :id="attr.key" class="modal-toggle" />
+                <div class="modal">
+                  <div class="modal-box">
+                    <label :for="attr.key" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 class="font-bold text-xl mb-2"><u>{{ attr.customData.title }}</u></h3>
+                    <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
+                    <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
+                    <p class=""><b>Время:</b> {{ attr.customData.time }}</p>
+                    <p v-if="attr.customData.note" class=""><b>Примечание:</b> {{ attr.customData.note }}</p>
+                  </div>
+                </div>
+              </teleport>
+            </label>
           </div>
         </div>
       </template>
