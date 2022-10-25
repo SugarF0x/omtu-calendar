@@ -2,8 +2,23 @@
 import { Calendar } from 'v-calendar'
 import { useCalendarStore } from './store'
 import { storeToRefs } from "pinia"
+import { useDataStore, useSettingsStore } from "~/store"
 
 const { month, year } = storeToRefs(useCalendarStore())
+const { course } = $(useSettingsStore())
+const { subjects } = $(useDataStore())
+
+const subjectVars = $computed<string>(() => {
+  let colorVars: string = ''
+
+  for (const [course, courseSubjects] of Object.entries(subjects)) {
+    for (const subject of courseSubjects) {
+      colorVars += (`--subject-color-${course}-${subject.id}: ${subject.color};`)
+    }
+  }
+
+  return colorVars
+})
 
 const attributes = $ref([
   {
@@ -82,11 +97,7 @@ const attributes = $ref([
 </script>
 
 <template>
-  <div class="wrapper">
-    <NuxtLink to="/settings">
-      <button class="btn btn-primary"> go to settings </button>
-    </NuxtLink>
-
+  <div class="wrapper" :style="subjectVars">
     <calendar
       class="custom-calendar max-w-full"
       :first-day-of-week="2"
