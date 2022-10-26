@@ -68,6 +68,10 @@ const attributes = $computed<CalendarAttributes[]>(() => {
     return acc
   }, [])
 })
+
+function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date }): string {
+  return `${attr.key}-${attr.dates.indexOf(attr.targetDate)}`
+}
 </script>
 
 <template>
@@ -86,19 +90,19 @@ const attributes = $computed<CalendarAttributes[]>(() => {
           <div class="flex-grow overflow-scroll">
             <label
               v-for="attr in attributes"
-              :for="attr.key"
-              :key="attr.key"
+              :for="getIndividualDayId(attr)"
+              :key="getIndividualDayId(attr)"
               class="item modal-button"
               :style="`background-color: ${attr.customData.color};`"
-              @click="setClassIdQuery(attr.key)"
+              @click="setClassIdQuery(getIndividualDayId(attr))"
             >
               {{ attr.customData.title }}
 
               <teleport to="body">
                 <input type="checkbox" :id="attr.key" class="modal-toggle" />
-                <div class="modal" :class="{ 'modal-open': classId === attr.key }">
+                <div class="modal" :class="{ 'modal-open': classId === getIndividualDayId(attr) }">
                   <div class="modal-box">
-                    <label :for="attr.key" class="btn btn-sm btn-circle absolute right-2 top-2" @click="setClassIdQuery()">✕</label>
+                    <label :for="getIndividualDayId(attr)" class="btn btn-sm btn-circle absolute right-2 top-2" @click="setClassIdQuery()">✕</label>
                     <h3 class="font-bold text-xl mb-2"><u>{{ attr.customData.title }}</u></h3>
                     <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
                     <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
