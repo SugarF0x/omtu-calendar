@@ -145,6 +145,8 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
   @apply text-xs leading-tight rounded-sm p-1 mt-0 mb-1 block
 }
 
+:deep(.is-not-in-month) { filter: contrast(90%) }
+
 :deep(.custom-calendar.vc-container) {
   --day-border: 1px solid #b8c2cc;
   --day-border-highlight: 1px solid #b8c2cc;
