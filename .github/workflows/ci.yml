@@ -5,12 +5,13 @@ on:
     branches:
       - master
     paths-ignore:
-      - '*'
-      - 'bot/**'
-      - '.github/**'
+      - 'package.json'
+      - 'CHANGELOG.md'
 
 env:
-  RELEASE_PATH: dist.zip
+  S3_BUCKET: omtu-calendar.sugar-fox.ru
+  DIST_PATH: .output/public/
+  RELEASE_PATH: output.zip
 
 jobs:
   setup:
@@ -43,17 +44,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Nodejs and npm
-        uses: actions/setup-node@v2
+      - name: Set up Node.js & yarn
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-          cache: npm
+          node-version: '16'
+          cache: 'yarn'
 
-      - run: npm i
-      - run: npm run build
-      - run: npm run generate
-      - run: npm run gzip
-      - run: npm run zip
+      - name: Install project dependencies
+        run: yarn --prefer-offline
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Generate
+        run: yarn generate
+
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r output.zip ${{ env.DIST_PATH }}
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ${{ env.DIST_PATH }}
+          retention-days: 3
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v3
@@ -80,3 +98,26 @@ jobs:
           name: ${{ needs.setup.outputs.tag }}
           body: ${{ needs.setup.outputs.clean_changelog }}
           files: ${{ env.RELEASE_PATH }}
+
+  deploy:
+    name: Deploy distributive
+    needs: [ setup, build ]
+    if: ${{ needs.setup.outputs.skipped == 'false' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download distributive artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+      - name: Upload to bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_S3_BUCKET: ${{ env.S3_BUCKET }}
+          AWS_REGION: ru-central1
+          AWS_S3_ENDPOINT: https://storage.yandexcloud.net
