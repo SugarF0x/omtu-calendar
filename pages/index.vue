@@ -1,131 +1,64 @@
-<script lang="ts">
-import { computed, defineComponent, ref, useRouter, watch } from "@nuxtjs/composition-api"
-import { parse, isSameDay, format, isBefore } from "date-fns"
-import { useAccessor } from "~/store"
+<script setup lang="ts">
+import { useRouter } from "#app"
+import { useSettingsStore } from "~/store"
+import { useI18n } from "vue-i18n"
 
-interface DateClickEvent {
-  date: string
-  year: number
-  month: number
-  day: number
+const { t, tm, rt } = useI18n()
+
+const { isNewUser } = $(useSettingsStore())
+
+const router = useRouter()
+function proceedToCalendar() {
+  router.replace('/calendar')
 }
 
-export default defineComponent({
-  setup() {
-    const router = useRouter()
-    const accessor = useAccessor()
-
-    const course = computed(() => accessor.options.course)
-    const group = computed(() => accessor.options.group)
-    const specialties = computed(() => accessor.options.specialties)
-    const date = computed(() => accessor.month)
-
-    const openDay = (meta: DateClickEvent | string) => {
-      const url = typeof meta === "string" ? meta : meta.date
-      router.push(`/${url}?noMonthChange=true`)
-    }
-
-    const value = ref(format(new Date(date.value), "yyyy-MM-dd"))
-    watch([date], () => {
-      value.value = format(new Date(date.value), "yyyy-MM-dd")
-    })
-
-    const events = computed(() =>
-      accessor.data.events.filter(event => {
-        const isCourseMatch = event.course === course.value
-        const isGroupMatch = event.groups.includes(group.value!)
-        const isForAllSpecialties = !event.subject.specs.length
-        const isSpecialtyMatch =
-          isForAllSpecialties || event.subject.specs.some(entry => specialties.value.includes(entry))
-
-        return isCourseMatch && isGroupMatch && isSpecialtyMatch
-      }),
-    )
-
-    const getEvents = (value: string) => {
-      const date = parse(value, "yyyy-MM-dd", new Date())
-      return events.value
-        .filter(event => isSameDay(event.date, date))
-        .sort((a, b) => (isBefore(a.date, b.date) ? -1 : 1))
-    }
-
-    return {
-      value,
-      events,
-      group,
-      getEvents,
-      openDay,
-    }
-  },
-})
+onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
 </script>
 
 <template>
-  <v-container class="wrapper">
-    <v-calendar
-      v-model="value"
-      class="calendar"
-      color="red"
-      :weekdays="[1, 2, 3, 4, 5, 6, 0]"
-      event-category="selectedGroup"
-      event-overlap-mode="stack"
-      locale="ru"
-      @click:day="openDay"
-      @click:date="openDay"
-    >
-      <template #day="{ date }">
-        <v-sheet
-          v-for="event in getEvents(date)"
-          :key="event.id"
-          tile
-          :color="event.subject.color"
-          class="event"
-          @click="openDay(date)"
-        >
-          {{ event.subject.title }}
-        </v-sheet>
-      </template>
-    </v-calendar>
-  </v-container>
+  <ftue-loader>
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-ld">
+          <h1 class="text-5xl font-bold">{{ t('title') }}</h1>
+          <div class="py-6">
+            <p v-for="locale in tm('paragraph')" :key="locale">{{ rt(locale) }}</p>
+            <p><strong>{{ t('paragraphNote') }}</strong></p>
+          </div>
+
+          <div class="selectors">
+            <settings-course />
+            <settings-group />
+            <settings-specialty class="specs" />
+          </div>
+
+          <button class="btn btn-primary" :disabled="isNewUser" @click="proceedToCalendar">{{ t('proceed') }}</button>
+        </div>
+      </div>
+    </div>
+  </ftue-loader>
 </template>
 
-<style lang="scss" scoped>
-.wrapper {
-  height: 100%;
-  display: flex;
-  align-items: center;
+<style scoped lang="scss">
+.selectors > * + * {
+  @apply mt-4
 }
 
-.calendar {
-  max-height: 160vw;
-  box-sizing: border-box;
-  cursor: pointer;
+.selectors {
+  @apply mb-4
 }
 
-.event {
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
-  padding: 4px 2px;
-  font-size: .8em;
-  line-height: 1rem;
-
-  &:nth-child(2) {
-    margin-top: 4px;
-  }
-}
-
-::v-deep .v-calendar-weekly__day-label .v-btn__content {
-  text-transform: capitalize;
-}
-
-::v-deep .v-calendar-weekly__day.v-outside .v-calendar-weekly__day-label {
-  pointer-events: none;
+.specs {
+  max-width: max(80%, 400px);
+  @apply mx-auto
 }
 </style>
 
-<style lang="scss">
-.v-calendar-weekly__day,
-.v-calendar-weekly__head-weekday {
-  margin: 0 !important;
-}
-</style>
+<i18n locale="ru">
+title: ОМТУ Календарь занятий
+paragraph:
+  - Похоже, вы здесь первый раз или давно не заходили
+  - Пожалуйста, выберите курс, группу и специализацию
+paragraphNote: Этот выбор можно поменять позднее
+proceed: Продолжить
+</i18n>
