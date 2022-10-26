@@ -14,8 +14,49 @@ env:
   RELEASE_PATH: output.zip
 
 jobs:
+  run-vitest:
+    name: Vitest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js & yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install project dependencies
+        run: yarn --prefer-offline
+
+      - name: Run vitest
+        run: yarn test:vitest
+
+  run-tsc:
+    name: Type check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js & yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install project dependencies
+        run: yarn --prefer-offline
+
+      - name: Run type check
+        run: yarn test:types
+
   setup:
     name: Checkout & generate changelog
+    needs: [ run-vitest, run-tsc ]
     runs-on: ubuntu-latest
 
     outputs:

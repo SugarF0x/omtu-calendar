@@ -5,13 +5,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "tsc": "nuxi typecheck",
+    "prepare": "npx nuxi prepare",
     "vitest": "concurrently --kill-others \"yarn vitest:watch\" \"yarn vitest:coverage-monitor\"",
     "vitest:run": "vitest --run",
     "vitest:watch": "vitest --ui --coverage",
     "vitest:coverage-monitor": "node tests/coverage-monitor.mjs",
-    "test": "yarn tsc && yarn vitest:run"
+    "test": "yarn tsc && yarn vitest:run",
+    "test:types": "nuxi typecheck",
+    "test:vitest": "yarn vitest:run"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^6.0.3",
