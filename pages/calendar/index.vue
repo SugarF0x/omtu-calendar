@@ -81,23 +81,7 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
 
 <template>
   <div class="wrapper">
-    <div class="settings">
-      <label for="settings-modal" class="btn btn-secondary">{{ t('settings') }}</label>
-      <teleport to="body">
-        <input type="checkbox" id="settings-modal" class="modal-toggle" />
-        <label for="settings-modal" class="modal cursor-pointer">
-          <label class="modal-box relative" for="">
-            <label for="settings-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xl font-bold">{{ t('settings') }}</h3>
-            <div class="selectors">
-              <settings-course />
-              <settings-group />
-            </div>
-            <settings-specialty />
-          </label>
-        </label>
-      </teleport>
-    </div>
+    <settings-modal class="settings" />
 
     <calendar
       class="custom-calendar max-w-full"
@@ -224,7 +208,3 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
   }
 }
 </style>
-
-<i18n locale="ru">
-settings: Настройки
-</i18n>
