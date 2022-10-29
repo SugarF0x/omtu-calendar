@@ -149,7 +149,7 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
   min-width: 100%;
   width: fit-content;
 
-  @apply text-xs leading-tight rounded-sm p-1 mt-0 mb-1 block
+  @apply text-xs leading-tight rounded-sm p-1 m-1 block
 }
 
 :deep(.is-not-in-month) { filter: contrast(90%) }
