@@ -3,7 +3,7 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
-import { parse } from "date-fns"
+import { format, parse } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 import { useI18n } from "vue-i18n"
 
@@ -16,29 +16,31 @@ const router = useRouter()
 onBeforeMount(() => { if (isNewUser) router.replace('/') })
 
 const route = useRoute()
-let classId = $ref((route.query.classId as string) ?? '')
+let dayKey = $ref((route.query.dayKey as string) ?? '')
 
 function setClassIdQuery(key?: string) {
   if (key) {
-    router.replace({ query: { classId: key }})
-    classId = key
+    router.replace({ query: { dayKey: key }})
+    dayKey = key
   } else {
     router.replace({})
-    classId = ''
+    dayKey = ''
   }
+}
+
+interface CalendarCustomData {
+  title: string
+  color: string
+  room: string
+  professor: string
+  time: string
+  note?: string
 }
 
 interface CalendarAttributes {
   key: string
   dates: Date[]
-  customData: {
-    title: string
-    color: string
-    room: string
-    professor: string
-    time: string
-    note?: string
-  }
+  customData: CalendarCustomData
 }
 
 const attributes = $computed<CalendarAttributes[]>(() => {
@@ -74,8 +76,25 @@ const attributes = $computed<CalendarAttributes[]>(() => {
   }, [])
 })
 
-function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date }): string {
-  return `${attr.key}-${attr.dates.indexOf(attr.targetDate)}`
+const attributesByDay = $computed(() => {
+  return attributes.reduce<Record<string, Array<CalendarCustomData & { key: string }>>>((acc, val) => {
+    for (const date of val.dates) {
+      const dateKey = formatDate(date)
+
+      if (!(dateKey in acc)) acc[dateKey] = []
+      acc[dateKey].push({ ...val.customData, key: val.key })
+    }
+
+    return acc
+  }, {})
+})
+
+function formatDate(date: Date): string {
+  return format(date, DATE_FORMAT)
+}
+
+function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: Date } }): string {
+  return format(start, DATE_FORMAT)
 }
 </script>
 
@@ -97,45 +116,50 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
           <div class="flex-grow overflow-scroll">
             <label
               v-for="attr in attributes"
-              :for="getIndividualDayId(attr)"
-              :key="getIndividualDayId(attr)"
+              :for="formatDateFromAttrs(attr)"
+              :key="formatDateFromAttrs(attr)"
               class="item modal-button"
               :style="`background-color: ${attr.customData.color};`"
-              @click="setClassIdQuery(getIndividualDayId(attr))"
+              @click="setClassIdQuery(formatDateFromAttrs(attr))"
             >
               {{ attr.customData.title }}
-
-              <teleport to="body">
-                <input type="checkbox" :id="getIndividualDayId(attr)" class="modal-toggle" />
-                <label
-                  :for="getIndividualDayId(attr)"
-                  class="modal cursor-pointer"
-                  :class="{ 'modal-open': classId === getIndividualDayId(attr) }"
-                  @click="setClassIdQuery()"
-                >
-                  <label class="modal-box relative" for="">
-                    <label
-                      :for="getIndividualDayId(attr)"
-                      class="btn btn-sm btn-circle absolute right-2 top-2"
-                      @click="setClassIdQuery()"
-                    >
-                      ✕
-                    </label>
-
-                    <h3 class="font-bold text-xl">{{ attr.customData.title }}</h3>
-                    <div class="divider my-2" />
-                    <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
-                    <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
-                    <p class=""><b>Время:</b> {{ attr.customData.time }}</p>
-                    <p v-if="attr.customData.note" class=""><b>Примечание:</b> {{ attr.customData.note }}</p>
-                  </label>
-                </label>
-              </teleport>
             </label>
           </div>
         </div>
       </template>
     </calendar>
+
+    <teleport v-for="[day, classes] in Object.entries(attributesByDay)" :key="day" to="body">
+      <input type="checkbox" :id="day" class="modal-toggle" />
+      <label
+        :for="day"
+        class="modal cursor-pointer"
+        :class="{ 'modal-open': dayKey === day }"
+        @click="setClassIdQuery()"
+      >
+        <label
+          v-for="attr in classes"
+          :key="attr.key"
+          class="modal-box"
+          for=""
+        >
+          <label
+            :for="day"
+            class="btn btn-sm btn-circle absolute right-2 top-2"
+            @click="setClassIdQuery()"
+          >
+            ✕
+          </label>
+
+          <h3 class="font-bold text-xl">{{ attr.title }}</h3>
+          <div class="divider my-2" />
+          <p class=""><b>Преподаватель:</b> {{ attr.professor }}</p>
+          <p class=""><b>Кабинет:</b> {{ attr.room }}</p>
+          <p class=""><b>Время:</b> {{ attr.time }}</p>
+          <p v-if="attr.note" class=""><b>Примечание:</b> {{ attr.note }}</p>
+        </label>
+      </label>
+    </teleport>
   </div>
 </template>
 
@@ -144,6 +168,9 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
 
 .settings { @apply mb-4 ml-auto mr-4 }
 .selectors { @apply flex justify-around my-4 }
+
+.modal { @apply cursor-pointer flex-col gap-4 }
+.modal-box { @apply relative }
 
 .item {
   min-width: 100%;
