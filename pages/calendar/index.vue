@@ -138,7 +138,8 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
                       ✕
                     </label>
 
-                    <h3 class="font-bold text-xl mb-2"><u>{{ attr.customData.title }}</u></h3>
+                    <h3 class="font-bold text-xl">{{ attr.customData.title }}</h3>
+                    <div class="divider my-2" />
                     <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
                     <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
                     <p class=""><b>Время:</b> {{ attr.customData.time }}</p>
