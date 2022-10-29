@@ -167,7 +167,6 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
 .wrapper { @apply min-h-screen flex flex-col justify-center items-center }
 
 .settings { @apply mb-4 ml-auto mr-4 }
-.selectors { @apply flex justify-around my-4 }
 
 .modal { @apply cursor-pointer flex-col gap-4 }
 .modal-box { @apply relative }

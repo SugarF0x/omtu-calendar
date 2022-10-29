@@ -26,6 +26,10 @@ const { t } = useI18n()
   </div>
 </template>
 
+<style scoped lang="scss">
+.selectors { @apply flex justify-around my-4 }
+</style>
+
 <i18n locale="ru">
 settings: Настройки
 </i18n>
