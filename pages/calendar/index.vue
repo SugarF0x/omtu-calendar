@@ -164,8 +164,28 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
   </div>
 </template>
 
+<style lang="scss">
+.custom-calendar {
+  --header-color: hsl(var(--p));
+
+  --weekday-bg: hsl(var(--pf));
+  --weekday-border-color: hsl(var(--pf));
+
+  --day-bg: hsl(var(--b1));
+  --day-border-color: hsl(var(--b3));
+  --day-label-color: hsl(var(--bc));
+
+  --weekend-bg: hsl(var(--b2));
+}
+</style>
+
 <style scoped lang="scss">
-.wrapper { @apply min-h-screen flex flex-col justify-center items-center }
+.wrapper {
+  min-width: min(1000px, 100%);
+  max-width: max(1000px, 50%);
+
+  @apply min-h-screen flex flex-col justify-center items-center mx-auto
+}
 
 .settings { @apply mb-4 ml-auto mr-4 }
 
@@ -179,19 +199,21 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
   @apply text-xs leading-tight rounded-sm p-1 m-1 block
 }
 
-:deep(.is-not-in-month) { filter: contrast(90%) }
+:deep(.is-not-in-month) { filter: contrast(85%) }
+
+:deep(.day-label) { color: var(--day-label) }
+
+:deep(.vc-title) { color: white }
+:deep(.vc-weekday) { color: white }
+:deep(.vc-svg-icon) { color: white }
 
 :deep(.custom-calendar.vc-container) {
-  --day-border: 1px solid #b8c2cc;
-  --day-border-highlight: 1px solid #b8c2cc;
+  --day-border: 1px solid var(--day-border-color);
   --day-width: 0px;
   --day-height: 90px;
-  --weekday-bg: #f8fafc;
-  --weekday-border: 1px solid #eaeaea;
+  --weekday-border: 1px solid var(--weekday-border-color);
 
   border-radius: 0;
-  min-width: min(1000px, 100%);
-  max-width: max(1000px, 50%);
   width: 100%;
 
   & .vc-title {
@@ -199,7 +221,7 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
   }
 
   & .vc-header {
-    background-color: #f1f5f8;
+    background-color: var(--header-color);
     padding: 10px 0;
   }
   & .vc-weeks {
@@ -215,16 +237,15 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
     text-align: left;
     height: var(--day-height);
     min-width: var(--day-width);
-    background-color: white;
+    background-color: var(--day-bg);
+
     &.weekday-1,
     &.weekday-7 {
-      background-color: #eff8ff;
+      background-color: var(--weekend-bg);
     }
+
     &:not(.on-bottom) {
       border-bottom: var(--day-border);
-      &.weekday-1 {
-        border-bottom: var(--day-border-highlight);
-      }
     }
     &:not(.on-right) {
       border-right: var(--day-border);
