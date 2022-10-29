@@ -1,4 +1,4 @@
-# [0.1.0](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.5...v0.1.0) (2022-10-26)
+# [2.0.0](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.5...v0.1.0) (2022-10-26)
 
 
 * feat!: redesign ([0f2fbf9](https://github.com/SugarF0x/omtu-calendar/commit/0f2fbf9913f604105c53b7c378622905c05d2239))
