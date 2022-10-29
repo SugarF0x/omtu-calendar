@@ -8,7 +8,7 @@ const { t } = useI18n()
 
 <template>
   <div>
-    <label for="settings-modal" class="btn btn-primary">{{ t('settings') }}</label>
+    <label for="settings-modal" class="btn btn-primary text-white">{{ t('settings') }}</label>
     <teleport to="body">
       <input type="checkbox" id="settings-modal" class="modal-toggle" />
       <label for="settings-modal" class="modal cursor-pointer">

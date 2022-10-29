@@ -172,10 +172,19 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
   --weekday-border-color: hsl(var(--pf));
 
   --day-bg: hsl(var(--b1));
-  --day-border-color: hsl(var(--b3));
   --day-label-color: hsl(var(--bc));
 
-  --weekend-bg: hsl(var(--b2));
+  html[data-theme=cupcake] & {
+    --day-border-color: #D6D1CE;
+    --out-of-month-bg-color: #eaefef;
+    --weekend-bg: #f0ede8;
+  }
+
+  html[data-theme=dark] & {
+    --day-border-color: #343B4A;
+    --out-of-month-bg-color: hsl(var(--b2));
+    --weekend-bg: #262b38;
+  }
 }
 </style>
 
@@ -198,8 +207,6 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
 
   @apply text-xs leading-tight rounded-sm p-1 m-1 block
 }
-
-:deep(.is-not-in-month) { filter: contrast(85%) }
 
 :deep(.day-label) { color: var(--day-label) }
 
@@ -239,9 +246,13 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
     min-width: var(--day-width);
     background-color: var(--day-bg);
 
+    &.is-not-in-month { background-color: var(--out-of-month-bg-color);}
+
     &.weekday-1,
     &.weekday-7 {
-      background-color: var(--weekend-bg);
+      &:not(.is-not-in-month) {
+        background-color: var(--weekend-bg);
+      }
     }
 
     &:not(.on-bottom) {
