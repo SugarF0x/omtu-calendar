@@ -30,6 +30,7 @@ onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
             <settings-course />
             <settings-group />
             <settings-specialty class="specs" />
+            <settings-theme />
           </div>
 
           <button class="btn btn-primary" :disabled="isNewUser" @click="proceedToCalendar">{{ t('proceed') }}</button>
