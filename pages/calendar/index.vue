@@ -87,6 +87,18 @@ const attributes = $computed<CalendarAttributes[]>(() => {
     }
   })
 
+  events.push({
+    key: 'christie-day',
+    dates: [new Date(new Date().getFullYear(), 3, 1)],
+    customData: {
+      title: 'День крещатика',
+      color: 'steelblue',
+      professor: 'Профессор Лазло',
+      room: 'храм пресвятого вальдо',
+      time: 'весь день'
+    }
+  })
+
   return events
 })
 
