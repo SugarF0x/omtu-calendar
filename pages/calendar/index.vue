@@ -3,7 +3,7 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
-import { format, parse } from "date-fns"
+import { format, parse, isLeapYear } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 import { useI18n } from "vue-i18n"
 
@@ -49,7 +49,7 @@ const attributes = $computed<CalendarAttributes[]>(() => {
   if (!subjects[course]) return []
   if (!classes[course]) return []
 
-  return classes[course].reduce<CalendarAttributes[]>((acc, val) => {
+  const events = classes[course].reduce<CalendarAttributes[]>((acc, val) => {
     const subject = subjects[course].find(subject => subject.id === val.subjectId)
     if (!subject) {
       console.error(`Неверно указан id предмета: ${val.subjectId}, это занятие будет пропущено`)
@@ -74,6 +74,20 @@ const attributes = $computed<CalendarAttributes[]>(() => {
 
     return acc
   }, [])
+
+  if (isLeapYear(new Date())) events.push({
+    key: 'chips-day',
+    dates: [new Date(2024, 1, 29)],
+    customData: {
+      title: 'День чипсов',
+      color: 'orange',
+      professor: 'Профессор Дворкин',
+      room: 'дома',
+      time: 'весь день'
+    }
+  })
+
+  return events
 })
 
 const attributesByDay = $computed(() => {
