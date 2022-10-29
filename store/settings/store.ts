@@ -7,13 +7,16 @@ export const useSettingsStore = defineStore(
     let group = $ref<number | null>(null)
     let specialties = $ref<string[]>([])
 
+    let theme = $ref<'dark' | 'cupcake'>('cupcake')
+
     const isNewUser = $computed(() => course === null || group === null)
 
     return $$({
       course,
       group,
       specialties,
-      isNewUser
+      isNewUser,
+      theme
     })
   }
 )

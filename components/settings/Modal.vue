@@ -15,11 +15,15 @@ const { t } = useI18n()
         <label class="modal-box relative" for="">
           <label for="settings-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <h3 class="text-xl font-bold">{{ t('settings') }}</h3>
-          <div class="selectors">
-            <settings-course />
-            <settings-group />
+          <div class="divider my-2" />
+          <div class="items-wrapper">
+            <div class="selectors">
+              <settings-course />
+              <settings-group />
+            </div>
+            <settings-specialty />
+            <settings-theme />
           </div>
-          <settings-specialty />
         </label>
       </label>
     </teleport>
@@ -27,7 +31,8 @@ const { t } = useI18n()
 </template>
 
 <style scoped lang="scss">
-.selectors { @apply flex justify-around my-4 }
+.items-wrapper { @apply flex flex-col gap-4 }
+.selectors { @apply flex justify-around }
 </style>
 
 <i18n locale="ru">

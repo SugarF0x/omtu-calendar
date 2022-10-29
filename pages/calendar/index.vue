@@ -9,7 +9,7 @@ import { useI18n } from "vue-i18n"
 
 const { t } = useI18n()
 
-const { course, specialties, group, isNewUser } = $(useSettingsStore())
+const { course, specialties, group, theme, isNewUser } = $(useSettingsStore())
 const { subjects, classes } = $(useDataStore())
 
 const router = useRouter()
@@ -108,6 +108,7 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
       locale="ru"
       :masks="{ weekdays: 'WWW' }"
       :attributes="attributes"
+      :is-dark="theme === 'dark'"
       is-expanded
     >
       <template v-slot:day-content="{ day, attributes }">
