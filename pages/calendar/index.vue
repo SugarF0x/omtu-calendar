@@ -1,8 +1,13 @@
+<!--suppress HtmlUnknownTag -->
+
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
 import { parse } from "date-fns"
 import { DATE_FORMAT } from "~/const"
+import { useI18n } from "vue-i18n"
+
+const { t } = useI18n()
 
 const { course, specialties, group, isNewUser } = $(useSettingsStore())
 const { subjects, classes } = $(useDataStore())
@@ -76,6 +81,24 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
 
 <template>
   <div class="wrapper">
+    <div class="settings">
+      <label for="settings-modal" class="btn btn-secondary">{{ t('settings') }}</label>
+      <teleport to="body">
+        <input type="checkbox" id="settings-modal" class="modal-toggle" />
+        <label for="settings-modal" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <label for="settings-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xl font-bold">{{ t('settings') }}</h3>
+            <div class="selectors">
+              <settings-course />
+              <settings-group />
+            </div>
+            <settings-specialty />
+          </label>
+        </label>
+      </teleport>
+    </div>
+
     <calendar
       class="custom-calendar max-w-full"
       :first-day-of-week="2"
@@ -116,27 +139,14 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
         </div>
       </template>
     </calendar>
-
-    <div class="settings">
-      <div class="selectors">
-        <settings-course />
-        <settings-group />
-      </div>
-      <settings-specialty />
-    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .wrapper { @apply min-h-screen flex flex-col justify-center items-center }
 
-.selectors { @apply flex justify-between mb-4 }
-.settings {
-  min-width: min(600px, 100%);
-  max-width: max(600px, 50%);
-
-  @apply my-4 px-4
-}
+.settings { @apply mb-4 ml-auto mr-4 }
+.selectors { @apply flex justify-around my-4 }
 
 .item {
   min-width: 100%;
@@ -201,3 +211,7 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
   }
 }
 </style>
+
+<i18n locale="ru">
+settings: Настройки
+</i18n>
