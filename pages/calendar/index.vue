@@ -122,17 +122,29 @@ function getIndividualDayId(attr: { key: string, dates: Date[], targetDate: Date
               {{ attr.customData.title }}
 
               <teleport to="body">
-                <input type="checkbox" :id="attr.key" class="modal-toggle" />
-                <div class="modal" :class="{ 'modal-open': classId === getIndividualDayId(attr) }">
-                  <div class="modal-box">
-                    <label :for="getIndividualDayId(attr)" class="btn btn-sm btn-circle absolute right-2 top-2" @click="setClassIdQuery()">✕</label>
+                <input type="checkbox" :id="getIndividualDayId(attr)" class="modal-toggle" />
+                <label
+                  :for="getIndividualDayId(attr)"
+                  class="modal cursor-pointer"
+                  :class="{ 'modal-open': classId === getIndividualDayId(attr) }"
+                  @click="setClassIdQuery()"
+                >
+                  <label class="modal-box relative" for="">
+                    <label
+                      :for="getIndividualDayId(attr)"
+                      class="btn btn-sm btn-circle absolute right-2 top-2"
+                      @click="setClassIdQuery()"
+                    >
+                      ✕
+                    </label>
+
                     <h3 class="font-bold text-xl mb-2"><u>{{ attr.customData.title }}</u></h3>
                     <p class=""><b>Преподаватель:</b> {{ attr.customData.professor }}</p>
                     <p class=""><b>Кабинет:</b> {{ attr.customData.room }}</p>
                     <p class=""><b>Время:</b> {{ attr.customData.time }}</p>
                     <p v-if="attr.customData.note" class=""><b>Примечание:</b> {{ attr.customData.note }}</p>
-                  </div>
-                </div>
+                  </label>
+                </label>
               </teleport>
             </label>
           </div>
