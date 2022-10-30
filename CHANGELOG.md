@@ -1,4 +1,27 @@
-# [2.0.0](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.5...v0.1.0) (2022-10-26)
+# [2.1.0](https://github.com/SugarF0x/omtu-calendar/compare/v2.0.0...v2.1.0) (2022-10-30)
+
+
+### Bug Fixes
+
+* dismiss day modal by outside click ([1f5a8d0](https://github.com/SugarF0x/omtu-calendar/commit/1f5a8d062eab9fbdb38afea65e31edcb2eb18276))
+
+
+### Features
+
+* add chips day ([b590827](https://github.com/SugarF0x/omtu-calendar/commit/b590827c014911b5f64a51866a21500bcb50a672))
+* add christie day ([bd6bf1f](https://github.com/SugarF0x/omtu-calendar/commit/bd6bf1ff5b0ee64531ce432dbaadca3157d28f9c))
+* add theme switcher ([1904c66](https://github.com/SugarF0x/omtu-calendar/commit/1904c66a1f452f027f71623b5ec9680a7ff543d2))
+* add today dot label ([a8922bf](https://github.com/SugarF0x/omtu-calendar/commit/a8922bf430b8ba9e9753d15e45a25438fc869043))
+* group classes by fay for details modals ([87a633e](https://github.com/SugarF0x/omtu-calendar/commit/87a633ecd19772646051a24a4df2389c0e4856f3))
+* wrap settings into modal ([512d151](https://github.com/SugarF0x/omtu-calendar/commit/512d151f8c17c2569c6155e92eb659b9c7ee7c2c))
+
+
+
+# [2.0.0](https://github.com/SugarF0x/omtu-calendar/compare/v0.1.0...v2.0.0) (2022-10-29)
+
+
+
+# [0.1.0](https://github.com/SugarF0x/omtu-calendar/compare/v1.0.5...v0.1.0) (2022-10-26)
 
 
 * feat!: redesign ([0f2fbf9](https://github.com/SugarF0x/omtu-calendar/commit/0f2fbf9913f604105c53b7c378622905c05d2239))
