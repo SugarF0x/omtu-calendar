@@ -6,6 +6,7 @@ import { useDataStore, useSettingsStore } from "~/store"
 import { format, parse, isLeapYear } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 import { useI18n } from "vue-i18n"
+import { CalendarAttributes } from "~/types"
 
 const { t } = useI18n()
 
@@ -28,19 +29,8 @@ function setClassIdQuery(key?: string) {
   }
 }
 
-interface CalendarCustomData {
-  title: string
-  color: string
-  room: string
-  time: string
-  professor?: string
-  note?: string
-}
-
-interface CalendarAttributes {
-  key: string
-  dates: Date[]
-  customData: CalendarCustomData
+function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: Date } }): string {
+  return format(start, DATE_FORMAT)
 }
 
 const attributes = $computed<CalendarAttributes[]>(() => {
@@ -101,27 +91,6 @@ const attributes = $computed<CalendarAttributes[]>(() => {
 
   return events
 })
-
-const attributesByDay = $computed(() => {
-  return attributes.reduce<Record<string, Array<CalendarCustomData & { key: string }>>>((acc, val) => {
-    for (const date of val.dates) {
-      const dateKey = formatDate(date)
-
-      if (!(dateKey in acc)) acc[dateKey] = []
-      acc[dateKey].push({ ...val.customData, key: val.key })
-    }
-
-    return acc
-  }, {})
-})
-
-function formatDate(date: Date): string {
-  return format(date, DATE_FORMAT)
-}
-
-function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: Date } }): string {
-  return format(start, DATE_FORMAT)
-}
 </script>
 
 <template>
@@ -156,37 +125,7 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
       </template>
     </calendar>
 
-    <teleport v-for="[day, classes] in Object.entries(attributesByDay)" :key="day" to="body">
-      <input type="checkbox" :id="day" class="modal-toggle" />
-      <label
-        :for="day"
-        class="modal cursor-pointer"
-        :class="{ 'modal-open': dayKey === day }"
-        @click="setClassIdQuery()"
-      >
-        <label
-          v-for="attr in classes"
-          :key="attr.key"
-          class="modal-box"
-          for=""
-        >
-          <label
-            :for="day"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
-            @click="setClassIdQuery()"
-          >
-            ✕
-          </label>
-
-          <h3 class="font-bold text-xl">{{ attr.title }}</h3>
-          <div class="divider my-2" />
-          <p v-if="attr.professor"><b>Преподаватель:</b> {{ attr.professor }}</p>
-          <p><b>Кабинет:</b> {{ attr.room }}</p>
-          <p><b>Время:</b> {{ attr.time }}</p>
-          <p v-if="attr.note" class=""><b>Примечание:</b> {{ attr.note }}</p>
-        </label>
-      </label>
-    </teleport>
+    <calendar-modal :attributes="attributes" :dayKey="dayKey" @update="setClassIdQuery" />
   </div>
 </template>
 
@@ -223,9 +162,6 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
 }
 
 .settings { @apply mb-4 ml-auto mr-4 }
-
-.modal { @apply cursor-pointer flex-col gap-4 }
-.modal-box { @apply relative }
 
 .item {
   min-width: 100%;
