@@ -15,7 +15,7 @@ export function isRawSubjectData(data: unknown): data is RawSubjectData {
 export interface SubjectData {
   id: string
   title: string
-  professor: string
+  professor?: string
   specs?: string[]
   color: string
 }

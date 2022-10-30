@@ -6,12 +6,18 @@ export function parseSubjectData(data: Array<RawSubjectData[]>): Array<SubjectDa
   for (const [course, subjects] of Object.entries(data)) {
     result[Number(course)] = subjects.map<SubjectData>(subject => ({
       ...subject,
+      professor: parseProfessor(subject.professor),
       specs: parseSpecs(subject.specs),
       color: parseColor(subject)
     }))
   }
 
   return result
+}
+
+function parseProfessor(professor: string): string | undefined {
+  if (professor === '-') return undefined
+  return professor
 }
 
 function parseSpecs(specs: string): string[] | undefined {

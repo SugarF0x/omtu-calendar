@@ -32,8 +32,8 @@ interface CalendarCustomData {
   title: string
   color: string
   room: string
-  professor: string
   time: string
+  professor?: string
   note?: string
 }
 
@@ -180,9 +180,9 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
 
           <h3 class="font-bold text-xl">{{ attr.title }}</h3>
           <div class="divider my-2" />
-          <p class=""><b>Преподаватель:</b> {{ attr.professor }}</p>
-          <p class=""><b>Кабинет:</b> {{ attr.room }}</p>
-          <p class=""><b>Время:</b> {{ attr.time }}</p>
+          <p v-if="attr.professor"><b>Преподаватель:</b> {{ attr.professor }}</p>
+          <p><b>Кабинет:</b> {{ attr.room }}</p>
+          <p><b>Время:</b> {{ attr.time }}</p>
           <p v-if="attr.note" class=""><b>Примечание:</b> {{ attr.note }}</p>
         </label>
       </label>
