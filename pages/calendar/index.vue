@@ -240,6 +240,17 @@ function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: D
 :deep(.vc-weekday) { color: white }
 :deep(.vc-svg-icon) { color: white }
 
+:deep(.day-label) {
+  display: inline;
+  width: fit-content;
+  padding: .25rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  text-align: center;
+}
+
+:deep(.is-today) { .day-label { background-color: hsl(var(--s)); } }
+
 :deep(.custom-calendar.vc-container) {
   --day-border: 1px solid var(--day-border-color);
   --day-width: 0px;
