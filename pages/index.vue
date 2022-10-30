@@ -2,6 +2,9 @@
 import { useRouter } from "#app"
 import { useSettingsStore } from "~/store"
 import { useI18n } from "vue-i18n"
+import { definePageMeta } from "#imports"
+
+definePageMeta({ middleware: ['ftue'] })
 
 const { t, tm, rt } = useI18n()
 
@@ -11,8 +14,6 @@ const router = useRouter()
 function proceedToCalendar() {
   router.replace('/calendar')
 }
-
-onBeforeMount(() => { if (!isNewUser) proceedToCalendar() })
 </script>
 
 <template>
