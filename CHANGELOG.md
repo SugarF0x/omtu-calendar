@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.0...v2.1.1) (2022-10-30)
+
+
+### Bug Fixes
+
+* properly navigate to ftue from calendar ([4ed36b8](https://github.com/SugarF0x/omtu-calendar/commit/4ed36b883d328a9cf32feea9255ea219683d640c))
+
+
+
 # [2.1.0](https://github.com/SugarF0x/omtu-calendar/compare/v2.0.0...v2.1.0) (2022-10-30)
 
 
