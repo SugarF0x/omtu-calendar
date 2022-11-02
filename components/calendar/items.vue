@@ -4,7 +4,7 @@ import { format } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 
 defineProps<{
-  attributes: CalendarAttributes
+  attributes: Array<CalendarAttributes & { targetDate: { start: Date } }>
 }>()
 
 const emit = defineEmits<{
