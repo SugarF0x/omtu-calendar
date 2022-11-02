@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.1...v2.1.2) (2022-11-02)
+
+
+### Bug Fixes
+
+* calendar item right margin overflow ([83f5e9d](https://github.com/SugarF0x/omtu-calendar/commit/83f5e9d934335b5f249b927369062bcf1b3ae5bb))
+
+
+
 ## [2.1.1](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.0...v2.1.1) (2022-10-30)
 
 
