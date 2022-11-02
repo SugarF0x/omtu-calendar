@@ -3,7 +3,7 @@
 <script setup lang="ts">
 import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
-import { format, parse, isLeapYear } from "date-fns"
+import { parse, isLeapYear } from "date-fns"
 import { DATE_FORMAT } from "~/const"
 import { useI18n } from "vue-i18n"
 import { CalendarAttributes } from "~/types"
@@ -28,10 +28,6 @@ function setClassIdQuery(key?: string) {
     router.replace({})
     dayKey = ''
   }
-}
-
-function formatDateFromAttrs({ targetDate: { start } }: { targetDate: { start: Date } }): string {
-  return format(start, DATE_FORMAT)
 }
 
 const attributes = $computed<CalendarAttributes[]>(() => {
@@ -110,18 +106,7 @@ const attributes = $computed<CalendarAttributes[]>(() => {
       <template v-slot:day-content="{ day, attributes }">
         <div class="flex flex-col h-full z-10">
           <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
-          <div class="flex-grow overflow-scroll">
-            <label
-              v-for="attr in attributes"
-              :for="formatDateFromAttrs(attr)"
-              :key="formatDateFromAttrs(attr)"
-              class="item modal-button"
-              :style="`background-color: ${attr.customData.color};`"
-              @click="setClassIdQuery(formatDateFromAttrs(attr))"
-            >
-              {{ attr.customData.title }}
-            </label>
-          </div>
+          <calendar-items :attributes="attributes" @update="setClassIdQuery" />
         </div>
       </template>
     </calendar>
@@ -163,13 +148,6 @@ const attributes = $computed<CalendarAttributes[]>(() => {
 }
 
 .settings { @apply mb-4 ml-auto mr-4 }
-
-.item {
-  min-width: 100%;
-  width: fit-content;
-
-  @apply text-xs leading-tight rounded-sm p-1 m-1 block
-}
 
 :deep(.day-label) { color: var(--day-label) }
 
