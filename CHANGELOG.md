@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.2...v2.1.3) (2023-10-09)
+
+
+### Bug Fixes
+
+* force no fetch caching ([479c892](https://github.com/SugarF0x/omtu-calendar/commit/479c8925f1d12d726e504b6a8cb8d3f4ac4a7c0d))
+
+
+
 ## [2.1.2](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.1...v2.1.2) (2022-11-02)
 
 
