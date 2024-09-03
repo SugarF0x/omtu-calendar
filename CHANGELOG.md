@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.3...v2.2.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* add support for no spec courses ([482acbd](https://github.com/SugarF0x/omtu-calendar/commit/482acbdc8bef0f6c496127db56a2a9b5a3a5dda3))
+
+
+### Features
+
+* **config:** allow customization of learning groups ([67d4844](https://github.com/SugarF0x/omtu-calendar/commit/67d48449dc98353faf9224956aeba8ea795adfcd))
+
+
+
 ## [2.1.3](https://github.com/SugarF0x/omtu-calendar/compare/v2.1.2...v2.1.3) (2023-10-09)
 
 
