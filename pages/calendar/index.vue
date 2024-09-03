@@ -5,13 +5,10 @@ import { Calendar } from 'v-calendar'
 import { useDataStore, useSettingsStore } from "~/store"
 import { parse, isLeapYear } from "date-fns"
 import { DATE_FORMAT } from "~/const"
-import { useI18n } from "vue-i18n"
 import { CalendarAttributes } from "~/types"
 import { definePageMeta } from "#imports"
 
 definePageMeta({ middleware: ['ftue'] })
-
-const { t } = useI18n()
 
 const { course, specialties, group, theme } = $(useSettingsStore())
 const { subjects, classes } = $(useDataStore())
