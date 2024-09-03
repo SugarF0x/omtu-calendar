@@ -11,7 +11,7 @@ const displayedSpecs = $computed(() => specialties[course ?? 0] ?? [])
 </script>
 
 <template>
-  <div class="form-control">
+  <div v-if="displayedSpecs.length" class="form-control">
     <h2 class="card-title justify-center mb-2">{{ t("title") }}</h2>
     <label v-for="{ id, title } in displayedSpecs" :key="id" class="label cursor-pointer item">
       <span class="label-text">{{ title }}</span>
