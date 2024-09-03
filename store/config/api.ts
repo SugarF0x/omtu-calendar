@@ -2,7 +2,7 @@ import { $fetch } from "ohmyfetch"
 import { toError } from "~/utils"
 import { Config } from "~/store"
 
-const expectedKeys: Array<keyof Config> = ['sheetIds', 'dataRefetchInterval']
+const expectedKeys: Array<keyof Config> = ['sheetIds', 'dataRefetchInterval', 'langGroupsCount']
 
 function isValidConfigResponse(response: unknown): response is Config {
   if (!response) return false
