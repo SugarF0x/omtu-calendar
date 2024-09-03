@@ -64,7 +64,7 @@ const attributes = $computed<CalendarAttributes[]>(() => {
 
   if (isLeapYear(new Date())) events.push({
     key: 'chips-day',
-    dates: [new Date(2024, 1, 29)],
+    dates: [new Date(new Date().getFullYear(), 1, 29)],
     customData: {
       title: 'День чипсов',
       color: 'orange',
@@ -106,7 +106,7 @@ const attributes = $computed<CalendarAttributes[]>(() => {
       <template v-slot:day-content="{ day, attributes }">
         <div class="flex flex-col h-full z-10">
           <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
-          <calendar-items :attributes="attributes" @update="setClassIdQuery" />
+          <calendar-items v-if="attributes" :attributes="attributes" @update="setClassIdQuery" />
         </div>
       </template>
     </calendar>
